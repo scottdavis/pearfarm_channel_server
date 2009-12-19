@@ -1,0 +1,50 @@
+#! /usr/bin/env php
+<?php
+	define("CLI_RUNNER", true);
+	require_once('nimblize/nimblize.php');
+	require_once('nimblize/nimble_generators/lib/generator.php');
+	define('NIMBLE_ROOT', getcwd());
+	Generator::$nimble_root = NIMBLE_ROOT;
+	
+	if(count($argv) < 2) {
+		echo NIMBLE_ROOT;
+		echo Generator::help();
+		exit(1);
+	}
+	
+	switch($argv[1]) {	
+		case 'controller':
+			Generator::generate_controller($argv[2]);
+		break;		
+		
+		case 'model':
+		  $parent = isset($argv[3]) ? $argv[3] : '';
+			Generator::generate_model($argv[2], $parent);
+			Generator::generate_migration($argv[2], Inflector::tableize($argv[2]));
+		break;		
+		
+		case 'test':
+			if(!isset($argv[3])) {
+				echo "Please supply a test name.\n";
+				exit(1);
+			}
+			Generator::generate_test($argv[2], $argv[3]);
+  	break;
+  	
+		case 'help':
+			echo Generator::help();
+		break;
+		
+		case 'mailer':
+			$new = $argv;
+			$methods = array_splice($new, 3);
+		 	$methods = empty($methods) ? array('foo') : $methods;
+			Generator::generate_mailer($argv[2], $methods);
+		break;
+		
+		case 'migration':
+		  $table_name = isset($argv[3]) ? $argv[3] : '';
+			Generator::generate_migration($argv[2], $table_name);
+  	break;
+	}
+?>

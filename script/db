@@ -1,0 +1,93 @@
+#! /usr/bin/env php
+<?php
+	define("CLI_RUNNER", true);
+	require_once('nimblize/nimble_support/lib/command_line_colors.php');
+	require_once('nimblize/nimble_record/migrations/lib/migration_runner.php');
+	require_once('nimblize/nimble_record/migrations/migration.php');
+	$nimble_root = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..';
+	require_once(join(DIRECTORY_SEPARATOR, array($nimble_root, 'config', 'boot.php')));
+	MigrationRunner::$dir = FileUtils::join(NIMBLE_ROOT, 'db', 'migrations');
+	//load story helper
+	$storyhelper_path = FileUtils::join(NIMBLE_ROOT, 'lib', 'story_helper.php');
+	if(file_exists($storyhelper_path)){
+		require_once($storyhelper_path);
+	}
+	if(count($argv) < 2) {
+		die('Not enough args');
+	}
+	
+	
+	function create() {
+		Migration::create_database(NimbleRecord::$database);
+	}
+	
+	function drop() {
+		Migration::drop_database(NimbleRecord::$database);
+	}
+	
+	
+	function _reset() {
+		drop();
+		create();
+		migrate();
+	}
+	
+	function migrate($direction = 'up') {
+		MigrationRunner::create_migration_table();
+		$c = MigrationRunner::current_version();
+		$v = MigrationRunner::migrate($direction);
+		if($c == $v) {
+			print(CommandLineColor::red('Nothing was done database is at max version') . "\n");
+		}else{
+			if($direction == 'down') {
+				$color = 'red';
+			}else{
+				$color = 'green';
+			}
+			print(call_user_func_array(array('CommandLineColor', $color), array('Migrated ' . $direction . ' to ' . $v . "\n")));
+		}
+	}
+	
+	switch($argv[1]) {
+		case 'migrate':
+			$direction = (isset($argv[2]) ? $argv[2] : 'up');
+			migrate($direction);
+		break;
+		case 'create':
+			create();
+		break;
+		case 'drop':
+			drop();
+		break;
+		case 'reset':
+			_reset();
+		break;
+		case 'stories':
+			switch($argv[2]) {
+				case 'load':
+					print(CommandLineColor::underline_white('Loading stories') . "\n");
+					$s = new StoryHelper();
+					$s->up();
+				break;
+				case 'clear':
+					print(CommandLineColor::underline_red('Clearing stories') . "\n");
+					$s = new StoryHelper();
+					$s->down();
+				break;
+				case 'reload':
+					print(CommandLineColor::underline_red('Clearing database and reloading stories') . "\n");
+					_reset();
+					$s = new StoryHelper();
+					$s->up();
+				break;
+			}
+		break;
+		default:
+			exit();
+		break;
+	}
+	exit();
+	
+	
+
+?>

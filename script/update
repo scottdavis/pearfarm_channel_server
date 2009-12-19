@@ -1,0 +1,10 @@
+#! /usr/bin/env php
+<?php
+
+	require_once('nimblize/nimblize.php');
+	require_once('nimblize/nimble_generators/lib/generator.php');
+	define('NIMBLE_ROOT', FileUtils::join(dirname(__FILE__), '..'));
+
+	Generator::update(dirname(__FILE__));
+
+?>

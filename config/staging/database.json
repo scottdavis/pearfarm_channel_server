@@ -1,0 +1,10 @@
+{"staging":
+		{
+			"username":"", 
+			"password":"", 
+			"database":"", 
+			"host":"localhost",
+			"adapter":"mysql"
+		}
+}
+
