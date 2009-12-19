@@ -1,8 +1,8 @@
 {"development":
 		{
-			"username":"", 
+			"username":"root", 
 			"password":"", 
-			"database":"", 
+			"database":"pearfarm", 
 			"host":"localhost",
 			"adapter":"mysql"
 		}
