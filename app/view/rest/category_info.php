@@ -5,9 +5,8 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.category
                        http://pear.php.net/dtd/rest.category.xsd"
 >
- <n>Tools</n>
- <c>pear.example.org</c>
- <a>Tools and Utilities</a>
- <d>This category holds all sorts of packages that might help you when
-  trying to dominate the world.</d>
+ <n><?php echo $category->name ?></n>
+ <c><?php echo $user->pear_farm_url() ?></c>
+ <a><?php echo $category->alias() ?></a>
+ <d><?php echo $category->description ?></d>
 </c>

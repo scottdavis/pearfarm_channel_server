@@ -7,6 +7,7 @@
 				$t->string('username');
 				$t->string('password');
 				$t->string('api_key');
+				$t->timestamps();
 			$t->go();
 		}
 		

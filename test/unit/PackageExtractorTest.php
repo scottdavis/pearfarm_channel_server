@@ -39,5 +39,11 @@
 		}
 		
 		
+		public function testDependencies() {
+			$package = new PackageExtractor(__DIR__ . '/../data/PHPUnit-3.4.5.tar');
+			var_dump($package->get_package_xml());
+		}
+ 		
+		
 	
 	}

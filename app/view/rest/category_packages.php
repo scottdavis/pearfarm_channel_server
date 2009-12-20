@@ -5,6 +5,7 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.categorypackages
                        http://pear.php.net/dtd/rest.categorypackages.xsd"
 >
- <p xlink:href="/rest/p/earth">Earth</p>
- <p xlink:href="/rest/p/worlddominator">WorldDominator</p>
+<?php foreach($packages as $package) { ?>
+ <p xlink:href="<?php echo $package->link() ?>"><?php echo $package->name ?></p>
+<?php } ?>
 </l>

@@ -8,6 +8,7 @@
 				$t->string('version');
 				$t->belongs_to('version_type');
 				$t->text('meta');
+				$t->timestamps();
 			$t->go();
 		}
 		

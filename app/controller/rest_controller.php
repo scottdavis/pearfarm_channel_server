@@ -5,16 +5,23 @@
 	*/
 class RestController extends \ApplicationController {
 
-  public function categories() {
+	public function before_filter() {
+		parent::before_filter();
+		$this->layout = false;
+	}
 
+
+  public function categories() {
+		$this->categories = Category::find('all');
 	}
 	
 	public function category_info() {
-		
+		$this->category = Category::find_by_name($_GET['name']);
 	}
 	
 	public function category_packages() {
-		
+		$this->category = Category::find_by_name($_GET['name']);
+		$this->packages = $this->category->packages;
 	}
 	
 	public function packagesinfo() {

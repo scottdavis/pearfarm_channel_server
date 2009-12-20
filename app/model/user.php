@@ -26,7 +26,7 @@
 			}
 			
 			public function pear_farm_url() {
-				return 'http://' . implode(".", array($this->username, DOMAIN));
+				return implode(".", array($this->username, DOMAIN));
 			}
 			
 			public function before_create() {

@@ -9,7 +9,15 @@
   <p>
    <n>WorldDominator</n>
    <c>pear.example.org</c>
-   <!-- Full contents of p/${packagename}/info.xml follow -->
+   <ca xlink:href="/rest/c/Tools">Tools</ca>
+	 <l>Dictatoric License</l>
+	 <s>Tool to dominate the world</s>
+	 <d>
+	  Helps you dominating the world by fulfilling various tasks:
+	  - Feed the cats
+	  - Lock the doors after 23:42
+	 </d>
+	 <r xlink:href="/rest/r/worlddomination"/>
   </p>
   <a>
    <r><v>1.1.2</v><s>stable</s></r>

@@ -4,10 +4,12 @@
 		
 		public function up() {
 			$this->down();
+			static::create_categories();
 			static::create_version_types();
 			static::create_users();
 			static::create_packages();
 			static::create_versions();
+			static::create_maintainers();
 		}
 		
 		public function down() {
@@ -26,7 +28,17 @@
 		
 		public static function create_packages() {
 			foreach(User::find_all() as $user) {
-				Package::create(array('user_id' => $user->id, 'name' => $user->username . '\'s pear package'));
+				$p = new Package(array('user_id' => $user->id, 'name' => $user->username . '\'s pear package'));
+				$p->categories = array(Category::find('first')->id);
+				$p->save();
+			}
+		}
+		
+		public static function create_maintainers() {
+			foreach(Package::find_all() as $package) {
+				foreach(Maintainer::$types as $type) {
+					Maintainer::create(array('package_id' => $package->id, 'type' => $type, 'name' => $type ."_dude", 'email' => 'dude@nimblize.com', 'user' => 'duder', 'active' => 'yes'));
+				}
 			}
 		}
 		
@@ -36,6 +48,9 @@
 			}
 		}
 		
+		public static function create_categories() {
+			Category::create(array('name' => 'Default', 'description' => 'A Default Category'));
+		}
 		
 		public static function create_versions() {
 			$version_types = collect(function($vt){return $vt->id;}, VersionType::find_all());

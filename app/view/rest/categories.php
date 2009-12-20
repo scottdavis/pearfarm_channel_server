@@ -5,7 +5,8 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.allcategories
                        http://pear.php.net/dtd/rest.allcategories.xsd"
 >
- <ch>pear.example.org</ch>
- <c xlink:href="/rest/c/Tools/info.xml">Tools</c>
- <c xlink:href="/rest/c/Garbage%2Band%2BStuff/info.xml">Garbage and Stuff</c>
+ <ch><?php echo $user->pear_farm_url() ?></ch>
+<?php foreach($categories as $cat) { ?>
+ <c xlink:href="<?php echo $cat->link() ?>"><?php echo $cat->name ?></c>
+<?php } ?>
 </a>
