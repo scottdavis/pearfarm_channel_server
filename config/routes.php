@@ -26,13 +26,13 @@
 	/** Releases */
 	R('/r/:name/allreleases')->controller('RestController')->action('all_releases')->on('GET');
 	R('/r/:name/allreleases2')->controller('RestController')->action('all_releases2')->on('GET');
-	R('/r/:name/latest')->controller('RestController')->action('latest_releases')->on('GET');
-	R('/r/:name/stable')->controller('RestController')->action('stable_releases')->on('GET');
-	R('/r/:name/beta')->controller('RestController')->action('beta_releases')->on('GET');
-	R('/r/:name/alpha')->controller('RestController')->action('alpha_releases')->on('GET');
-	R('/r/:name/devel')->controller('RestController')->action('devel_releases')->on('GET');
+	R('/r/:name/latest')->controller('RestController')->action('latest_release')->on('GET');
+	R('/r/:name/stable')->controller('RestController')->action('stable_release')->on('GET');
+	R('/r/:name/beta')->controller('RestController')->action('beta_release')->on('GET');
+	R('/r/:name/alpha')->controller('RestController')->action('alpha_release')->on('GET');
+	R('/r/:name/devel')->controller('RestController')->action('devel_release')->on('GET');
 	R('/r/:name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_version')->on('GET');
-	R('/r/:name/v2(?P<version>\.[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_versions')->on('GET');
-	R('/r/:name/package(?P<version>\.[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_package_info')->on('GET');
-	R('/r/:name/deps(?P<version>\.[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_dependencies')->on('GET');
+	R('/r/:name/v2\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_version2')->on('GET');
+	R('/r/:name/package\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_package_info')->on('GET');
+	R('/r/:name/deps\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_dependencies')->on('GET');
 ?>
