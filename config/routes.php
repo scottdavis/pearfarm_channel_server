@@ -8,5 +8,6 @@
 	* R('')->controller('test')->action('index')->on('GET');
 	*/
 
-
+	R('')->controller('LandingController')->action('index')->on('GET');
+	R('/channel')->controller('ChannelController')->action('index')->on('GET');
 ?>

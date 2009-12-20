@@ -25,7 +25,9 @@
 				$this->validates_presance_of('password');
 			}
 			
-			
+			public function pear_farm_url() {
+				return 'http://' . implode(".", array($this->username, DOMAIN));
+			}
 			
 			public function before_create() {
 				$this->api_key = md5(time() . $this->username . rand(0,4000));
