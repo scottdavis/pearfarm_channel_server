@@ -138,6 +138,8 @@
 			return $this->data['dependencies'];
 		}
 		
-	
+		public function serialized() {
+			return serialize($this->data);
+		}
 	
 	}

@@ -5,32 +5,34 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.categorypackageinfo
                        http://pear.php.net/dtd/rest.categorypackageinfo.xsd"
 >
+
+<?php foreach($packages as $package) { 
+	$version_data =$package->versions->first()->package_data();
+	$versions = $package->versions;
+?>
  <pi>
   <p>
-   <n>WorldDominator</n>
-   <c>pear.example.org</c>
-   <ca xlink:href="/rest/c/Tools">Tools</ca>
-	 <l>Dictatoric License</l>
-	 <s>Tool to dominate the world</s>
-	 <d>
-	  Helps you dominating the world by fulfilling various tasks:
-	  - Feed the cats
-	  - Lock the doors after 23:42
-	 </d>
-	 <r xlink:href="/rest/r/worlddomination"/>
+   <n><?php echo $package->name ?></n>
+   <c><?php echo $user->pear_farm_url() ?></c>
+   <ca xlink:href="<?php echo $category->link() ?>"><?php echo $category->name ?></ca>
+	 <l><?php echo $version_data['license']['_content'] ?></l>
+	 <s><?php echo $version_data['summary'] ?></s>
+	 <d><?php echo $version_data['description'] ?></d>
+	 <r xlink:href="/rest/r/<?php echo urlencode($package->name) ?>"/>
   </p>
   <a>
-   <r><v>1.1.2</v><s>stable</s></r>
-   <r><v>0.1.2</v><s>beta</s></r>
-   <r><v>0.0.1</v><s>devel</s></r>
+	<?php foreach($versions as $version) { ?>
+   <r><v><?php echo $version->version ?></v><s><?php echo $version->version_type->name ?></s></r>
+	<?php } ?>
   </a>
-  <deps>
-   <v>0.1.2</v>
-   <d><!-- serialized dependency information like deps.0.1.2.txt --></d>
-  </deps>
-  <deps>
-   <v>0.0.1</v>
-   <d><!-- serialized dependency information like deps.0.1.2.txt --></d>
-  </deps>
+		<?php foreach($versions as $version) { 
+			$data = $version->package_data();
+			?>
+  	<deps>
+   		<v><?php echo $version->version ?></v>
+   		<d><?php echo serialize($data['dependencies']) ?></d>
+  		</deps>
+		<?php } ?>
  </pi>
+<?php } ?>
 </f>

@@ -24,6 +24,9 @@
 					$this->validates_presance_of('version');
 			}
 			
+			public function package_data() {
+				return unserialize($this->meta);
+			}
 			
 		
 		}

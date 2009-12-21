@@ -5,7 +5,7 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.maintainer
                        http://pear.php.net/dtd/rest.maintainer.xsd"
 >
- <h>thebrain</h>
- <n>The Brain</n>
- <u>http://pinkyandthebrain.example.org</u>
+ <h><?php echo $m->name ?></h>
+ <n><?php echo $m->name ?></n>
+ <u><?php echo $m->url ?></u>
 </m>

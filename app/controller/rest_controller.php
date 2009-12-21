@@ -25,15 +25,16 @@ class RestController extends \ApplicationController {
 	}
 	
 	public function packagesinfo() {
-		
+		$this->category = Category::find_by_name($_GET['name']);
+		$this->packages = $this->category->packages;
 	}
 	
 	public function allmaintainers() {
-		
+		$this->packages = $this->user->packages;
 	}
 	
 	public function maintainer_info() {
-		
+		$this->m = Maintainer::find_by_name($_GET['name']);
 	}
 	
 	public function packages() {

@@ -7,7 +7,7 @@
 				$t->belongs_to('package');
 				$t->string('version');
 				$t->belongs_to('version_type');
-				$t->text('meta');
+				$t->longtext('meta');
 				$t->timestamps();
 			$t->go();
 		}

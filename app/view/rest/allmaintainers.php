@@ -5,6 +5,9 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.allmaintainers
                        http://pear.php.net/dtd/rest.allmaintainers.xsd"
 >
- <h xlink:href="/rest/m/pinky">pinky</h>
- <h xlink:href="/rest/m/thebrain">the brain</h>
+<?php foreach($packages as $package) { ?>
+	<?php foreach($package->maintainers as $m) { ?>
+	 <h xlink:href="/rest/m/<?php echo urlencode($m->name) ?>"><?php echo $m->name ?></h>
+	<?php } ?>
+<?php } ?>
 </m>

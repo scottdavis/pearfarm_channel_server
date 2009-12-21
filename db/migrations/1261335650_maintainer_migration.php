@@ -9,6 +9,7 @@
 				$t->string('user');
 				$t->string('active');
 				$t->string('type');
+				$t->string('url');
 				$t->belongs_to('package');
 			$t->go();
 		}

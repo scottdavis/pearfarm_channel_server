@@ -1,5 +1,5 @@
 <?php
-
+	require_once(NIMBLE_ROOT . '/lib/package_extractor.php');
 	class StoryHelper {
 		
 		public function up() {
@@ -37,7 +37,7 @@
 		public static function create_maintainers() {
 			foreach(Package::find_all() as $package) {
 				foreach(Maintainer::$types as $type) {
-					Maintainer::create(array('package_id' => $package->id, 'type' => $type, 'name' => $type ."_dude", 'email' => 'dude@nimblize.com', 'user' => 'duder', 'active' => 'yes'));
+					Maintainer::create(array('url' => 'http://nimblize.com', 'package_id' => $package->id, 'type' => $type, 'name' => $type ."_dude", 'email' => 'dude@nimblize.com', 'user' => 'duder', 'active' => 'yes'));
 				}
 			}
 		}
@@ -53,10 +53,12 @@
 		}
 		
 		public static function create_versions() {
+			$package = new PackageExtractor(__DIR__ . '/../test/data/nimblize-0.1.0.tgz');
+			$data = $package->serialized();
 			$version_types = collect(function($vt){return $vt->id;}, VersionType::find_all());
 			foreach(Package::find_all() as $package) {
 				foreach($version_types as $i) {
-					Version::create(array('package_id' => $package->id, 'version' => "0.$i.0", 'version_type_id' => $i));
+					Version::create(array('package_id' => $package->id, 'version' => "0.$i.0", 'version_type_id' => $i, 'meta' => $data));
 				}
 			}
 		}
