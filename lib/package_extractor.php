@@ -119,17 +119,7 @@
 			* @return array
 			*/
 		public function changelog() {
-			$out = array();
-			$log = $this->xml->changelog;
-			foreach($log->children() as $release) {
-				$out[] = array('version' => array('release' => (string) $release->version->release, 'api' => (string) $release->version->api),
-											 'stability' => array('release' => (string) $release->stability->release, 'api' => (string) $release->stability->api),
-											 'date' => $release->date,
-											 'license' => array((string) $release->license => (string) $release->license['uri']),
- 											 'notes' => (string) $release->notes
-											);
-			}
-			return $out;
+			return $this->data['changelog'];
 		}
 		/**
 			* Returns all the notes for the change logs
@@ -140,7 +130,10 @@
 			return collect(function($cl){return $cl['notes'];}, $changelog);
 		}
 		
-		
+		/**
+			* Returns the package dependencies
+			* @return array
+			*/
 		public function dependencies() {
 			return $this->data['dependencies'];
 		}
