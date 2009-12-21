@@ -1,5 +1,6 @@
 <?php
 	require_once('Archive/Tar.php');
+	require_once('PEAR/XMLParser.php');
 	/**
 		* This class extracts the package.xml from the tar archive and parses it for easy database insertion
 		* @package PearFarm
@@ -25,101 +26,93 @@
 			* creates a simplexml object
 			*/
 		public function parse_package() {
-			$this->xml = simplexml_load_string($this->package_xml);
+			$obj = new PEAR_XMLParser();
+			$obj->parse($this->package_xml);
+			$this->data = $obj->getData();
 		}
 		/**
 			* Returns the name from the <name></name> tags
 			* @return string 
 			*/
 		public function name() {
-			return (string) $this->xml->name;
+			return $this->data['name'];
 		}
 		/**
 			* Returns the channel name from the <channel></channel> tags
 			* @return string
 			*/
 		public function channel() {
-			return (string) $this->xml->channel;
+			return $this->data['channel'];
 		}
 		/**
 			* Returns the summary from the <summary></summary> tags
 			* @return string
 			*/
 		public function summary() {
-			return (string) $this->xml->summary;
+			return $this->data['summary'];
 		}		
 		/**
 			* Returns the description from the <description></description> tags
 			* @return string
 			*/
 		public function description() {
-			return (string) $this->xml->description;
+			return $this->data['description'];
 		}
 		/**
 			* Returns the lead developers information
 			* @return array
 			*/
 		public function lead() {
-			$lead = $this->xml->lead;
-			return array('name' => (string) $lead->name, 'user' => (string) $lead->user, 'email' => (string) $lead->email, 'active' => (string) $lead->active);
+			return $this->data['lead'];
 		}
 		/**
 			* Returns the date from the <date></date> tags
 			* @return string
 			*/
 		public function date() {
-			return (string) $this->xml->date;
+			return $this->data['date'];
 		}
 		/**
 			* Returns the time from the <time></time> tags
 			* @return string
 			*/		
 		public function time() {
-			return (string) $this->xml->time;
+			return $this->data['time'];
 		}
 		/**
 			* Returns the version information
 			* @return array
 			*/
 		public function version() {
-			$version = $this->xml->version;
-			return array('release' => (string) $version->release, 'api' => (string) $version->api);
+			return $this->data['version'];
 		}
 		/**
 			* Returns stability informations
 			* @return array
 			*/
 		public function stability() {
-			$stability = $this->xml->stability;
-			return array('release' => (string) $stability->release, 'api' => (string) $stability->api);
+			return $this->data['stability'];
 		}
 		/**
 			* Returns license information
-			* note: the license type is the key
 			* @return array
 			*/
 		public function license() {
-			$license = $this->xml->license;
-			return array((string) $license => (string) $license['uri']);
+			return $this->data['license'];
 		}
 		/**
 			* Returns the notes from the <note></note> tag
 			* @return string
 			*/
 		public function notes() {
-			return (string) $this->xml->notes;
+			return $this->data['notes'];
 		}
 		/**
 			* Returns all the files in this package as arrays
 			* @return array
 			*/
 		public function files() {
-			$out = array();
-			$contents = $this->xml->contents->dir;
-			foreach($contents->children() as $file) {
-				$out[] = array('name' => (string) $file['name'], 'baseinstalldir' => (string) $file['baseinstalldir'], 'role' => (string) $file['role']);
-			}
-			return $out;
+			return $this->data['contents'];
 		}
 		/**
 			* Returns the changelog information
@@ -146,6 +139,12 @@
 			$changelog = $this->changelog();
 			return collect(function($cl){return $cl['notes'];}, $changelog);
 		}
+		
+		
+		public function dependencies() {
+			return $this->data['dependencies'];
+		}
+		
 	
 	
 	}
