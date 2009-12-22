@@ -7,8 +7,8 @@
 				$t->string('name');
 				$t->belongs_to('user');
 				$t->timestamps();
+				$t->belongs_to('category');
 			$t->go();
-			$this->create_join_table('packages', 'category');
 		}
 		
 		public function down() {

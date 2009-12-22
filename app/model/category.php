@@ -11,7 +11,7 @@
 					* $this->has_many('foo')
 					* $this->belongs_to('bar')
 					*/
-					$this->has_and_belongs_to_many('packages');
+					$this->has_many('packages');
 			}
 			
 			public function validations() {

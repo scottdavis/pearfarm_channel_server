@@ -5,15 +5,11 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.package
                        http://pear.php.net/dtd/rest.package.xsd"
 >
- <n>WorldDomination</n>
- <c>pear.example.org</c>
- <ca xlink:href="/rest/c/Tools">Tools</ca>
- <l>Dictatoric License</l>
- <s>Tool to dominate the world</s>
- <d>
-  Helps you dominating the world by fulfilling various tasks:
-  - Feed the cats
-  - Lock the doors after 23:42
- </d>
- <r xlink:href="/rest/r/worlddomination"/>
+ <n><?php echo $package->name ?></n>
+ <c><?php echo $user->pear_farm_url() ?></c>
+ <ca xlink:href="/rest/c/<?php echo $package->category->name ?>"><?php echo $package->category->name ?></ca>
+ <l><?php echo $data['license']['_content'] ?></l>
+ <s><?php echo $data['summary'] ?></s>
+ <d><?php echo $data['description'] ?></d>
+ <r xlink:href="/rest/r/<?php echo urlencode($package->name) ?>"/>
 </p>

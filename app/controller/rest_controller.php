@@ -12,7 +12,7 @@ class RestController extends \ApplicationController {
 
 
   public function categories() {
-		$this->categories = Category::find('all');
+		$this->categories = collect(function($p){return $p->category;}, $this->user->packages);
 	}
 	
 	public function category_info() {
@@ -38,19 +38,35 @@ class RestController extends \ApplicationController {
 	}
 	
 	public function packages() {
-		
+		$this->packages = $this->user->packages;
 	}
 	
 	public function package_info() {
-		
+		$this->package = Package::find_by_name($_GET['name']);
+		$this->data = unserialize(Version::find('first', array('conditions' => array('package_id' => $this->package->id)))->meta);
 	}
 	
 	public function package_maintainers() {
-		
+		$this->package = Package::find_by_name($_GET['name']);
+		$data = unserialize(Version::find('first', array('conditions' => array('package_id' => $this->package->id)))->meta);
+		$this->maintainers = array();
+		foreach(array('lead', 'developer', 'contributor', 'helper') as $role) {
+			if(isset($data[$role]) && !empty($data[$role])) {
+				if(!is_assoc($data[$role])) {
+					foreach($data[$role] as $node) {
+							$node['role'] = $role;
+							$this->maintainers[] = $node;
+					}
+				}else{
+					$data[$role]['role'] = $role;
+					$this->maintainers[] = $data[$role];
+				}
+			}
+		}
 	}
 	
-	public function package_developers() {
-		
+	public function package_maintainers2() {
+		$this->package_maintainers();
 	}
 	
 	public function all_releases() {

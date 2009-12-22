@@ -14,7 +14,7 @@
 					$this->belongs_to('user');
 					$this->has_many('versions');
 					$this->has_many('maintainers');
-					$this->has_and_belongs_to_many('categories');
+					$this->belongs_to('category');
 			}
 			
 			public function validations() {

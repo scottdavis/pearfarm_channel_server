@@ -44,6 +44,10 @@
 			$this->assertTrue(is_array($package->dependencies()));
 		}
  		
+		public function testMultiLeads() {
+			$package = new PackageExtractor(__DIR__ . '/../data/Console_Color-1.0.2.tgz');
+			$this->assertFalse(is_assoc($package->data['lead']));
+		}
 		
 	
 	}

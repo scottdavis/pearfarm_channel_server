@@ -5,7 +5,8 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.allpackages
                        http://pear.php.net/dtd/rest.allpackages.xsd"
 >
- <c>pear.example.org</c>
- <p>Earth</p>
- <p>WorldDominator</p>
+ <c><?php echo $user->pear_farm_url() ?></c>
+<?php foreach($packages as $package) { ?>
+ <p><?php echo $package->name ?></p>
+<?php } ?>
 </a>

@@ -5,18 +5,12 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.packagemaintainers
                        http://pear.php.net/dtd/rest.packagemaintainers.xsd"
 >
- <p>WorldDominator</p>
- <c>pear.example.org</c>
+ <p><?php echo $package->name ?></p>
+ <c><?php echo $user->pear_farm_url() ?></c>
+<?php foreach($maintainers as $m) { ?>
  <m>
-  <h>pinky</h>
-  <a>1</a>
+  <h><?php echo $m['name'] ?></h>
+  <a><?php echo ($m['active'] == 'yes') ? '1' : '0' ?></a>
  </m>
- <m>
-  <h>thebrain</h>
-  <a>1</a>
- </m>
- <m>
-  <h>deadcow</h>
-  <a>0</a>
- </m>
+<?php } ?>
 </m>

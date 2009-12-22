@@ -22,7 +22,7 @@
 	R('/rest/p/packages')->controller('RestController')->action('packages')->on('GET');
 	R('/rest/p/:name/info')->controller('RestController')->action('package_info')->on('GET');
 	R('/rest/p/:name/maintainers')->controller('RestController')->action('package_maintainers')->on('GET');
-	R('/rest/p/:name/maintainers2')->controller('RestController')->action('package_developers')->on('GET');
+	R('/rest/p/:name/maintainers2')->controller('RestController')->action('package_maintainers2')->on('GET');
 	/** Releases */
 	R('/rest/r/:name/allreleases')->controller('RestController')->action('all_releases')->on('GET');
 	R('/rest/r/:name/allreleases2')->controller('RestController')->action('all_releases2')->on('GET');

@@ -7,19 +7,11 @@
 >
  <p>WorldDominator</p>
  <c>pear.example.org</c>
+<?php foreach($maintainers as $m) { ?>
  <m>
-  <h>pinky</h>
-  <a>1</a>
-  <r>developer</r>
+  <h><?php echo $m['name'] ?></h>
+  <a><?php echo ($m['active'] == 'yes') ? '1' : '0' ?></a>
+	<r><?php echo $m['role'] ?></r>
  </m>
- <m>
-  <h>thebrain</h>
-  <a>1</a>
-  <r>lead</r>
- </m>
- <m>
-  <h>deadcow</h>
-  <a>0</a>
-  <r>helper</r>
- </m>
+<?php } ?>
 </m>

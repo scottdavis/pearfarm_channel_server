@@ -28,9 +28,7 @@
 		
 		public static function create_packages() {
 			foreach(User::find_all() as $user) {
-				$p = new Package(array('user_id' => $user->id, 'name' => $user->username . '\'s pear package'));
-				$p->categories = array(Category::find('first')->id);
-				$p->save();
+				Package::create(array('user_id' => $user->id, 'name' => $user->username . 's_pear_package', 'category_id' => Category::find_by_name('Default')->id));
 			}
 		}
 		
