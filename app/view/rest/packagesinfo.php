@@ -6,8 +6,8 @@
                        http://pear.php.net/dtd/rest.categorypackageinfo.xsd"
 >
 
-<?php foreach($packages as $package) { 
-	$version_data =$package->versions->first()->package_data();
+<?php foreach($this->packages as $package) { 
+	$version_data = $package->versions->first()->package_data();
 	$versions = $package->versions;
 ?>
  <pi>

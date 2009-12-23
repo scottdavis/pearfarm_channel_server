@@ -1,5 +1,4 @@
 <?php
-	
 /**
 	* @package controller
 	*/
@@ -21,12 +20,12 @@ class RestController extends \ApplicationController {
 	
 	public function category_packages() {
 		$this->category = Category::find_by_name($_GET['name']);
-		$this->packages = $this->category->packages;
+		$this->packages = Package::find('all', array('conditions' => array('category_id' => $this->category->id, 'user_id' => $this->user->id)));
 	}
 	
 	public function packagesinfo() {
 		$this->category = Category::find_by_name($_GET['name']);
-		$this->packages = $this->category->packages;
+		$this->packages = Package::find('all', array('conditions' => array('category_id' => $this->category->id, 'user_id' => $this->user->id)));
 	}
 	
 	public function allmaintainers() {
@@ -42,7 +41,7 @@ class RestController extends \ApplicationController {
 	}
 	
 	public function package_info() {
-		$this->package = Package::find_by_name($_GET['name']);
+		$this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
 		$this->data = unserialize(Version::find('first', array('conditions' => array('package_id' => $this->package->id)))->meta);
 	}
 	
@@ -79,69 +78,72 @@ class RestController extends \ApplicationController {
 	}
 	
 	public function latest_release() {
-		//This file does not exist when no release has been made yet.
+	  $package = Package::find_by_name($_GET['name']);
+	  try {
+	    $version = Version::find('first', array('conditions' => array('package_id' => $package->id), 'order' => 'version DESC'));
+	    echo $version->version;
+	    $this->has_rendered = true;
+    }catch(NimbleRecordException $e) {
+      $this->header("HTTP/1.0 404 Not Found", 404);
+    }
+    //This file does not exist when no release has been made yet.
 	}
 	
 	public function stable_release() {
-				//This file does not exist when no release has been made yet.
+	  $type = VersionType::find_by_name('stable');
+	  $this->static_version_file($type);
+    //This file does not exist when no release has been made yet.
 	}
 	
 	public function beta_release() {
-				//This file does not exist when no release has been made yet.
+	  $type = VersionType::find_by_name('beta');
+	  $this->static_version_file($type);
+    //This file does not exist when no release has been made yet.
 	}
 	
 	public function alpha_release() {
-				//This file does not exist when no release has been made yet.
+	  $type = VersionType::find_by_name('alpha');
+	  $this->static_version_file($type);
+    //This file does not exist when no release has been made yet.
 	}
 	
 	public function devel_release() {
-				//This file does not exist when no release has been made yet.
+	  $type = VersionType::find_by_name('devel');
+	  $this->static_version_file($type);
+    //This file does not exist when no release has been made yet.
 	}
 	
 	public function release_version() {
-		
+    $this->load_release();
 	}
 	
 	public function release_version2() {
-		
+    $this->load_release();		
 	}
 	
 	public function release_package_info() {
-		
+    $this->load_release();		
 	}
 	
 	public function release_dependencies() {
-			/*
-				This is the format to be serialized
-				array(2) {
-				  ["required"]=>
-				  array(2) {
-				    ["php"]=>
-				    array(1) {
-				      ["min"]=>
-				      string(5) "5.2.3"
-				    }
-				    ["pearinstaller"]=>
-				    array(1) {
-				      ["min"]=>
-				      string(7) "1.7.1"
-				    }
-				  }
-				  ["optional"]=>
-				  array(1) {
-				    ["package"]=>
-				    array(2) {
-				      ["name"]=>
-				      string(4) "Toolbox"
-				      ["channel"]=>
-				      string(12) "pear.example.org"
-				      ["min"] =>
-				      string(7) "1.3.0"
-				    }
-				  }
-				}
-				*/
-
+	  $this->load_release();
 	}
+	
+	private function static_version_file($type) {
+	  try {
+	    $package = Package::find('first', array('name' => array($_GET['name'], 'user_id' => $this->user->id)));
+	    $version = Version::find('first', array('conditions' => array('version_type_id' => $type->id, 'package_id' => $package->id), 'order' => 'version DESC'));
+	    echo $version->version;
+    }catch(NimbleRecordNotFound $e) {
+      $this->header("HTTP/1.0 404 Not Found", 404);
+    }
+    $this->has_rendered = true;
+	}
+	
+	private function load_release() {
+	  $this->package = Package::find_by_name($_GET['name']);
+		$this->version = Version::find('first', array('conditions' => array('version' => $_GET['version'], 'package_id' => $this->package->id)));
+		$this->data = unserialize($this->version->meta);
+	}
+	
 }
-?>

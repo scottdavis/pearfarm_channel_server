@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<r xmlns="http://pear.php.net/dtd/rest.release2"
+<r xmlns="http://pear.php.net/dtd/rest.release"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xmlns:xlink="http://www.w3.org/1999/xlink"
-   xsi:schemaLocation="http://pear.php.net/dtd/rest.release2
-                       http://pear.php.net/dtd/rest.release2.xsd"
+   xsi:schemaLocation="http://pear.php.net/dtd/rest.release
+                       http://pear.php.net/dtd/rest.release.xsd"
 >
- <p xlink:href="/rest/p/worlddominator">WorldDominator</p>
- <c>pear.example.org</c>
- <v>0.1.2</v>
- <a>0.1.2</a>
- <mp>5.2.3</mp>
- <st>beta</st>
- <l>Dictatoric License</l>
- <m>thebrain</m>
- <s>Tool to dominate the world</s>
- <d>Helps you dominating the world by fulfilling various tasks:
-  - Feed the cats
-  - Lock the doors after 23:42</d>
- <da>2007-12-24 23:42:00</da>
- <n>* Fix atomic X-mas bug [thebrain]</n>
- <f>19588</f>
- <g>http://pear.example/get/WorldDominator-0.1.2</g>
- <x xlink:href="package.0.1.2.xml"/>
+ <p xlink:href="<?php echo $package->link() ?>"><?php echo $package->name ?></p>
+ <c><?php echo $user->pear_farm_url() ?></c>
+ <v><?php echo $version->version ?></v>
+ <a><?php echo $data['version']['api'] ?></a>
+ <mp><?php echo $data['dependencies']['required']['php']['min'] ?></mp>
+ <st><?php echo $version->version_type->name ?></st>
+ <l><?php echo $data['license']['_content'] ?></l>
+ <m><?php echo $user->username ?></m>
+ <s><?php $data['summary'] ?></s>
+ <d><?php $data['description'] ?></d>
+ <da><?php echo $data['date'] . ' ' . $data['time'] ?></da>
+ <n><?php $data['notes'] ?></n>
+ <f><?php echo filesize($package->file_path($version->version)) ?></f>
+ <g><?php echo $package->file_url($version->version) ?></g>
+ <x xlink:href="<?php echo $package->name ?>.<?php echo $version->version ?>.xml"/>
 </r>

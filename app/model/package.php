@@ -31,7 +31,15 @@
 				return "/rest/p/$name";
 			}
 			
+			public function file_url($version) {
+			  $url = $this->username . DOMAIN; 
+			  return "http://$url/get/{$this->user->username}/{$this->name}-$version.tgz";
+			}
+			
+			public function file_path($version) {
+			  return FileUtils::join(NIMBLE_ROOT, 'get', $this->user->username, "{$this->name}-$version.tgz");
+			}
+			
+			
 		
 		}
-
-?>

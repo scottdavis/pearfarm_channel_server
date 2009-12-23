@@ -5,8 +5,8 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.allreleases2
                        http://pear.php.net/dtd/rest.allreleases2.xsd"
 >
- <p>WorldDominator</p>
- <c>pear.example.org</c>
+ <p><?php echo $package->name ?></p>
+ <c><?php echo $user->pear_farm_url() ?></c>
 <?php foreach($versions as $verison) { 
   $data = unserialize($verison->meta);
   ?>

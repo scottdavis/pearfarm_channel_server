@@ -1,3 +1,2 @@
 <?php
-	define('DOMAIN', 'localhost');
-?>	
+	define('DOMAIN', 'localhost');	

@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	
 	/**
 	* This file boots and loads the framework
 	* In order for the enviroments to work correctly add the line below to your server apache config
@@ -50,9 +49,9 @@
 			}
 		}
 	}
-	
 	/** load nimble */
 	require_once('nimblize/nimblize.php');
+
 	/** Set the path to the view templates */
 	Nimble::set_config('view_path', FileUtils::join(dirname(__FILE__), '..', 'app', 'view'));
 	/** set the default plugin path */
@@ -69,7 +68,7 @@
 
 	//define the root 
 	define('NIMBLE_ROOT', FileUtils::join(dirname(__FILE__), '..'));
-	
+
 	// load any custom global config options 		
 	require_once(FileUtils::join(dirname(__FILE__), 'config.php'));
 	require_once(FileUtils::join(dirname(__FILE__), 'routes.php'));
@@ -78,13 +77,11 @@
 	// Nimble::Log('loading ' . NIMBLE_ENV . ' enviroment');
 	require_once(FileUtils::join(dirname(__FILE__), NIMBLE_ENV, 'config.php'));
 	require_once(FileUtils::join(NIMBLE_ROOT, 'app', 'controller', 'application_controller.php'));
-	
+
 	/** load controlers and models */
 	foreach(array('model', 'controller') as $dir) {
 		__load_files(FileUtils::join(dirname(__FILE__), '..', 'app', $dir));
 	}
-	
-	
 	//load database connection
 	$database_info = json_decode(file_get_contents(FileUtils::join(NIMBLE_ROOT, 'config', NIMBLE_ENV, 'database.json')), true);
 	$database_info = $database_info[NIMBLE_ENV];
@@ -94,4 +91,3 @@
   if(!defined('CLI_RUNNER')) {
 		Run();
 	}
-?>

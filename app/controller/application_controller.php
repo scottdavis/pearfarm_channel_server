@@ -1,5 +1,4 @@
 <?php
-	
 	/**
 		* @package controller
 		*/
@@ -12,10 +11,10 @@
 			$this->user = User::find_by_username($subdomain);
 			if(strpos($headers['User-Agent'], 'PEAR') !== false) {
 				$time = DateHelper::from_db($this->user->updated_at);
-				$this->header("Last-Modified: " . gmdate("D, d M Y H:i:s", $time) . " GMT", 304);
+				//$this->header("Last-Modified: " . gmdate("D, d M Y H:i:s", time() - 100) . " GMT", 304);
 			}
+			$this->header('Content-Type: text/xml');
 		}
 		
 		
 	}
-?>

@@ -2,7 +2,6 @@
 	/**
 		* @package model
 		*/
-		
 		class Category extends NimbleRecord {
 			
 			public function associations() {
@@ -34,5 +33,3 @@
 			}
 		
 		}
-
-?>

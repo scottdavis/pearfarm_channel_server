@@ -41,7 +41,7 @@
 		}
 		
 		public static function create_version_types() {
-			foreach(array('stable', 'beta', 'alpha') as $version) {
+			foreach(array('stable', 'beta', 'alpha', 'devel') as $version) {
 				VersionType::create(array('name' => $version));
 			}
 		}
