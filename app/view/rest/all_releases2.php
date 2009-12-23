@@ -7,6 +7,9 @@
 >
  <p>WorldDominator</p>
  <c>pear.example.org</c>
- <r><v>0.8.1</v><s>beta</s><m>4.4.2</m></r>
- <r><v>0.0.2</v><s>alpha</s><m>5.2.3</m></r>
+<?php foreach($versions as $verison) { 
+  $data = unserialize($verison->meta);
+  ?>
+ <r><v><?php echo $verison->version ?></v><s><?php echo $verison->version_type->name ?></s><m><?php echo $data['dependencies']['required']['php']['min'] ?></m></r>
+<?php } ?>
 </a>

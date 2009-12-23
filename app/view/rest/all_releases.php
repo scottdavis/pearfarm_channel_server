@@ -5,8 +5,9 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.allreleases
                        http://pear.php.net/dtd/rest.allreleases.xsd"
 >
- <p>WorldDominator</p>
- <c>pear.example.org</c>
- <r><v>0.8.1</v><s>beta</s></r>
- <r><v>0.0.2</v><s>alpha</s></r>
+ <p><?php echo $package->name ?></p>
+ <c><?php echo $user->pear_farm_url() ?></c>
+<?php foreach($versions as $version) { 	?>
+ <r><v><?php echo $version->version ?></v><s><?php echo $version->version_type->name ?></s></r>
+<?php } ?>
 </a>

@@ -70,11 +70,12 @@ class RestController extends \ApplicationController {
 	}
 	
 	public function all_releases() {
-		
+		$this->package = Package::find_by_name($_GET['name']);
+		$this->versions = $this->package->versions;
 	}
 	
 	public function all_releases2() {
-		
+		$this->all_releases();
 	}
 	
 	public function latest_release() {

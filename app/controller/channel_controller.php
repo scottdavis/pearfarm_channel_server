@@ -4,9 +4,9 @@
 		* @package controller
 		*/
 	class ChannelController extends \ApplicationController {
-		  /**
-   * index
-   */
+  /**
+    * index
+    */
   public function index() {
 		if($this->format == 'xml') {
 			$this->layout = false;
