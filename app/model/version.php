@@ -15,9 +15,9 @@ class Version extends NimbleRecord {
   public function validations() {
     /**
      * Column validations go here ex.
-     * $this->validates_presance_of('foo')
+     * $this->validates_presence_of('foo')
      */
-    $this->validates_presance_of('version');
+    $this->validates_presence_of('version');
   }
   public function package_data() {
     return unserialize($this->meta);

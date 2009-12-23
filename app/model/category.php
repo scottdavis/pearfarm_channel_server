@@ -14,10 +14,10 @@ class Category extends NimbleRecord {
   public function validations() {
     /**
      * Column validations go here ex.
-     * $this->validates_presance_of('foo')
+     * $this->validates_presence_of('foo')
      */
-    $this->validates_presance_of('name');
-    $this->validates_presance_of('description');
+    $this->validates_presence_of('name');
+    $this->validates_presence_of('description');
   }
   public function alias() {
     return $this->name;

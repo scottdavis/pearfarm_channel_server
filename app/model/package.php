@@ -18,9 +18,9 @@ class Package extends NimbleRecord {
   public function validations() {
     /**
      * Column validations go here ex.
-     * $this->validates_presance_of('foo')
+     * $this->validates_presence_of('foo')
      */
-    $this->validates_presance_of('name');
+    $this->validates_presence_of('name');
   }
   public function link() {
     $name = urlencode($this->name);
@@ -39,10 +39,12 @@ class Package extends NimbleRecord {
     $create = array();
     $file = $data['file'];
     $user = $data['user'];
-    $hash = $data['hash'];
-    if(md5(md5_file($file) . $user->api_key) !== $hash) {
-      throw new Exception('Invalid package');
-    }
+		if(isset($data['hash'])) {
+			$hash = $data['hash'];
+	    if(md5(md5_file($file) . $user->api_key) !== $hash) {
+	      throw new Exception('Invalid package');
+	    }
+		}
     $package_data = new PackageExtractor($file);
     $name = $package_data->data['name'];
     $version = $package_data->data['version']['release'];
