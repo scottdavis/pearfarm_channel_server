@@ -1,21 +1,20 @@
 #! /usr/bin/env php
 <?php
 /* Dumps out a list of the routes for your application
-	niceroutes <path to index.php>
+niceroutes <path to index.php>
 */
-	define("CLI_RUNNER", true);
-	require_once('nimblize/nimble_support/lib/command_line_colors.php');
-	$_SERVER['WEB_ENVIROMENT'] = 'test';
-	$boot = join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), '..', 'config', 'boot.php'));
-	if(file_exists($boot))
-	{
-		$include = $boot;
-	}else if(isset($argv) && count($arvg) == 2){
-		$include = dirname(__FILE__) . '/' . $argv[1];
-	}else{
-		die("Base File not found - try supplying the boot.php for your application");
-	}
-	require_once($include);	
-	echo UrlBuilder::dumpRoutes(true);
-	exit();
+define("CLI_RUNNER", true);
+require_once ('nimblize/nimble_support/lib/command_line_colors.php');
+$_SERVER['WEB_ENVIROMENT'] = 'test';
+$boot = join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), '..', 'config', 'boot.php'));
+if (file_exists($boot)) {
+  $include = $boot;
+} else if (isset($argv) && count($arvg) == 2) {
+  $include = dirname(__FILE__) . '/' . $argv[1];
+} else {
+  die("Base File not found - try supplying the boot.php for your application");
+}
+require_once ($include);
+echo UrlBuilder::dumpRoutes(true);
+exit();
 ?>

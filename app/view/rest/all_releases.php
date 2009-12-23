@@ -7,7 +7,8 @@
 >
  <p><?php echo $package->name ?></p>
  <c><?php echo $user->pear_farm_url() ?></c>
-<?php foreach($versions as $version) { 	?>
+<?php foreach($versions as $version) { ?>
  <r><v><?php echo $version->version ?></v><s><?php echo $version->version_type->name ?></s></r>
-<?php } ?>
+<?php
+} ?>
 </a>

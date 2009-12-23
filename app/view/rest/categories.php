@@ -8,5 +8,6 @@
  <ch><?php echo $user->pear_farm_url() ?></ch>
 <?php foreach($categories as $cat) { ?>
  <c xlink:href="<?php echo $cat->link() ?>"><?php echo $cat->name ?></c>
-<?php } ?>
+<?php
+} ?>
 </a>

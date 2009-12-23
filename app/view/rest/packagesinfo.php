@@ -6,9 +6,9 @@
                        http://pear.php.net/dtd/rest.categorypackageinfo.xsd"
 >
 
-<?php foreach($this->packages as $package) { 
-	$version_data = $package->versions->first()->package_data();
-	$versions = $package->versions;
+<?php foreach($this->packages as $package) {
+  $version_data = $package->versions->first()->package_data();
+  $versions = $package->versions;
 ?>
  <pi>
   <p>
@@ -23,16 +23,19 @@
   <a>
 	<?php foreach($versions as $version) { ?>
    <r><v><?php echo $version->version ?></v><s><?php echo $version->version_type->name ?></s></r>
-	<?php } ?>
+	<?php
+  } ?>
   </a>
-		<?php foreach($versions as $version) { 
-			$data = $version->package_data();
-			?>
+		<?php foreach($versions as $version) {
+    $data = $version->package_data();
+?>
   	<deps>
    		<v><?php echo $version->version ?></v>
    		<d><?php echo serialize($data['dependencies']) ?></d>
   		</deps>
-		<?php } ?>
+		<?php
+  } ?>
  </pi>
-<?php } ?>
+<?php
+} ?>
 </f>

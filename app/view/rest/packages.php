@@ -8,5 +8,6 @@
  <c><?php echo $user->pear_farm_url() ?></c>
 <?php foreach($packages as $package) { ?>
  <p><?php echo $package->name ?></p>
-<?php } ?>
+<?php
+} ?>
 </a>

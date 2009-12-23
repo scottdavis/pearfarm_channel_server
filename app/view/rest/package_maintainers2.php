@@ -13,5 +13,6 @@
   <a><?php echo ($m['active'] == 'yes') ? '1' : '0' ?></a>
 	<r><?php echo $m['role'] ?></r>
  </m>
-<?php } ?>
+<?php
+} ?>
 </m>

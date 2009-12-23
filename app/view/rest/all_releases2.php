@@ -7,9 +7,10 @@
 >
  <p><?php echo $package->name ?></p>
  <c><?php echo $user->pear_farm_url() ?></c>
-<?php foreach($versions as $verison) { 
+<?php foreach($versions as $verison) {
   $data = unserialize($verison->meta);
-  ?>
+?>
  <r><v><?php echo $verison->version ?></v><s><?php echo $verison->version_type->name ?></s><m><?php echo $data['dependencies']['required']['php']['min'] ?></m></r>
-<?php } ?>
+<?php
+} ?>
 </a>

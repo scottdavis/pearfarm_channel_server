@@ -8,6 +8,8 @@
 <?php foreach($packages as $package) { ?>
 	<?php foreach($package->maintainers as $m) { ?>
 	 <h xlink:href="/rest/m/<?php echo urlencode($m->name) ?>"><?php echo $m->name ?></h>
-	<?php } ?>
-<?php } ?>
+	<?php
+  } ?>
+<?php
+} ?>
 </m>

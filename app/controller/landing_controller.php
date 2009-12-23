@@ -1,7 +1,9 @@
 <?php
-	/**
-		* @package controller
-		*/
-	class LandingController extends \ApplicationController {
-
+/**
+ * @package controller
+ */
+class LandingController extends \ApplicationController {
+  public function index() {
+    
   }
+}

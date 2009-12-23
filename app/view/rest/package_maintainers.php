@@ -12,5 +12,6 @@
   <h><?php echo $m['name'] ?></h>
   <a><?php echo ($m['active'] == 'yes') ? '1' : '0' ?></a>
  </m>
-<?php } ?>
+<?php
+} ?>
 </m>

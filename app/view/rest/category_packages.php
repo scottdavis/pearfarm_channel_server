@@ -7,5 +7,6 @@
 >
 <?php foreach($packages as $package) { ?>
  <p xlink:href="<?php echo $package->link() ?>"><?php echo $package->name ?></p>
-<?php } ?>
+<?php
+} ?>
 </l>
