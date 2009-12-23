@@ -2,5 +2,6 @@
 <ul>
 	<?php foreach($packages as $package) { ?>
 		<li><?php echo $package->name ?></li>
-	<?php } ?>
+	<?php
+} ?>
 </ul>

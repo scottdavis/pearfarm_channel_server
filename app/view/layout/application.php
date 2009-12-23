@@ -5,6 +5,12 @@
 <title><?php echo h(Nimble::get_title()) ?></title>
 </head>
 <body>
+	 <?php if (isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) { ?>
+    <div id='flash'>
+            <?php echo Nimble::display_flash('notice'); ?>
+    </div>
+    <?php
+} ?>
 	<?php echo $content ?>
 </body>
 </html>

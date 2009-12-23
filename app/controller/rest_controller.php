@@ -3,9 +3,8 @@
  * @package controller
  */
 class RestController extends \ApplicationController {
-	
   public function before_filter() {
-		$this->filter();
+    $this->filter();
     $this->layout = false;
   }
   public function categories() {
