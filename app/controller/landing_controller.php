@@ -4,6 +4,5 @@
  */
 class LandingController extends \ApplicationController {
   public function index() {
-    
   }
 }
