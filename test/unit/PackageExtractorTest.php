@@ -3,14 +3,14 @@ require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
 require_once (NIMBLE_ROOT . '/lib/package_extractor.php');
 class PackageExtractorTest extends PHPUnit_Framework_TestCase {
   public function setUp() {
-    $this->package = new PackageExtractor(__DIR__ . '/../data/nimblize-0.1.0.tgz');
+    $this->package = new PackageExtractor(__DIR__ . '/../data/nimblize-0.0.1.tgz');
   }
   public function testExtraction() {
     $e = $this->package->get_package_xml();
     $this->assertFalse(empty($e));
   }
   public function attrProvider() {
-    return array(array('name', 'nimblize'), array('summary', '1'), array('description', '1'), array('date', '2009-12-20'), array('time', '01:50:23'));
+    return array(array('name', 'nimblize'), array('summary', '1'), array('description', '1'), array('date', '2009-12-23'), array('time', '13:17:56'));
   }
   /**
    * @dataProvider attrProvider
@@ -28,9 +28,5 @@ class PackageExtractorTest extends PHPUnit_Framework_TestCase {
   public function testDependencies() {
     $package = new PackageExtractor(__DIR__ . '/../data/PHPUnit-3.4.5.tar');
     $this->assertTrue(is_array($package->dependencies()));
-  }
-  public function testMultiLeads() {
-    $package = new PackageExtractor(__DIR__ . '/../data/Console_Color-1.0.2.tgz');
-    $this->assertFalse(is_assoc($package->data['lead']));
   }
 }
