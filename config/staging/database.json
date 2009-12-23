@@ -1,8 +1,8 @@
 {"staging":
 		{
-			"username":"", 
-			"password":"", 
-			"database":"", 
+			"username":"pearfarm", 
+			"password":"mmm_pears", 
+			"database":"pearfarm_staging", 
 			"host":"localhost",
 			"adapter":"mysql"
 		}
