@@ -57,7 +57,7 @@ class ChannelController extends \ApplicationController {
 					$this->redirect_to(url_for('ChannelController', 'index'));
 				}else{
 					var_dump($p);
-					$_SESSION['upload_key'] = $this->key = md5(time(). rand(0,100));
+					$this->add();
 					$this->render('channel/add.php');
 				}
 			break;
@@ -65,9 +65,5 @@ class ChannelController extends \ApplicationController {
     
   }
   
-  
-  public function add_package() {
-    
-  }
   
 }

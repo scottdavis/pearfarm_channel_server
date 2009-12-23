@@ -42,10 +42,14 @@ class Package extends NimbleRecord {
 		if(isset($data['hash'])) {
 			$hash = $data['hash'];
 	    if(md5(md5_file($file) . $user->api_key) !== $hash) {
-	      throw new Exception('Invalid package');
+	      throw new Exception('Invalid package key');
 	    }
 		}
-    $package_data = new PackageExtractor($file);
+		$package_data = new PackageExtractor($file);
+		if($user->pear_farm_url() !== $package_data->data['channel']) {
+			throw new Exception('Package channel ' . $package_data->data['channel'] . ' does not match ' . $user->pear_farm_url());
+		}
+		
     $name = $package_data->data['name'];
     $version = $package_data->data['version']['release'];
     $stability = $package_data->data['stability']['release'];
