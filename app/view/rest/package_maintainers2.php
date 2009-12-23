@@ -5,8 +5,8 @@
    xsi:schemaLocation="http://pear.php.net/dtd/rest.packagemaintainers
                        http://pear.php.net/dtd/rest.packagemaintainers.xsd"
 >
- <p>WorldDominator</p>
- <c>pear.example.org</c>
+  <p><?php echo $package->name ?></p>
+  <c><?php echo $user->pear_farm_url() ?></c>
 <?php foreach($maintainers as $m) { ?>
  <m>
   <h><?php echo $m['name'] ?></h>

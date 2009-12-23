@@ -27,12 +27,12 @@
 			}
 			
 			public function link() {
-				$name = urlencode($name);
+				$name = urlencode($this->name);
 				return "/rest/p/$name";
 			}
 			
 			public function file_url($version) {
-			  $url = $this->username . DOMAIN; 
+			  $url = $this->user->username . '.' . DOMAIN; 
 			  return "http://$url/get/{$this->user->username}/{$this->name}-$version.tgz";
 			}
 			
