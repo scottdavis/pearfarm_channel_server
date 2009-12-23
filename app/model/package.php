@@ -11,7 +11,7 @@ class Package extends NimbleRecord {
      * $this->belongs_to('bar')
      */
     $this->belongs_to('user');
-    $this->has_many('versions');
+    $this->has_many('versions')->order('version DESC');
     $this->has_many('maintainers');
     $this->belongs_to('category');
   }

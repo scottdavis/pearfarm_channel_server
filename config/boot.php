@@ -1,5 +1,5 @@
 <?php
-session_set_cookie_params(time() + 10000, '/', '.localhost');
+session_set_cookie_params(time() + 1000, '/', '.localhost.com');
 session_start();
 /**
  * This file boots and loads the framework

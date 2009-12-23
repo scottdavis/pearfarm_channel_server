@@ -37,5 +37,10 @@ R('/rest/r/:name/package\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestCo
 R('/rest/r/:name/deps\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_dependencies')->on('GET');
 /** login routes */
 R('/login')->controller('LoginController')->action('index')->on('GET');
+R('/logout')->controller('LoginController')->action('logout')->on('GET');
 R('/login')->controller('LoginController')->action('login')->on('POST');
+
+R('/package/:name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
+R('/package/:name')->controller('PackageController')->action('show')->on('GET');
+
 ?>
