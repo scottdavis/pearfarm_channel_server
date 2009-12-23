@@ -46,7 +46,6 @@ class ChannelController extends \ApplicationController {
         $this->has_rendered = true;
       break;
       default:
-        var_dump($_FILES);
         if ($_SESSION['upload_key'] !== $_POST['upload_key']) {
           Nimble::flash('notice', 'Invalid Upload Key');
           $this->redirect_to(url_for('ChannelController', 'index'));
