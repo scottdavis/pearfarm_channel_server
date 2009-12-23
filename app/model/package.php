@@ -38,7 +38,11 @@ class Package extends NimbleRecord {
   public static function from_upload(array $data) {
     $create = array();
     $file = $data['file'];
-    $user = User::find('first', array('conditions' => array('api_key' => $data['user'])));
+    $user = $data['user'];
+    $hash = $data['hash'];
+    if(md5(md5_file($file) . $user->api_key) !== $hash) {
+      throw new Exception('Invalid package');
+    }
     $package_data = new PackageExtractor($file);
     $name = $package_data->data['name'];
     $version = $package_data->data['version']['release'];
