@@ -8,6 +8,7 @@
  */
 R('')->controller('LandingController')->action('index')->on('GET');
 R('/channel')->controller('ChannelController')->action('index')->on('GET');
+R('/upload')->controller('ChannelController')->action('upload')->on('POST');
 /** Catgories */
 R('/rest/c/categories')->controller('RestController')->action('categories')->on('GET');
 R('/rest/c/:name/info')->controller('RestController')->action('category_info')->on('GET');

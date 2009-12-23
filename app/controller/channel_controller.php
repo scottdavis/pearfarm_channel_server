@@ -13,4 +13,11 @@ class ChannelController extends \ApplicationController {
       $this->header('Content-Type: text/xml', 200);
     }
   }
+  
+  
+  public function upload() {
+    $p = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'user' => $_POST['user']));
+    var_dump($p);
+  }
+  
 }
