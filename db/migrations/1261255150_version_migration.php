@@ -5,6 +5,9 @@ class VersionMigration extends Migration {
     $t->belongs_to('package');
     $t->string('version');
     $t->belongs_to('version_type');
+		$t->text('summary');
+		$t->text('description');
+		$t->string('min_php');
     $t->longtext('meta');
     $t->timestamps();
     $t->go();
