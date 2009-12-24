@@ -6,12 +6,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
 	<?php echo stylesheet_link_tag('style.css') ?>
-	<?php echo javascript_include_tag('application.js') ?>
-	<script type='text/javascript' src="http://www.google.com/jsapi"></script>
-	<script type='text/javascript'>
-	 	google.load("prototype", "1.6");
-	  google.load("scriptaculous", "1.8.3");
-	</script>
 	</head>
 	<body>
 		<?php if (isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) { ?>
@@ -34,5 +28,11 @@
 		<div id='content'>
 			<?php echo $content ?>
 		</div>
+		<script type='text/javascript' src="http://www.google.com/jsapi"></script>
+		<script type='text/javascript'>
+		 	google.load("prototype", "1.6");
+		  google.load("scriptaculous", "1.8.3");
+		</script>
+		<?php echo javascript_include_tag('application.js') ?>
 	</body>
 </html>
