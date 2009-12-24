@@ -4,14 +4,52 @@ p {
 }
 
 body {
-  background-color:#008C00;
+  background-color:#006600;
 }
 
 #content {
-  background-color:white;
+  background-color:#F9F7ED;
   padding:10px;
   min-width:800px;
-  width:1024px;
+  width:800px;
   margin-left:auto;
   margin-right:auto;
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-moz-border-radius-bottomleft:10px;
+	-moz-border-radius-bottomright:10px;
+	-moz-border-radius-topleft:10px;
+	-moz-border-radius-topright:10px;
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border:5px solid #858190;
+}
+
+#searchbox {
+	float:right;
+}
+
+#header h1 {
+	float:left;
+}
+
+#right_col {
+	width:250px;
+	float:right;
+}
+
+#left_col{
+	width:250px;
+	float:left;
+}
+
+#packages {
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
 }
