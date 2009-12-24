@@ -23,7 +23,7 @@
 						<p><input id='searchbox_form' type='text' /></p>
 					</div>
 				<div id='header_content'>
-					<img src='/public/image/logo.png' />
+					<img src='/public/image/logo.png' alt='logo' />
 						<p><a href='<?php echo url_for('LoginController', 'index') ?>'>Login</a></p>
 				</div>
 						<br style='clear:both' />
