@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-	<link rel="Shortcut Icon" href="/public/image/favico.ico">
-	<link rel="icon" href="/public/image/favico.ico" type="image/x-icon">
+	<link rel="Shortcut Icon" href="/public/image/favico.ico" />
+	<link rel="icon" href="/public/image/favico.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
 	<?php echo stylesheet_link_tag('style.css') ?>
