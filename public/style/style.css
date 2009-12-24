@@ -25,6 +25,7 @@ body {
 	border-bottom-right-radius: 10px 10px;
 	border-top-left-radius: 10px 10px;
 	border-top-right-radius: 10px 10px;
+	-webkit-border-radius: 10px;
 	padding-bottom: 20px;
 	padding-top: 20px;
 	border:5px solid #858190;
