@@ -23,7 +23,7 @@
 						<p><input id='searchbox_form' type='text' /></p>
 					</div>
 				<div id='header_content'>
-					<h1>Pearfarm</h1>
+					<img src='/public/image/logo.png' />
 						<p><a href='<?php echo url_for('LoginController', 'index') ?>'>Login</a></p>
 				</div>
 						<br style='clear:both' />
