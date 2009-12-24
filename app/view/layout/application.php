@@ -5,8 +5,8 @@
 <title><?php echo h(Nimble::get_title()) ?></title>
 <?php echo stylesheet_link_tag('style.css') ?>
 <?php echo javascript_include_tag('application.js') ?>
-<script src="http://www.google.com/jsapi"></script>
-<script tyoe='text/javascript'>
+<script type='text/javascript' src="http://www.google.com/jsapi"></script>
+<script type='text/javascript'>
  	google.load("prototype", "1.6");
   google.load("scriptaculous", "1.8.3");
 </script>
