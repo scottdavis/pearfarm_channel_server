@@ -13,11 +13,11 @@
  <st><?php echo $version->version_type->name ?></st>
  <l><?php echo $data['license']['_content'] ?></l>
  <m><?php echo $user->username ?></m>
- <s><?php $data['summary'] ?></s>
- <d><?php $data['description'] ?></d>
+ <s><?php echo $data['summary'] ?></s>
+ <d><?php echo $data['description'] ?></d>
  <da><?php echo $data['date'] . ' ' . $data['time'] ?></da>
- <n><?php $data['notes'] ?></n>
+ <n><?php echo $data['notes'] ?></n>
  <f><?php echo filesize($package->file_path($version->version)) ?></f>
  <g><?php echo $package->file_url($version->version) ?></g>
- <x xlink:href="<?php echo $package->name ?>.<?php echo $version->version ?>.xml"/>
+ <x xlink:href="package.<?php echo $version->version ?>.xml"/>
 </r>

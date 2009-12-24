@@ -35,6 +35,7 @@ R('/rest/r/:name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController'
 R('/rest/r/:name/v2\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_version2')->on('GET');
 R('/rest/r/:name/package\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_package_info')->on('GET');
 R('/rest/r/:name/deps\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_dependencies')->on('GET');
+R('/rest/r/:name\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('package_xml')->on('GET');
 /** login routes */
 R('/login')->controller('LoginController')->action('index')->on('GET');
 R('/logout')->controller('LoginController')->action('logout')->on('GET');

@@ -108,8 +108,11 @@ class RestController extends \ApplicationController {
     $this->load_release();
   }
   public function release_package_info() {
-    $this->load_release();
+		$this->load_release();
+		echo $this->version->raw_xml;
+		$this->has_rendered = true;
   }
+
   public function release_dependencies() {
     $this->load_release();
   }

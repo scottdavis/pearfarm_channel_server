@@ -28,7 +28,7 @@ class Package extends NimbleRecord {
   }
   public function file_url($version) {
     $url = $this->user->username . '.' . DOMAIN;
-    return "/get/{$this->user->username}/{$this->name}-$version.tgz";
+    return "http://$url/get/{$this->user->username}/{$this->name}-$version";
   }
   public function file_path($version) {
     return FileUtils::join(NIMBLE_ROOT, 'get', $this->user->username, "{$this->name}-$version.tgz");
@@ -57,7 +57,12 @@ class Package extends NimbleRecord {
     }
     $package->move_uploaded_file($file, $version);
     $type = VersionType::find_by_name($stability);
-    $package->versions = array(array('version' => $version, 'meta' => serialize($package_data->data), 'version_type_id' => $type->id));
+    $package->versions = array(array('raw_xml' => $package_data->get_package_xml(), 
+																		 'version' => $version, 'meta' => serialize($package_data->data), 
+																		 'version_type_id' => $type->id,
+																		 'summary' => $package_data->data['summary'],
+																		 'description' =>$package_data->data['description'],
+																		 'min_php' => $package_data->data['dependencies']['required']['php']['min']));
     $package->save();
     return $package;
   }

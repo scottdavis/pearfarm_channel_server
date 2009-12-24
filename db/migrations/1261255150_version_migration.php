@@ -8,6 +8,7 @@ class VersionMigration extends Migration {
 		$t->text('summary');
 		$t->text('description');
 		$t->string('min_php');
+		$t->longtext('raw_xml');
     $t->longtext('meta');
     $t->timestamps();
     $t->go();
