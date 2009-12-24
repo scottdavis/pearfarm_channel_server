@@ -30,6 +30,11 @@ body {
 	border:5px solid #858190;
 }
 
+#doc_block {
+	margin-left:center;	
+	margin-right:center;
+}
+
 #searchbox {
 	float:right;
 }
