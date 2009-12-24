@@ -41,7 +41,7 @@ class ChannelController extends \ApplicationController {
           echo ($package->saved) ? 'true' : 'false';
         }
         catch(Exception $e) {
-          echo false;
+          echo $e->getMessage();
         }
         $this->has_rendered = true;
       break;
