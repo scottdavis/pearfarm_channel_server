@@ -40,6 +40,8 @@ R('/rest/r/:name\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController
 R('/login')->controller('LoginController')->action('index')->on('GET');
 R('/logout')->controller('LoginController')->action('logout')->on('GET');
 R('/login')->controller('LoginController')->action('login')->on('POST');
+R('/register')->controller('LoginController')->action('add')->on('GET');
+R('/register')->controller('LoginController')->action('create')->on('POST');
 R('/package/:name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
 R('/package/:name')->controller('PackageController')->action('show')->on('GET');
 ?>

@@ -4,6 +4,7 @@ class UserMigration extends Migration {
     $t = $this->create_table("users");
     $t->string('username');
     $t->string('password');
+		$t->string('email');
     $t->string('salt');
     $t->string('api_key');
     $t->timestamps();

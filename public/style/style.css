@@ -3,6 +3,9 @@ p,div,body {
   padding:0;
 }
 
+a img {
+  border:none;
+}
 body {
   background-color:#006600;
 }
@@ -94,3 +97,6 @@ body {
   background: none;
   outline: none;
 }
+
+ul.login li{
+  list-style: none;

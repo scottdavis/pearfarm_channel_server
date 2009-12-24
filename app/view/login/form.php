@@ -1,9 +1,23 @@
 <form method='post' action='<?php url_for('LoginController', 'login') ?>' />
-	<ul>
-		<li><label for='username'>Username: </label><input id='username' type='text' name='username' /></li>
-		<li><label for='password'>password: </label><input id='password' type='password' name='password' /></li>
-		<li><input type='submit' value='Login' /></li>
-	</ul>
+	<table>
+		<tr>
+			<td>
+				<label for='username'>Username: </label>
+			</td>
+			<td>
+				<input id='username' type='text' name='username' />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for='password'>Password: </label>
+			</td>
+			<td>
+				<input id='password' type='password' name='password' />
+			</td>
+		</tr>
+		<tr><td><input type='submit' value='Login' id='submit' /></td><td></td></tr>
+	</table>
 </form>
 	
 	

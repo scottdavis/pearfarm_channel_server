@@ -6,6 +6,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
 	<?php echo stylesheet_link_tag('style.css') ?>
+	<script type='text/javascript' src="http://www.google.com/jsapi"></script>
+	<script type='text/javascript'>
+	 	google.load("prototype", "1.6");
+	  google.load("scriptaculous", "1.8.3");
+	</script>
 	</head>
 	<body>
 		<?php if (isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) { ?>
@@ -19,7 +24,7 @@
 						<p><input id='searchbox_form' type='text' /></p>
 					</div>
 				<div id='header_content'>
-					<img src='/public/image/logo.png' alt='logo' />
+					<a href='/'><img src='/public/image/logo.png' alt='logo' /></a>
 						<p><a href='<?php echo url_for('LoginController', 'index') ?>'>Login</a></p>
 				</div>
 						<br style='clear:both' />
@@ -28,11 +33,6 @@
 		<div id='content'>
 			<?php echo $content ?>
 		</div>
-		<script type='text/javascript' src="http://www.google.com/jsapi"></script>
-		<script type='text/javascript'>
-		 	google.load("prototype", "1.6");
-		  google.load("scriptaculous", "1.8.3");
-		</script>
 		<?php echo javascript_include_tag('application.js') ?>
 	</body>
 </html>

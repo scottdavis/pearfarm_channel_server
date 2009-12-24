@@ -32,6 +32,15 @@ class LoginController extends \ApplicationController {
     $url = "http://" . DOMAIN;
     $this->redirect_to($url);
   }
+	public function add() {
+		
+	}
+	public function create() {
+		
+	}
+	
+
+
   public static function user_url($user) {
     return "http://$user->username." . DOMAIN . url_for('ChannelController', 'index');
   }
