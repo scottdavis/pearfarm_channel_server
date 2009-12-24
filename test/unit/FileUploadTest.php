@@ -10,7 +10,7 @@ class FileUploadTest extends PHPUnit_Framework_TestCase {
       $p = Package::from_upload(array('file' => $localfile, 'hash' => $hash, 'user' => $user));
     }
     catch(Exception $e) {
-      $this->assertEquals('Package channel pear.nimblize.com does not match bob.localhost', $e->getMessage());
+      $this->assertEquals('Package channel pear.nimblize.com does not match bob.localhost.com', $e->getMessage());
     }
   }
   public function testUpload() {
