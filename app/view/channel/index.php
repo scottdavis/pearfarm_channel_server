@@ -7,7 +7,8 @@
 			<ul>
 			<?php foreach($package->versions as $version) { ?>
 				<li><a href='<?php echo url_for('VersionController', 'show', $package->name, $version->version) ?>'><?php echo $version->version ?></a></li>
-			<?php } ?>
+			<?php
+  } ?>
 			</ul>
 	</li>
 <?php

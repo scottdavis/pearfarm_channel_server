@@ -39,8 +39,6 @@ R('/rest/r/:name/deps\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestContr
 R('/login')->controller('LoginController')->action('index')->on('GET');
 R('/logout')->controller('LoginController')->action('logout')->on('GET');
 R('/login')->controller('LoginController')->action('login')->on('POST');
-
 R('/package/:name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
 R('/package/:name')->controller('PackageController')->action('show')->on('GET');
-
 ?>

@@ -6,7 +6,8 @@
 			<ul>
 			<?php foreach($package->versions as $version) { ?>
 				<li><?php echo $version->version ?></li>
-			<?php } ?>
+			<?php
+  } ?>
 			</ul>
 		</li>
 	<?php
