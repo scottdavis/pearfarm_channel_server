@@ -1,4 +1,4 @@
-p {
+p,div,body {
   margin:0;
   padding:0;
 }
@@ -8,6 +8,7 @@ body {
 }
 
 #content {
+  margin-top:75px;
   background-color:#F9F7ED;
   padding:10px;
   min-width:800px;
@@ -31,6 +32,20 @@ body {
 	border:5px solid #858190;
 }
 
+#header {
+  margin:0;
+  width:100%;
+  min-width:800px;
+  height:117px;
+  background-image:url(/public/image/header.png);
+  background-repeat:repeat-x;
+}
+
+#header_content {
+  float:left;
+  margin-top:35px;
+}
+
 #doc_block {
 	margin-left:center;	
 	margin-right:center;
@@ -38,10 +53,20 @@ body {
 
 #searchbox {
 	float:right;
+	margin-right:55px;
+  margin-top:42px;
+  width:142px;
+  background-image:url(/public/image/search_box.png);
 }
 
 #header h1 {
-	float:left;
+ margin:0;
+}
+#head2 {
+  margin-left:auto;
+  margin-right:auto;
+  min-width:800px;
+  width:800px;
 }
 
 #right_col {
@@ -58,4 +83,13 @@ body {
 	width:500px;
 	margin-left:auto;
 	margin-right:auto;
+}
+#searchbox_form {
+  padding: 0;
+  border: 0;
+  height:16px;
+  margin:6px 0 0 6px;
+  padding:0;
+  width:133px;
+  background: none;
 }
