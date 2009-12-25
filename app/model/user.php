@@ -41,6 +41,9 @@ class User extends NimbleRecord {
   }
   public static function authenticate($username, $password) {
     $user = User::find_by_username($username);
+		if(!$user->active) {
+			return false;
+		}
     $hashed_password = static ::hash_password($password, $user->salt);
     return ($hashed_password === $user->password);
   }
