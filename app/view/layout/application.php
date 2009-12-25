@@ -20,7 +20,7 @@
 					</div>
 				<div id='header_content'>
 					<a href='/'><img src='/public/image/logo.png' alt='logo' /></a>
-						<?php if(is_logged_in()) {?>
+						<?php if($this->is_logged_in()) {?>
 							<p><a href='<?php echo url_for('LoginController', 'logout') ?>'>Logout</a></p>
 						<?php }else{ ?>
 							<p><a href='<?php echo url_for('LoginController', 'index') ?>'>Login</a> | <a href='<?php echo url_for('LoginController', 'add') ?>'>Sign Up</a></p>
