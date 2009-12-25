@@ -46,4 +46,7 @@ R('/verify/:key')->controller('LoginController')->action('verify')->on('GET');
 R('/login/checkuser')->controller('LoginController')->action('check_user')->on('POST');
 R('/package/:name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
 R('/package/:name')->controller('PackageController')->action('show')->on('GET');
+R('/opensearch')->controller('SearchController')->action('opensearch')->on('GET');
+R('/search')->controller('SearchController')->action('search')->on('GET');
+R('/search/:search')->controller('SearchController')->action('search')->on('GET');
 ?>

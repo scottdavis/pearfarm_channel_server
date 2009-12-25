@@ -26,6 +26,14 @@ class User extends NimbleRecord {
   public function pear_farm_url() {
     return implode(".", array($this->username, DOMAIN));
   }
+  
+  public function gravatar_url($size ='16') {
+    return "http://www.gravatar.com/avatar/" . md5($this->email) . '.jpg?s=' . $size. '&d=http://' . DOMAIN . '/public/image/d_avatar.png';
+  }
+  
+  
+  
+  
   public function before_create() {
     $this->api_key = md5(time() . $this->username . rand(0, 4000));
     $this->salt = static ::generate_salt();

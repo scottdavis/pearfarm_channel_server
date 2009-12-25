@@ -3,6 +3,7 @@
 	<head>
 	<link rel="Shortcut Icon" href="/public/image/favico.ico" />
 	<link rel="icon" href="/public/image/favico.ico" type="image/x-icon" />
+	<link rel="search" type="application/opensearchdescription+xml" href="http://<?php echo DOMAIN ?>/opensearch.xml" title="Pearfarm" /> 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
 	<?php echo stylesheet_link_tag('style.css') ?>
@@ -16,7 +17,9 @@
 		<div id="header">
 			<div id='head2'>
 					<div id="searchbox">
-						<p><input id='searchbox_form' type='text' /></p>
+					  <form action='/search' method='get' />
+						<p><input id='searchbox_form' type='text' name='search' value='<?php echo (isset($_GET['search'])) ? $_GET['search'] : '' ?>' /></p>
+						</form>
 					</div>
 				<div id='header_content'>
 					<a href='/'><img src='/public/image/logo.png' alt='logo' /></a>

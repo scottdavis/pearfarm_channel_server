@@ -197,3 +197,13 @@ select.fieldWithErrors{
   background-color:white;
   border:red solid 2px;
 }
+
+
+table#search_table {
+  text-align:center;
+  width:100%;
+}
+
+.even {
+  background-color:#ccc;
+}
