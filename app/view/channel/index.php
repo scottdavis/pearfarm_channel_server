@@ -1,5 +1,5 @@
 <h1>Welcome <?php echo ucwords($user->username) ?></h1>
-<?php echo $user->pear_farm_url() ?>
+<p>Your Channel is: <?php echo $user->pear_farm_url() ?></p>
 <h2>Packages</h2>
 <ul>
 <?php foreach($packages as $package) { ?>
