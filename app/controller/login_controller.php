@@ -22,7 +22,7 @@ class LoginController extends \ApplicationController {
   private function redirect_if_logged_in() {
     if ($this->is_logged_in()) {
       $user = User::find($_SESSION['user']);
-      $url = static ::user_url($user);
+      $url = static::user_url($user);
       $this->redirect_to($url);
     }
   }
@@ -33,12 +33,43 @@ class LoginController extends \ApplicationController {
     $this->redirect_to($url);
   }
 	public function add() {
-		
+		$this->user = new User();
 	}
 	public function create() {
-		
+		if(!empty($_POST['whoanow'])) {$this->header("HTTP/1.0 404 Not Found", 404);exit();} //this owns bots
+		$this->user = new User($_POST['user']);
+		if(!$this->user->save()) {
+			$this->render('login/add.php');
+		}else{
+			Nimble::flash('notice', "Thank you for registering please check your email to verify your account");
+			$this->redirect_to('/');
+		}
+		if($this->user->password != $_POST['v_password']) {
+			$this->user->errors['password'] = "Password does not match";
+		}
+
+	}
+	public function verify() {
+		try {
+			$user = User::find_by_api_key($_GET['key']);
+			$user->active = 1;
+			if($user->save()) {
+				Nimble::flash('notice', 'Account has been activated please login');
+				$this->redirect_to(url_for('LoginController', 'login'));
+			}else{
+				$this->redirect_to('/');
+			}
+		}catch(NimbleRecordNotFound $e) {
+			Nimble::flash('notice', 'Invaild activation key');
+			$this->redirect_to('/');
+		}
 	}
 	
+	public function check_user() {
+		echo User::exists('username', $_POST['username']) ? 'true' : 'false';
+		$this->layout = false;
+		$this->has_rendered = true;
+	}
 
 
   public static function user_url($user) {

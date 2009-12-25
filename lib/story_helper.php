@@ -16,9 +16,9 @@ class StoryHelper {
     }
   }
   public static function create_users() {
-    User::create(array('username' => 'bob', 'password' => 'password'));
-    User::create(array('username' => 'joe', 'password' => 'password'));
-    User::create(array('username' => 'jim', 'password' => 'password'));
+    User::_create(array('username' => 'bob', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
+    User::_create(array('username' => 'joe', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
+    User::_create(array('username' => 'jim', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
   }
   public static function create_packages() {
 		$user = User::find_by_username('bob');

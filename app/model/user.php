@@ -18,6 +18,7 @@ class User extends NimbleRecord {
      */
     $this->validates_presence_of('username');
     $this->validates_presence_of('password');
+		$this->validates_presence_of('email');
   }
   public function pear_farm_url() {
     return implode(".", array($this->username, DOMAIN));
@@ -27,6 +28,11 @@ class User extends NimbleRecord {
     $this->salt = static ::generate_salt();
     $this->password = static ::hash_password($this->password, $this->salt);
   }
+
+	public function after_create() {
+		UserMailer::deliver_new_user($this->email, $this);
+	}
+
   public static function hash_password($password, $salt) {
     return hash("sha256", $password . $salt);
   }

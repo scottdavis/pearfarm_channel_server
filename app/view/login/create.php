@@ -1,0 +1,1 @@
+<p>Thank you for registering please check your email to verify your account</p>

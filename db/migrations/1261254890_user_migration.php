@@ -7,6 +7,7 @@ class UserMigration extends Migration {
 		$t->string('email');
     $t->string('salt');
     $t->string('api_key');
+		$t->boolean('active', array('default' => 0));
     $t->timestamps();
     $t->go();
   }

@@ -13,11 +13,6 @@
 	</script>
 	</head>
 	<body>
-		<?php if (isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) { ?>
-			<div id='flash'>
-				<?php echo Nimble::display_flash('notice'); ?>
-			</div>
-		<?php } ?>
 		<div id="header">
 			<div id='head2'>
 					<div id="searchbox">
@@ -25,11 +20,16 @@
 					</div>
 				<div id='header_content'>
 					<a href='/'><img src='/public/image/logo.png' alt='logo' /></a>
-						<p><a href='<?php echo url_for('LoginController', 'index') ?>'>Login</a></p>
+						<p><a href='<?php echo url_for('LoginController', 'index') ?>'>Login</a> | <a href='<?php echo url_for('LoginController', 'add') ?>'>Sign Up</a></p>
 				</div>
 						<br style='clear:both' />
 			</div>
 		</div>
+			<?php if (isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) { ?>
+				<div id='flash' class='notice'>
+					<?php echo Nimble::display_flash('notice'); ?>
+				</div>
+			<?php } ?>
 		<div id='content'>
 			<?php echo $content ?>
 		</div>
