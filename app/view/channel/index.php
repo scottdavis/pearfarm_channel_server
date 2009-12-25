@@ -1,5 +1,5 @@
 <h1>Welcome <?php echo ucwords($user->username) ?></h1>
-
+<?php echo pear_farm_url() ?>
 <h2>Packages</h2>
 <ul>
 <?php foreach($packages as $package) { ?>

@@ -14,6 +14,7 @@ class ChannelController extends \ApplicationController {
    * index
    */
   public function index() {
+		if($this->user->active == 0) {exit();}
     switch ($this->format) {
       case 'xml':
         $this->layout = false;
