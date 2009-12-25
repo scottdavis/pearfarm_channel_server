@@ -3,6 +3,9 @@
  * @package model
  */
 class User extends NimbleRecord {
+	
+	public static $protected = array('active');
+	
   public function associations() {
     /**
      * Association loading goes here ex.

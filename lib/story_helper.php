@@ -16,7 +16,9 @@ class StoryHelper {
     }
   }
   public static function create_users() {
-    User::_create(array('username' => 'bob', 'password' => 'password', 'email' => 'whoa@pearfarm.org', 'active' => true));
+   	$u = User::_create(array('username' => 'bob', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
+		$u->active = true;
+		$u->save();
     User::_create(array('username' => 'joe', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
     User::_create(array('username' => 'jim', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
   }
