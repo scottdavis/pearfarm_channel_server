@@ -16,9 +16,18 @@
 	<body>
 		<div id="header">
 			<div id='head2'>
-					<div id="searchbox">
+					<div id="searchbox_holder">
 					  <form action='/search' method='get' />
-						<p><input id='searchbox_form' type='text' name='search' value='<?php echo (isset($_GET['search'])) ? $_GET['search'] : '' ?>' /></p>
+					    <table>
+					      <tr>
+						      <td>
+						        <div id="searchbox">
+						          <input id='searchbox_form' type='text' name='search' value='<?php echo (isset($_GET['search'])) ? $_GET['search'] : '' ?>' />
+						        </div>
+						        </td>
+						        <td><input type="image" src="/public/image/searchglass.png" border="0" ALT="search"></td>
+						    </tr>
+						  </table>
 						</form>
 					</div>
 				<div id='header_content'>

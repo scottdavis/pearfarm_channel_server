@@ -55,10 +55,6 @@ body {
 }
 
 #searchbox {
-	float:right;
-	margin-right:55px;
-  margin-top:42px;
-  width:142px;
   background-image:url(/public/image/search_box.png);
 }
 
@@ -96,6 +92,18 @@ body {
   width:133px;
   background: none;
   outline: none;
+}
+
+#searchbox_holder {
+  float:right;
+	margin-right:55px;
+  margin-top:42px;
+  width:173px;
+  display:inline;
+}
+
+#searchbox_holder table {
+  width:100%;
 }
 
 ul.login li {
