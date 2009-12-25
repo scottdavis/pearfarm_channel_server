@@ -14,9 +14,9 @@ class ChannelController extends \ApplicationController {
    * index
    */
   public function index() {
-		if($this->user->active == 0) {exit();}
     switch ($this->format) {
       case 'xml':
+				if($this->user->active == 0) {exit();}
         $this->layout = false;
         $this->render('channel/index.xml');
         $this->header('Content-Type: text/xml', 200);
