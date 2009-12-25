@@ -18,5 +18,19 @@ class LoginControllerTest extends NimbleFunctionalTestCase {
     $this->assertTemplate('form');
     $this->assertFalse(isset($_SESION['user']));
   }
+
+	public function testVerify() {
+		$user = User::find_by_username('jim');
+		$this->get('verify', array(), array('key' => $user->api_key), array());
+		$user2 = User::_find('first', array('conditions' => array('username' => 'jim')));
+		$this->assertEquals(1, $user2->active);
+		$this->assertRedirect(url_for('LoginController', 'login'));
+	}
+	
+	public function testVerifyFails() {
+		$this->get('verify', array(), array('key' => '098265082652jlkgkjsg'), array());
+		$this->assertRedirect('/');
+	}
+
 }
 ?>
