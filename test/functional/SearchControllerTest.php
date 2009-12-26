@@ -12,5 +12,10 @@
       $this->assertEquals(count($packages), 1);
 		}
 		
+		public function testSearchEmptyRedirects() {
+		  $this->get('search', array(), array('search' => ''));
+      $this->assertRedirect('/');
+		}
+		
 	}
 ?>

@@ -36,9 +36,9 @@
 				<div id='header_content'>
 					<a href='/'><img src='/public/image/logo.png' alt='logo' /></a>
 						<?php if($this->is_logged_in()) {?>
-							<p><a href='<?php echo url_for('LoginController', 'logout') ?>'>Logout</a></p>
+							<p><?php echo link_to('Logout', url_for('LoginController', 'logout')) ?></p>
 						<?php }else{ ?>
-							<p><a href='<?php echo url_for('LoginController', 'index') ?>'>Login</a> | <a href='<?php echo url_for('LoginController', 'add') ?>'>Sign Up</a></p>
+							<p><?php echo link_to('Login', url_for('LoginController', 'index')) ?> | <?php echo link_to('Sign Up', url_for('LoginController', 'add')) ?></p>
 						<?php } ?>
 				</div>
 						<br style='clear:both' />

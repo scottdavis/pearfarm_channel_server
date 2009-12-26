@@ -6,7 +6,7 @@
 	<li><?php echo $package->name ?>
 			<ul>
 			<?php foreach($package->versions as $version) { ?>
-				<li><a href='<?php echo url_for('VersionController', 'show', $package->name, $version->version) ?>'><?php echo $version->version ?></a></li>
+				<li><?php echo link_to($version->version, url_for('VersionController', 'show', $package->id, $version->version)) ?></li>
 			<?php
   } ?>
 			</ul>

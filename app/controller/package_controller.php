@@ -3,9 +3,14 @@
  * @package controller
  */
 class PackageController extends \ApplicationController {
-  public function show($id) {
-    $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'])));
-    $this->versions = $this->package->versions;
+  public function show() {
+    try{
+      $this->package = Package::find($_GET['id']);
+      $this->versions = $this->package->versions;
+    }catch(NimbleRecordNotFound $e) {
+      Nimble::flash('notice', 'The package you were looking for does not exsist');
+      $this->redirect_to('/');
+    }
   }
 }
 ?>
