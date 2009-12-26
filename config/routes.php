@@ -49,4 +49,5 @@ R('/package/:name')->controller('PackageController')->action('show')->on('GET');
 R('/opensearch')->controller('SearchController')->action('opensearch')->on('GET');
 R('/search')->controller('SearchController')->action('search')->on('GET');
 R('/search/:search')->controller('SearchController')->action('search')->on('GET');
+R('/:name')->controller('LandingController')->action('user_index')->on('GET');
 ?>

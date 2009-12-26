@@ -17,6 +17,11 @@
 				  $this->layout = false;
 				  $this->has_rendered = true;
 				break;
+				case 'html':
+				  if(!isset($_GET['search']) || empty($_GET['search'])) {
+				    $this->redirect_to('/');
+				  }
+				break;
 			}
 		}
 		

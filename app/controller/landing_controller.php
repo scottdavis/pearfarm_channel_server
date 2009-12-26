@@ -15,4 +15,16 @@ class LandingController extends \ApplicationController {
       $this->render('channel/index.php');
     }
   }
+  
+  
+  public function user_index() {
+    try{
+      $this->user = User::find('first', array('conditions' => array('username' => $_GET['name'], 'active' => 1)));
+      $this->packages = $this->user->packages;
+    }catch(NimbleRecordnotFound $e) {
+      $this->redirect_to('/');
+    }
+  }
+  
+  
 }
