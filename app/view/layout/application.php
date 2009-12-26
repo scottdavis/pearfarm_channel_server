@@ -7,6 +7,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
 	<?php echo stylesheet_link_tag('style.css') ?>
+	<!--[if lt IE 7.]>
+	  <?php echo javascript_include_tag('pngfix.js') ?>
+  <![endif]-->
 	<script type='text/javascript' src="http://www.google.com/jsapi"></script>
 	<script type='text/javascript'>
 	 	google.load("prototype", "1.6");
