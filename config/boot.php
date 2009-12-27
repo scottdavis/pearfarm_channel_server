@@ -1,6 +1,4 @@
 <?php
-session_set_cookie_params(time() + 1000, '/', '.localhost.com');
-session_start();
 /**
  * This file boots and loads the framework
  * In order for the enviroments to work correctly add the line below to your server apache config
@@ -70,6 +68,10 @@ require_once (FileUtils::join(NIMBLE_ROOT, 'app', 'controller', 'application_con
 foreach(array('model', 'controller') as $dir) {
   __load_files(FileUtils::join(dirname(__FILE__), '..', 'app', $dir));
 }
+
+session_set_cookie_params(time() + 1000, '/', '.' . DOMAIN);
+session_start();
+
 
 //load database connection
 $database_info = json_decode(file_get_contents(FileUtils::join(NIMBLE_ROOT, 'config', NIMBLE_ENV, 'database.json')), true);
