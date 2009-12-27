@@ -132,11 +132,11 @@ var Facebox = Class.create({
 	},
 	
 	open    : function(){
-		new Effect.Appear('facebox');
+		new Effect.Appear('facebox', { queue: { position: 'end', scope: 'faceboxscope' } });
 	},
 	
 	close		: function(){
-		new Effect.Fade('facebox');
+		new Effect.Fade('facebox', { queue: { position: 'end', scope: 'faceboxscope' } });
 	},
 	
 	setLocation: function(){
@@ -149,10 +149,9 @@ var Facebox = Class.create({
 	
 	new_box_for_url: function(url) {
 		var fb = this;
-		fb.open();
 		var klass = '';
 		fb.ajax(url, klass);
-
+		fb.open();
 	},
 	
 	ajax: function(url, klass){
@@ -205,6 +204,3 @@ var Facebox = Class.create({
 });
 
 var facebox;
-Event.observe(window, 'load', function(e){
-	facebox = new Facebox();
-});

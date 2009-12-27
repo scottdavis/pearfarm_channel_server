@@ -22,9 +22,10 @@
 <?php echo $form->end() ?>
 <p><?php echo delete_link('Delete Account', url_for('UserController', 'delete'), true, 'Are you sure? \n This will delete all packages and remove your channel from the pear server.') ?>
 <h2>OpenSSL Public Keys</h2>
+<a href='/user/key/add' rel="facebox" />Add a new Key</a>
 <ul id='keys'>
  <?php foreach($user->pkis as $key) { ?>
-   <li><?php echo $key->name ?> (<a href='javascript:void(0)' onclick="edit_key(<?php echo $key->id ?>)" />edit</a>)</li>
+   <li><?php echo $key->name ?> (<a href='/user/key/<?php echo $key->id ?>/edit' rel='facebox' />edit</a>) (<span class='x'><?php echo delete_link('X', url_for('UserController', 'delete_key', $key->id)) ?></span>)</li>
  <?php } ?>
 </ul>
 </table>
@@ -37,9 +38,6 @@
 		return false;
 	}
 	
-	function edit_key(id) {
-	  facebox.new_box_for_url('/user/key/' + id + '/edit');
-	}
 	
 	function delete_key(id) {
 		if(confirm("Are your sure?")) {

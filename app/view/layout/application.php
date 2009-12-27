@@ -10,10 +10,11 @@
 	<!--[if lt IE 7.]>
 	  <?php echo javascript_include_tag('pngfix.js') ?>
   <![endif]-->
-	<script type='text/javascript' src="http://www.google.com/jsapi"></script>
+	<?php echo javascript_include_tag('prototype.js', 'scriptaculous.js', 'facebox.js') ?>
 	<script type='text/javascript'>
-	 	google.load("prototype", "1.6");
-	  google.load("scriptaculous", "1.8.3");
+		Event.observe(window, 'load', function(){
+			facebox = new Facebox({loading_image: '/public/image/facebox/loading.gif', close_image: '/public/image/facebox/closelabel.gif'});
+		});
 	</script>
 	</head>
 	<body>
@@ -53,11 +54,5 @@
 			<?php echo $content ?>
 			<p><?php echo link_to_back() ?></p>
 		</div>
-		<?php echo javascript_include_tag('application.js', 'facebox.js') ?>
-		<script type='text/javascript'>
-			Event.observe(window, 'load', function(){
-				facebox = new Facebox({loading_image: '/public/image/facebox/loading.gif', close_image: '/public/image/facebox/closelabel.gif'});
-			});
-		</script>
 	</body>
 </html>

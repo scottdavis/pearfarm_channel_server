@@ -39,7 +39,7 @@
 	public function edit_key() {
 		$this->layout = false;
 		try{
-			$this->key = Pki::find('first', array('id' => $_GET['id'], 'user_id' => $this->user->id));
+			$this->key = Pki::find('first', array('conditions' => array('id' => $_GET['id'], 'user_id' => $this->user->id)));
 		}catch(NimbleRecordNotFound $e) {
 			return false;
 			$this->has_rendered = true;
@@ -52,32 +52,37 @@
 	}
 
   public function create_key() {
-    $this->user->pkis = array($_POST['pki']);
-    try {
-      $this->user->save();
-      echo 'true';
-    }catch(NimbleRecordException $e) {
-      echo 'false'; 
+		$this->header('Content-Type: application/javascript', 200);
+		$this->key = new Pki(array_merge($_POST['pki'], array('user_id' => $this->user->id)));
+     if($this->key->save()) {
+      echo "facebox.close();window.location.href=window.location.href;";
+    }else{
+      $return = escape_javascript($this->render_partial('user/add_key.php'));
+			echo "$('pki').replace('$return');";
     }
      $this->has_rendered = true;
    }
    
    public function update_key() {
-     $key = Pki::update($_GET['id'], $_POST['pki']);
-     if($key->save()) {
-       echo 'true';
-     }else{
-       echo 'false';
-     }
-     $this->has_rendered = true;
+		$this->header('Content-Type: application/javascript', 200);
+		$this->layout = false;
+    $this->key = Pki::update($_GET['id'], $_POST['pki']);
+    if($this->key->save()) {
+      echo "facebox.close();window.location.href=window.location.href;";
+    }else{
+			$this->key->id = $_GET['id'];
+			$return = escape_javascript($this->render_partial('user/edit_key.php'));
+			echo "$('pki').replace('$return');";
+    }
+   	$this->has_rendered = true;
    }
    
    public function delete_key() {
      if(Pki::exists(array('id' => $_GET['id'], 'user_id' => $this->user->id))) {
        Pki::delete($_GET['id']);
-       echo 'true';
+       $this->redirect_to(url_for('UserController', 'edit'));
      }else{
-       echo 'false';
+			 $this->redirect_to(url_for('UserController', 'edit'));
      }
      $this->has_rendered = true;
    }

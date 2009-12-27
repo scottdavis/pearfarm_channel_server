@@ -61,8 +61,9 @@ R('/package/:id')->controller('PackageController')->action('delete')->on('DELETE
 /** key routes */
 R('/user/key/:id/edit')->controller('UserController')->action('edit_key')->on('GET');
 R('/user/key/add')->controller('UserController')->action('add_key')->on('GET');
-R('/user/key/')->controller('UserController')->action('create_key')->on('POST');
+R('/user/key')->controller('UserController')->action('create_key')->on('POST');
 R('/user/key/:id')->controller('UserController')->action('update_key')->on('PUT');
+R('/user/key/:id')->controller('UserController')->action('delete_key')->on('DELETE');
 /** profile route */
 R('/:name')->controller('LandingController')->action('user_index')->on('GET');
 

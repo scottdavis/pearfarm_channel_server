@@ -37,14 +37,14 @@
 		  $count = Pki::count();
 		  $this->post('create_key', array(), array('pki' => array('name' => 'my_key', 'key' => md5(time()))), array('user' => $this->user->id));
       $this->assertEquals($count + 1, Pki::count(array('cache' => false)));
-      $this->assertEquals($this->response, 'true');
+      $this->assertEquals($this->response, 'facebox.close();window.location.href=window.location.href;');
 		}
 		
 		public function testAddKeyFails() {
 		  $count = Pki::count();
 		  $this->post('create_key', array(), array('pki' => array('key' => md5(time()))), array('user' => $this->user->id));
       $this->assertEquals($count, Pki::count(array('cache' => false)));
-      $this->assertEquals($this->response, 'false');
+      $this->assertPartial('user/add_key.php');
 		}
 		
 		public function testUpdateKey() {
@@ -52,7 +52,7 @@
 		  $count = Pki::count();
 		  $this->post('update_key', array(), array('id' => $key->id, 'pki' => array('name' => 'my_key', 'key' => md5(time()))), array('user' => $this->user->id));
       $this->assertEquals($count, Pki::count(array('cache' => false)));
-      $this->assertEquals($this->response, 'true');
+      $this->assertEquals($this->response, 'facebox.close();window.location.href=window.location.href;');
       $key2 = Pki::_find($key->id);
       $this->assertEquals($key2->name, 'my_key');
       $this->assertNotEquals($key->key, $key2->key);
@@ -63,7 +63,7 @@
 		  $count = Pki::count();
 		  $this->post('update_key', array(), array('id' => $key->id, 'pki' => array('name' => '', 'key' => md5(time()))), array('user' => $this->user->id));
       $this->assertEquals($count, Pki::count(array('cache' => false)));
-      $this->assertEquals($this->response, 'false');
+      $this->assertPartial('user/_key_form.php');
       $key2 = Pki::_find($key->id);
       $this->assertEquals($key2->name, $key->name);
       $this->assertEquals($key->key, $key2->key);
@@ -74,7 +74,7 @@
 		  $count = Pki::count();
 		  $this->delete('delete_key', array(), array('id' => $key->id), array('user' => $this->user->id));
 		  $this->assertEquals($count - 1, Pki::count(array('cache' => false)));
-		  $this->assertEquals($this->response, 'true');
+		  $this->assertRedirect(url_for('UserController', 'edit'));
 		}
 		
 		public function testDeleteFails() {
@@ -82,7 +82,7 @@
 		  $count = Pki::count();
 		  $this->delete('delete_key', array(), array('id' => 568), array('user' => $this->user->id));
 		  $this->assertEquals($count, Pki::count(array('cache' => false)));
-		  $this->assertEquals($this->response, 'false');
+		  $this->assertRedirect(url_for('UserController', 'edit'));
 		}
 		
 		

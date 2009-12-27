@@ -219,3 +219,11 @@ table#search_table {
 table#versions {
   
 }
+
+.x {
+  color:red;
+}
+.x a {
+  text-decoration:none;
+  color:red;
+}
