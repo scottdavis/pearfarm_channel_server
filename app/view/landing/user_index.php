@@ -1,4 +1,4 @@
-<h1><img src='<?php echo $user->gravatar_url('48') ?>' alt='avatar'/><?php echo ucwords($user->username) ?></h1>
+<h1><img src='<?php echo $user->gravatar_url('48') ?>' alt='avatar'/> <?php echo ucwords($user->username) ?></h1>
 <p><?php echo ucwords($user->username) ?> Channel is: <?php echo $user->pear_farm_url() ?></p>
 <h2>Packages</h2>
 <ul>

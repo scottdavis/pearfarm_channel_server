@@ -1,4 +1,4 @@
-<h1>Welcome <?php echo ucwords($user->username) ?></h1>
+<h1><img src='<?php echo $user->gravatar_url('48') ?>' alt='avatar'/> Welcome <?php echo ucwords($user->username) ?></h1>
 <p><?php echo link_to('Edit Profile', url_for('UserController', 'edit')) ?> | <?php echo link_to('Upload Package', url_for('ChannelController', 'upload')) ?></p>
 <p>Your Channel is: <?php echo $user->pear_farm_url() ?></p>
 <?php if($packages->length > 0) { ?>
