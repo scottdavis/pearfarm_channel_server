@@ -16,5 +16,19 @@ class PackageControllerTest extends NimbleFunctionalTestCase {
     $this->get('show', array(), array('id' => 'foo'));
     $this->assertRedirect('/');
   }
+  
+  
+  public function testDeleteBobsPackage() {
+    $_SERVER['SERVER_NAME'] = 'bob.localhost.com';
+    $count = Package::count();
+    $v_count = Version::count();
+    $p = Package::find_by_name('bobs_other_package');
+    $versions = $p->count('versions');
+    $this->delete('delete', array(), array('id' => $p->id), array('user' => User::find_by_username('bob')->id));
+    $this->assertEquals($count - 1, Package::count(array('cache' => false)));
+    $this->assertEquals($v_count - $versions, Version::count(array('cache' => false)));
+    $this->assertRedirect('/');
+  }
+  
 }
 ?>

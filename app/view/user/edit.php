@@ -1,4 +1,4 @@
-<p>Note: Avatars are <?php echo link_to('gravatrs', 'http://www.gravatar.com') ?> and can be updated at their website.</p>
+<p>Note: Avatars are <?php echo link_to('gravatrs', 'http://www.gravatar.com', array('target' => '_blank')) ?> and can be updated at their website.</p>
 <?php echo $form = new FormFor(array('path' => url_for('UserController', 'update'), 'method' => 'PUT', 'object' => $user, 'onsubmit' => "return verifyField()")) ?>
 <table>
   <tr>

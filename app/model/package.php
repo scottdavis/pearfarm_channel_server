@@ -29,6 +29,12 @@ class Package extends NimbleRecord {
     return Version::find('first', array('order' => 'version DESC', 'conditions' => array('package_id' => $this->id)));
   }
   
+  public function clear_all_versions() {
+    foreach($this->versions as $version) {
+      @unlink($this->file_path($version->version));
+      $version->destroy();
+    }
+  }
   
   public function link() {
     $name = urlencode($this->name);

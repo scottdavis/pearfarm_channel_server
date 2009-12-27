@@ -7,7 +7,7 @@ class StoryHelper {
     static ::create_version_types();
     static ::create_users();
     static::create_pkis();
-    static ::create_packages();
+    static ::create_package();
     static ::create_maintainers();
   }
   public function down() {
@@ -22,8 +22,11 @@ class StoryHelper {
 		$u->save();
     User::_create(array('username' => 'joe', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
     User::_create(array('username' => 'jim', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
+    $u = User::_create(array('username' => 'steve', 'password' => 'password', 'email' => 'whoa@pearfarm.org'));
+		$u->active = true;
+		$u->save();
   }
-  public static function create_packages() {
+  public static function create_package() {
 		$user = User::find_by_username('bob');
 		$file = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-0.0.1.tgz');
 		Package::from_upload(array('file' => $file, 'user' => $user));

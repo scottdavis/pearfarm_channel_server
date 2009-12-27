@@ -68,10 +68,7 @@
    
    public function delete() {
      foreach($this->user->packages as $package) {
-       foreach($package->versions as $version) {
-         @unlink($package->file_path($version->version));
-         $version->destroy();
-       }
+       $package->clear_all_version();
        $package->destroy();
      }
      User::delete($this->user->id);
