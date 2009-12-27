@@ -35,14 +35,14 @@
 		
 		public function testAddKey() {
 		  $count = Pki::count();
-		  $this->post('add_key', array(), array('pki' => array('name' => 'my_key', 'key' => md5(time()))), array('user' => $this->user->id));
+		  $this->post('create_key', array(), array('pki' => array('name' => 'my_key', 'key' => md5(time()))), array('user' => $this->user->id));
       $this->assertEquals($count + 1, Pki::count(array('cache' => false)));
       $this->assertEquals($this->response, 'true');
 		}
 		
 		public function testAddKeyFails() {
 		  $count = Pki::count();
-		  $this->post('add_key', array(), array('pki' => array('key' => md5(time()))), array('user' => $this->user->id));
+		  $this->post('create_key', array(), array('pki' => array('key' => md5(time()))), array('user' => $this->user->id));
       $this->assertEquals($count, Pki::count(array('cache' => false)));
       $this->assertEquals($this->response, 'false');
 		}

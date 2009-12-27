@@ -35,7 +35,23 @@
      }
    }
    
-  public function add_key() {
+
+	public function edit_key() {
+		$this->layout = false;
+		try{
+			$this->key = Pki::find('first', array('id' => $_GET['id'], 'user_id' => $this->user->id));
+		}catch(NimbleRecordNotFound $e) {
+			return false;
+			$this->has_rendered = true;
+		}
+	}
+	
+	public function add_key() {
+		$this->layout = false;
+		$this->key = new Pki;
+	}
+
+  public function create_key() {
     $this->user->pkis = array($_POST['pki']);
     try {
       $this->user->save();

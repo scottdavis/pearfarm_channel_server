@@ -5,7 +5,8 @@
 	<div id='left_col'>
 	<h2>New Packages</h2>
 			<?php foreach($latest as $package) { 
-				if($version = $package->current_version() === false) {
+				$version = $package->current_version();
+				if($version === false) {
 				  continue;
 				}
 			?>
@@ -16,7 +17,8 @@
 	<div id='right_col'>
 	<h2>Just Updated</h2>
 			<?php foreach($updated as $package) { 
-				if($version = $package->current_version() === false) {
+				$version = $package->current_version();
+				if($version === false) {
 				  continue;
 				}
 			?>

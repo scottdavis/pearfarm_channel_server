@@ -21,6 +21,13 @@
 </table>
 <?php echo $form->end() ?>
 <p><?php echo delete_link('Delete Account', url_for('UserController', 'delete'), true, 'Are you sure? \n This will delete all packages and remove your channel from the pear server.') ?>
+<h2>OpenSSL Public Keys</h2>
+<ul id='keys'>
+ <?php foreach($user->pkis as $key) { ?>
+   <li><?php echo $key->name ?> (<a href='javascript:void(0)' onclick="edit_key(<?php echo $key->id ?>)" />edit</a>)</li>
+ <?php } ?>
+</ul>
+</table>
 <script type='text/javascript'>
 	function verifyField() {
 		if($F('user_password') == $F('v_password')) {
@@ -29,4 +36,17 @@
 		new Effect.Highlight($('v_password'), {startcolor: '#ff0000', endcolor: '#ffffff'});
 		return false;
 	}
+	
+	function edit_key(id) {
+	  facebox.new_box_for_url('/user/key/' + id + '/edit');
+	}
+	
+	function delete_key(id) {
+		if(confirm("Are your sure?")) {
+			//foo
+		}
+	}
+	
+	
+	
 </script>

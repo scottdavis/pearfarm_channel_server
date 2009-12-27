@@ -10,6 +10,7 @@ R('')->controller('LandingController')->action('index')->on('GET');
 R('/channel')->controller('ChannelController')->action('index')->on('GET');
 R('/upload')->controller('ChannelController')->action('upload')->on('POST');
 R('/upload')->controller('ChannelController')->action('add')->on('GET');
+/** REST URLS */
 /** Catgories */
 R('/rest/c/categories')->controller('RestController')->action('categories')->on('GET');
 R('/rest/c/:name/info')->controller('RestController')->action('category_info')->on('GET');
@@ -36,6 +37,7 @@ R('/rest/r/:name/v2\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestControl
 R('/rest/r/:name/package\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_package_info')->on('GET');
 R('/rest/r/:name/deps\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('release_dependencies')->on('GET');
 R('/rest/r/:name\.(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('RestController')->action('package_xml')->on('GET');
+/** END REST URLS */
 /** login routes */
 R('/login')->controller('LoginController')->action('index')->on('GET');
 R('/logout')->controller('LoginController')->action('logout')->on('GET');
@@ -49,11 +51,19 @@ R('/package/:id')->controller('PackageController')->action('show')->on('GET');
 R('/opensearch')->controller('SearchController')->action('opensearch')->on('GET');
 R('/search')->controller('SearchController')->action('search')->on('GET');
 R('/search/:search')->controller('SearchController')->action('search')->on('GET');
+/** User CRUD */
 R('/user/edit')->controller('UserController')->action('edit')->on('GET');
 R('/user/update')->controller('UserController')->action('update')->on('PUT');
 R('/user/delete')->controller('UserController')->action('delete')->on('DELETE');
+/** Package and version delete */
 R('/package/:id/:version')->controller('VersionController')->action('delete')->on('DELETE');
-R('/package/:id')->controller('packageController')->action('delete')->on('DELETE');
+R('/package/:id')->controller('PackageController')->action('delete')->on('DELETE');
+/** key routes */
+R('/user/key/:id/edit')->controller('UserController')->action('edit_key')->on('GET');
+R('/user/key/add')->controller('UserController')->action('add_key')->on('GET');
+R('/user/key/')->controller('UserController')->action('create_key')->on('POST');
+R('/user/key/:id')->controller('UserController')->action('update_key')->on('PUT');
+/** profile route */
 R('/:name')->controller('LandingController')->action('user_index')->on('GET');
 
 ?>

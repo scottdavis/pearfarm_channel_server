@@ -6,7 +6,7 @@
 	<link rel="search" type="application/opensearchdescription+xml" href="http://<?php echo DOMAIN ?>/opensearch.xml" title="Pearfarm" /> 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
-	<?php echo stylesheet_link_tag('style.css') ?>
+	<?php echo stylesheet_link_tag('style.css', 'facebox.css') ?>
 	<!--[if lt IE 7.]>
 	  <?php echo javascript_include_tag('pngfix.js') ?>
   <![endif]-->
@@ -53,6 +53,11 @@
 			<?php echo $content ?>
 			<p><?php echo link_to_back() ?></p>
 		</div>
-		<?php echo javascript_include_tag('application.js') ?>
+		<?php echo javascript_include_tag('application.js', 'facebox.js') ?>
+		<script type='text/javascript'>
+			Event.observe(window, 'load', function(){
+				facebox = new Facebox({loading_image: '/public/image/facebox/loading.gif', close_image: '/public/image/facebox/closelabel.gif'});
+			});
+		</script>
 	</body>
 </html>
