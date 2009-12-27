@@ -48,7 +48,7 @@ class StoryHelper {
   }
   
   public static function create_pkis() {
-    $key = exec("cat \$HOME/.ssh/id_openssl.pub");
+    $key = file_get_contents(getenv('HOME') . '/.ssh/id_openssl.pub');
     foreach(User::find('all') as $u) {
       Pki::create(array('key' => $key, 'name' => 'my Key', 'user_id' => $u->id));
     }

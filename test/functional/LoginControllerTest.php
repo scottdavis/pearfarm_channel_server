@@ -22,7 +22,7 @@ class LoginControllerTest extends NimbleFunctionalTestCase {
 	public function testVerify() {
 		$user = User::find_by_username('jim');
 		$this->get('verify', array(), array('key' => $user->api_key), array());
-		$user2 = User::_find('first', array('conditions' => array('username' => 'jim')));
+		$user2 = User::_find($user->id);
 		$this->assertEquals(1, $user2->active);
 		$this->assertRedirect(url_for('LoginController', 'login'));
 	}

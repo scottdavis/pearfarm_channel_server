@@ -27,13 +27,14 @@
      }
    }
    
-   public function add_key() {
-     $this->user->pkis = array($_POST['key']);
-     if($this->user->save()) {
-       echo 'true';
-     }else{
-       echo 'false';
-     }
+  public function add_key() {
+    $this->user->pkis = array($_POST['pki']);
+    try {
+      $this->user->save();
+      echo 'true';
+    }catch(NimbleRecordException $e) {
+      echo 'false'; 
+    }
      $this->has_rendered = true;
    }
    
@@ -48,7 +49,7 @@
    }
    
    public function delete_key() {
-     if(Pki::exist(array('id' => $_GET['id'], 'user_id' => $this->user->id))) {
+     if(Pki::exists(array('id' => $_GET['id'], 'user_id' => $this->user->id))) {
        Pki::delete($_GET['id']);
        echo 'true';
      }else{
