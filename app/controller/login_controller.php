@@ -10,11 +10,16 @@ class LoginController extends \ApplicationController {
     $this->render('login/form.php');
   }
   public function login() {
-    if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && User::authenticate($_POST['username'], $_POST['password'])) {
-      $user = User::find_by_username($_POST['username']);
-      $_SESSION['user'] = $user->id;
-      $this->redirect_if_logged_in();
-    } else {
+    try{
+      if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && User::authenticate($_POST['username'], $_POST['password'])) {
+        $user = User::find_by_username($_POST['username']);
+        $_SESSION['user'] = $user->id;
+        $this->redirect_if_logged_in();
+      } else {
+        Nimble::flash('notice', 'Invalid Login Information');
+        $this->render('login/form.php');
+      }
+    }catch(NimbleRecordNotFound $e) {
       Nimble::flash('notice', 'Invalid Login Information');
       $this->render('login/form.php');
     }
