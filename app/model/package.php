@@ -33,15 +33,13 @@ class Package extends NimbleRecord {
   public function file_path($version) {
     return FileUtils::join(NIMBLE_ROOT, 'get', $this->user->username, "{$this->name}-$version.tgz");
   }
-  public static function from_upload(array $data) {
+  public static function from_upload(array $data, $key_mode = false) {
     $create = array();
     $file = $data['file'];
     $user = $data['user'];
-    if (isset($data['hash'])) {
-      $hash = $data['hash'];
-      if (md5(md5_file($file) . $user->api_key) !== $hash) {
-        throw new Exception('Invalid package key');
-      }
+    if($key_mode) {
+      $keys = collect(function($key){return $key->key;}, Pki::find('all', array('select' => 'key', 'conditions' => array('user_id' => $user-id))));
+      $sig = $data['sig'];
     }
     $package_data = new PackageExtractor($file);
     if ($user->pear_farm_url() !== $package_data->data['channel']) {
@@ -58,7 +56,8 @@ class Package extends NimbleRecord {
     $package->move_uploaded_file($file, $version);
     $type = VersionType::find_by_name($stability);
     $package->versions = array(array('raw_xml' => $package_data->get_package_xml(), 
-																		 'version' => $version, 'meta' => serialize($package_data->data), 
+																		 'version' => $version, 
+																		 'meta' => serialize($package_data->data), 
 																		 'version_type_id' => $type->id,
 																		 'summary' => $package_data->data['summary'],
 																		 'description' =>$package_data->data['description'],
@@ -66,6 +65,37 @@ class Package extends NimbleRecord {
     $package->save();
     return $package;
   }
+  
+  
+  
+  public static function verify($file, $sig, $keys) {
+    if(!is_array($keys)) {
+      $keys = array($keys);
+    }
+    $file_data = file_get_contents($file);
+    $sig = base64_decode($sig);
+    foreach($keys as $key) {
+      $key = openssl_pkey_get_public($key);
+      switch(openssl_verify($file_data, $sig, $key, OPENSSL_ALGO_SHA1)) {
+        case 1:
+          unset($file_data);
+          return true;
+        break;
+        case 0:
+          continue;
+          break;
+        case -1:
+          throw new NimbleExceptions('There was an error verifying the key');
+          break;
+      }
+      unset($file_data);
+      return false;
+    }
+    
+  }
+  
+  
+  
   public function move_uploaded_file($file, $version) {
     $path = $this->file_path($version);
     FileUtils::mkdir_p(dirname($path));

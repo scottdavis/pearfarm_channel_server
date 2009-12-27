@@ -13,6 +13,7 @@ class User extends NimbleRecord {
      * $this->belongs_to('bar')
      */
     $this->has_many('packages');
+    $this->has_many('pkis');
   }
   public function validations() {
     /**

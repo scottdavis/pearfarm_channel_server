@@ -6,6 +6,7 @@ class StoryHelper {
     static ::create_categories();
     static ::create_version_types();
     static ::create_users();
+    static::create_pkis();
     static ::create_packages();
     static ::create_maintainers();
   }
@@ -45,5 +46,13 @@ class StoryHelper {
       VersionType::create(array('name' => $version));
     }
   }
+  
+  public static function create_pkis() {
+    $key = exec("cat \$HOME/.ssh/id_openssl.pub");
+    foreach(User::find('all') as $u) {
+      Pki::create(array('key' => $key, 'name' => 'my Key', 'user_id' => $u->id));
+    }
+  }
+  
 }
 ?>

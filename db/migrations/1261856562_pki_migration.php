@@ -4,7 +4,9 @@
 		
 		public function up() {
 			$t = $this->create_table("pkis");
-				//enter column definitions here
+        $t->text('key');
+        $t->string('name');
+        $t->belongs_to('user');
 			$t->go();
 		}
 		
