@@ -49,5 +49,9 @@ R('/package/:id')->controller('PackageController')->action('show')->on('GET');
 R('/opensearch')->controller('SearchController')->action('opensearch')->on('GET');
 R('/search')->controller('SearchController')->action('search')->on('GET');
 R('/search/:search')->controller('SearchController')->action('search')->on('GET');
+R('/user/:id/edit')->controller('UserController')->action('edit')->on('GET');
+R('/user/:id')->controller('UserController')->action('update')->on('PUT');
+
 R('/:name')->controller('LandingController')->action('user_index')->on('GET');
+
 ?>

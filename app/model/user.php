@@ -21,6 +21,7 @@ class User extends NimbleRecord {
      * $this->validates_presence_of('foo')
      */
     $this->validates_presence_of('username');
+    $this->validates_uniqueness_of('username');
     $this->validates_presence_of('password');
 		$this->validates_presence_of('email');
   }
@@ -32,13 +33,19 @@ class User extends NimbleRecord {
     return "http://www.gravatar.com/avatar/" . md5($this->email) . '.jpg?s=' . $size. '&d=http://' . DOMAIN . '/public/image/d_avatar.png';
   }
   
-  
-  
-  
   public function before_create() {
     $this->api_key = md5(time() . $this->username . rand(0, 4000));
-    $this->salt = static ::generate_salt();
-    $this->password = static ::hash_password($this->password, $this->salt);
+  }
+  
+  public function before_save() {
+    if(!$this->new_record) {
+      $old = User::_find($this->id);
+      if($this->password == $old->password) {
+        return;
+      }
+    }
+    $this->salt = static::generate_salt();
+    $this->password = static::hash_password($this->password, $this->salt);
   }
 
 	public function after_create() {

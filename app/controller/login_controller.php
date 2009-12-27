@@ -20,7 +20,7 @@ class LoginController extends \ApplicationController {
     }
   }
   private function redirect_if_logged_in() {
-    if ($this->is_logged_in()) {
+    if($this->is_logged_in()) {
       $user = User::find($_SESSION['user']);
       $url = static::user_url($user);
       $this->redirect_to($url);
@@ -73,7 +73,7 @@ class LoginController extends \ApplicationController {
 
 
   public static function user_url($user) {
-    return "http://$user->username." . DOMAIN . url_for('ChannelController', 'index');
+    return "http://$user->username." . DOMAIN;
   }
 }
 ?>
