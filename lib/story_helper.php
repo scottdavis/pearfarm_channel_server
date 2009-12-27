@@ -30,6 +30,18 @@ class StoryHelper {
 		$file = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-0.0.1.tgz');
 		Package::from_upload(array('file' => $file, 'user' => $user));
   }
+
+
+  public static function create_categories() {
+    Category::create(array('name' => 'Default', 'description' => 'A Default Category'));
+  }
+  
+
+  public static function create_version_types() {
+    foreach(array('stable', 'beta', 'alpha', 'devel') as $version) {
+      VersionType::create(array('name' => $version));
+    }
+  }
   
   public static function create_pkis() {
     $key = file_get_contents(getenv('HOME') . '/.ssh/id_openssl.pub');

@@ -4,8 +4,8 @@ class SeedHelper {
   
   public function up() {
     $this->down();
-    static ::create_categories();
-    static ::create_version_types();
+    StoryHelper::create_categories();
+    StoryHelper::create_version_types();
   }
   public function down() {
     $tables = array('User', 'Package', 'Version');
