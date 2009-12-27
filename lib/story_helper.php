@@ -8,7 +8,6 @@ class StoryHelper {
     static ::create_users();
     static::create_pkis();
     static ::create_package();
-    static ::create_maintainers();
   }
   public function down() {
     $tables = array('User', 'Package', 'Version');
@@ -30,24 +29,6 @@ class StoryHelper {
 		$user = User::find_by_username('bob');
 		$file = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-0.0.1.tgz');
 		Package::from_upload(array('file' => $file, 'user' => $user));
-  }
-  public static function create_maintainers() {
-    foreach(Package::find_all() as $package) {
-      foreach(Maintainer::$types as $type) {
-        Maintainer::create(array('url' => 'http://nimblize.com', 'package_id' => $package->id, 'type' => $type, 'name' => $type . "_dude", 'email' => 'dude@nimblize.com', 'user' => 'duder', 'active' => 'yes'));
-      }
-    }
-  }
-
-  public static function create_categories() {
-    Category::create(array('name' => 'Default', 'description' => 'A Default Category'));
-  }
-  
-
-  public static function create_version_types() {
-    foreach(array('stable', 'beta', 'alpha', 'devel') as $version) {
-      VersionType::create(array('name' => $version));
-    }
   }
   
   public static function create_pkis() {
