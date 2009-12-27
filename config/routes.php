@@ -50,9 +50,10 @@ R('/opensearch')->controller('SearchController')->action('opensearch')->on('GET'
 R('/search')->controller('SearchController')->action('search')->on('GET');
 R('/search/:search')->controller('SearchController')->action('search')->on('GET');
 R('/user/edit')->controller('UserController')->action('edit')->on('GET');
-R("/user/update")->controller('UserController')->action('update')->on('PUT');
-R("/user/delete")->controller('UserController')->action('delete')->on('DELETE');
-
+R('/user/update')->controller('UserController')->action('update')->on('PUT');
+R('/user/delete')->controller('UserController')->action('delete')->on('DELETE');
+R('/package/:id/:version')->controller('VersionController')->action('delete')->on('DELETE');
+R('/package/:id')->controller('packageController')->action('delete')->on('DELETE');
 R('/:name')->controller('LandingController')->action('user_index')->on('GET');
 
 ?>

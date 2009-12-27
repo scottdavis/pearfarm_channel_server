@@ -5,10 +5,13 @@
 <h2>Packages</h2>
 <?php } ?>
 <ul>
-<?php foreach($packages as $package) { 
-  $max = $package->max('versions', 'version');
-  ?>
+<?php foreach($packages as $package) { ?>
 	<li><?php echo link_to($package->name, url_for('PackageController', 'show', $package->id)) ?>
+	<?php if($package->versions->length == 0) {
+          continue;
+        }
+        $max = $package->max('versions', 'version');
+  ?>
 			<ul>
 			<?php foreach($package->versions as $version) { 
 			  $url = url_for('VersionController', 'show', $package->id, $version->version);

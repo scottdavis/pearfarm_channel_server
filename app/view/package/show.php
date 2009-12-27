@@ -13,3 +13,4 @@ $table->callback = function($v) use ($version) {
 };
 echo $table->build();
 ?>
+<p><?php echo delete_link('Delete Package', url_for('PackageController', 'delete', $package->id), true, 'Are you sure? \n This will delete all versions of this package') ?> </p>

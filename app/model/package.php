@@ -26,7 +26,11 @@ class Package extends NimbleRecord {
   }
   
   public function current_version() {
-    return Version::find('first', array('order' => 'version DESC', 'conditions' => array('package_id' => $this->id)));
+    try{
+      return Version::find('first', array('order' => 'version DESC', 'conditions' => array('package_id' => $this->id)));
+    }catch(NimbleRecordNotFound $e) {
+      return false;
+    }
   }
   
   public function clear_all_versions() {
