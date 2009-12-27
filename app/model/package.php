@@ -110,7 +110,7 @@ class Package extends NimbleRecord {
         case -1:
 					unset($file_hash);
 		      openssl_pkey_free($key);
-          throw new NimbleExceptions('There was an error verifying the key');
+          continue;
           break;
       }
       unset($file_hash);
