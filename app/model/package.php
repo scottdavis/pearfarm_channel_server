@@ -98,18 +98,22 @@ class Package extends NimbleRecord {
       $key = openssl_pkey_get_public($key);
       switch(openssl_verify($file_hash, $sig, $key, OPENSSL_ALGO_SHA1)) {
         case 1:
-          unset($file_data);
+          unset($file_hash);
           openssl_pkey_free($key);
           return true;
         break;
         case 0:
+	      	unset($file_hash);
+	      	openssl_pkey_free($key);
           continue;
           break;
         case -1:
+					unset($file_hash);
+		      openssl_pkey_free($key);
           throw new NimbleExceptions('There was an error verifying the key');
           break;
       }
-      unset($file_data);
+      unset($file_hash);
       openssl_pkey_free($key);
       return false;
     }
