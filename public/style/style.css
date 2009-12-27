@@ -1,4 +1,4 @@
-p,div,body {
+div,body {
   margin:0;
   padding:0;
 }
@@ -214,4 +214,8 @@ table#search_table {
 
 .even {
   background-color:#ccc;
+}
+
+table#versions {
+  
 }

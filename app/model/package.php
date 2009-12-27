@@ -25,6 +25,11 @@ class Package extends NimbleRecord {
     $this->validates_presence_of('name');
   }
   
+  public function current_version() {
+    return Version::find('first', array('order' => 'version DESC', 'conditions' => array('package_id' => $this->id)));
+  }
+  
+  
   public function link() {
     $name = urlencode($this->name);
     return "/rest/p/$name";

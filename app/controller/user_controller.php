@@ -17,6 +17,14 @@
      if(isset($_POST['user']['password']) && empty($_POST['user']['password'])) {
        unset($_POST['user']['password']);
      }
+     if(!isset($_POST['v_password'])) {
+       unset($_POST['user']['password']);
+     }
+     if(isset($_POST['user']['password']) && isset($_POST['v_password'])) {
+       if($_POST['user']['password'] != $_POST['v_password']) {
+         unset($_POST['user']['password']);
+       }
+     }
      $this->user = User::update($this->user->id, $_POST['user']);
      if($this->user->saved) {
        Nimble::flash('notice', 'User information as been updated');
@@ -59,9 +67,17 @@
    }
    
    public function delete() {
+     foreach($this->user->packages as $package) {
+       foreach($package->versions as $version) {
+         @unlink($package->file_path($version->version));
+         $version->destroy();
+       }
+       $package->destroy();
+     }
      User::delete($this->user->id);
      unset($_SESSION['user']);
      session_destroy();
+     Nimble::flash('notice', 'Your account as been deleted');
      $this->redirect_to("http://" . DOMAIN);
    }
    

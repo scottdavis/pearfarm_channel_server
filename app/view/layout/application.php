@@ -51,6 +51,7 @@
 			<?php } ?>
 		<div id='content'>
 			<?php echo $content ?>
+			<p><?php echo link_to_back() ?></p>
 		</div>
 		<?php echo javascript_include_tag('application.js') ?>
 	</body>

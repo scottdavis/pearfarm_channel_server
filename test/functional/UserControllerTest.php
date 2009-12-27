@@ -19,7 +19,7 @@
 		}
 		
 		public function testUserUpdatePassword() {
-		  $this->put('update', array(), array('id' => $this->user->id, 'user' => array('email' => 'my_new_email@email', 'password' => 'mypassword')), array('user' => $this->user->id));
+		  $this->put('update', array(), array('id' => $this->user->id, 'v_password' => 'mypassword',  'user' => array('email' => 'my_new_email@email', 'password' => 'mypassword')), array('user' => $this->user->id));
 		  $user = User::_find($this->user->id);
 		  $this->assertNotEquals($this->user->password, $user->password);
 		  $this->assertEquals('my_new_email@email', $user->email);

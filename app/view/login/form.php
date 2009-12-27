@@ -16,7 +16,7 @@
 				<input id='password' type='password' name='password' />
 			</td>
 		</tr>
-		<tr><td><input type='submit' value='Login' id='submit' /></td><td></td></tr>
+		<tr><td><input type='submit' value='Login' id='submit' /></td><td>&nbsp;</td></tr>
 	</table>
 </form>
 	
