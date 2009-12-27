@@ -70,6 +70,7 @@ require_once (FileUtils::join(NIMBLE_ROOT, 'app', 'controller', 'application_con
 foreach(array('model', 'controller') as $dir) {
   __load_files(FileUtils::join(dirname(__FILE__), '..', 'app', $dir));
 }
+
 //load database connection
 $database_info = json_decode(file_get_contents(FileUtils::join(NIMBLE_ROOT, 'config', NIMBLE_ENV, 'database.json')), true);
 $database_info = $database_info[NIMBLE_ENV];

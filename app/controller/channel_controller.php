@@ -38,10 +38,15 @@ class ChannelController extends \ApplicationController {
     switch ($this->format) {
       case 'xml':
         try {
-          $p = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'hash' => $_POST['hash'], 'user' => $this->user));
-          echo ($package->saved) ? 'true' : 'false';
+          $package = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'sig' => $_POST['signatureBase64'], 'user' => $this->user), true);
+          if($package->saved) {
+            echo 'Package uploaded succesfuly!';
+          }else{
+            echo implode(', ', $package->errors);
+          }
         }
         catch(Exception $e) {
+          $this->header("HTTP/1.0 500 Internal Server Error", 500);
           echo $e->getMessage();
         }
         $this->has_rendered = true;

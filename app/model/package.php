@@ -4,6 +4,7 @@ require_once (FileUtils::join(NIMBLE_ROOT, 'lib', 'package_extractor.php'));
  * @package model
  */
 class Package extends NimbleRecord {
+  
   public function associations() {
     /**
      * Association loading goes here ex.
@@ -15,6 +16,7 @@ class Package extends NimbleRecord {
     $this->has_many('maintainers');
     $this->belongs_to('category');
   }
+  
   public function validations() {
     /**
      * Column validations go here ex.
@@ -22,23 +24,28 @@ class Package extends NimbleRecord {
      */
     $this->validates_presence_of('name');
   }
+  
   public function link() {
     $name = urlencode($this->name);
     return "/rest/p/$name";
   }
+  
   public function file_url($version) {
     $url = $this->user->username . '.' . DOMAIN;
     return "http://$url/get/{$this->user->username}/{$this->name}-$version";
   }
+  
   public function file_path($version) {
     return FileUtils::join(NIMBLE_ROOT, 'get', $this->user->username, "{$this->name}-$version.tgz");
   }
+  
+  
   public static function from_upload(array $data, $key_mode = false) {
     $create = array();
     $file = $data['file'];
     $user = $data['user'];
     if($key_mode) {
-      $keys = collect(function($key){return $key->key;}, Pki::find('all', array('select' => 'key', 'conditions' => array('user_id' => $user-id))));
+      $keys = collect(function($key){return $key->key;}, Pki::find('all', array('select' => '`key`', 'conditions' => array('user_id' => $user->id))));
       $sig = $data['sig'];
     }
     $package_data = new PackageExtractor($file);
@@ -66,19 +73,18 @@ class Package extends NimbleRecord {
     return $package;
   }
   
-  
-  
   public static function verify($file, $sig, $keys) {
     if(!is_array($keys)) {
       $keys = array($keys);
     }
-    $file_data = file_get_contents($file);
+    $file_hash = sha1_file($file, true);
     $sig = base64_decode($sig);
     foreach($keys as $key) {
       $key = openssl_pkey_get_public($key);
-      switch(openssl_verify($file_data, $sig, $key, OPENSSL_ALGO_SHA1)) {
+      switch(openssl_verify($file_hash, $sig, $key, OPENSSL_ALGO_SHA1)) {
         case 1:
           unset($file_data);
+          openssl_pkey_free($key);
           return true;
         break;
         case 0:
@@ -89,6 +95,7 @@ class Package extends NimbleRecord {
           break;
       }
       unset($file_data);
+      openssl_pkey_free($key);
       return false;
     }
     

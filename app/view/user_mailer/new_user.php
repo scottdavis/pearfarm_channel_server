@@ -1,4 +1,4 @@
-Welcome, <?php echo $user->username ?>
+Welcome, <?php echo $user->username ?><br />
 
 Please click the link below to verify your account at <?php echo DOMAIN ?>
 <br />

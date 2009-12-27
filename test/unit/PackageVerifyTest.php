@@ -1,6 +1,6 @@
 <?php
 require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
-class PackageExtractorTest extends PHPUnit_Framework_TestCase {
+class PackageVerifyTest extends PHPUnit_Framework_TestCase {
   
   
   public function testPkiVerify() {
@@ -17,7 +17,7 @@ class PackageExtractorTest extends PHPUnit_Framework_TestCase {
       $key = openssl_pkey_get_private($keyfile);
       if($key === false){ throw new Exception("Keyfile at {$keyfile} didn't work: " . openssl_error_string());}
       $signature = NULL;
-      $ok = openssl_sign(file_get_contents($file), $signature , $key, OPENSSL_ALGO_SHA1);
+      $ok = openssl_sign(sha1_file($file, true), $signature , $key, OPENSSL_ALGO_SHA1);
       $signatureBase64 = base64_encode($signature);
       return $signatureBase64;
     }
