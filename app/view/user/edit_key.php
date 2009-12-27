@@ -1,7 +1,6 @@
 <div id='pki'>
 <h2>Editing OpenSSL Public Key: <?php echo $key->name ?></h2>
 <?php echo error_messages_for($key) ?>
-<?php var_dump($key) ?>
 <?php echo $this->form = new FormFor(array('object' => $key, 'path' => url_for('UserController', 'update_key', $key->id), 'method' => 'put',
  																						'onsubmit' => "new Ajax.Request('" . 
 																													url_for('UserController', 'update_key', $key->id) .
