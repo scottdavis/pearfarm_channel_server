@@ -1,3 +1,7 @@
+<p>To install this package</p>
+<code>
+	pear install <?php echo $package->user->pear_farm_url() ?>/<?php echo $package->name ?>-<?php echo $version->version ?>
+</code>
 <?php if (!empty($data)) { ?>
 	<ul>
 		<li>Channel: <?php echo h($data['channel']) ?></li>
