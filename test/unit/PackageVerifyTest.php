@@ -1,6 +1,6 @@
 <?php
 require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
-class PackageVerifyTest extends PHPUnit_Framework_TestCase {
+class PackageVerifyTest extends NimbleUnitTestCase {
   
   
   public function testPkiVerify() {

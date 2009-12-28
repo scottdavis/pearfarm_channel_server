@@ -1,7 +1,7 @@
 <?php
 require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
 require_once (NIMBLE_ROOT . '/lib/package_extractor.php');
-class PackageExtractorTest extends PHPUnit_Framework_TestCase {
+class PackageExtractorTest extends NimbleUnitTestCase {
   public function setUp() {
     $this->package = new PackageExtractor(__DIR__ . '/../data/nimblize-0.0.1.tgz');
   }

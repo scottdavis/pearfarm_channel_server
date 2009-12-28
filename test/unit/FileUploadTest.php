@@ -20,5 +20,18 @@ class FileUploadTest extends NimbleUnitTestCase {
     $p = Package::from_upload(array('file' => $localfile, 'sig' => $sig, 'user' => $user), true);
     $this->assertTrue(file_exists($p->file_path('1.0.4')));
   }
+
+
+  public function testUploadFailbadSig() {
+    $localfile = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'joes_other_package-1.0.4.tgz');
+    $sig = PackageVerifyTest::calculatePackageSignature($localfile);
+    $user = User::find_by_username('joe');
+		try{	
+    	$p = Package::from_upload(array('file' => $localfile, 'sig' => $sig, 'user' => $user), true);
+		}catch(NimbleException $e) {
+			$this->assertEquals("Invalid package signature", $e->getMessage());
+		}
+  }
+
 }
 ?>
