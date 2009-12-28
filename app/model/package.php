@@ -61,6 +61,9 @@ class Package extends NimbleRecord {
     if($key_mode) {
       $keys = collect(function($key){return $key->key;}, Pki::find('all', array('select' => '`key`', 'conditions' => array('user_id' => $user->id))));
       $sig = $data['sig'];
+			if(!static::verify($file, $sig, $keys)) {
+				throw New NimbleException('Invalid package signature');
+			}
     }
     $package_data = new PackageExtractor($file);
     if ($user->pear_farm_url() !== $package_data->data['channel']) {
