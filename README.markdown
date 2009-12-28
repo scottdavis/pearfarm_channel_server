@@ -14,7 +14,7 @@
 		NIMBLE_ENV=test script/db migrate
 		script/db stories load
 		NIMBLE_ENV=test script/db stories load
-5. Run the tests phpunit test to make sure everything is working on your system
+5. Run the tests **phpunit test** to make sure everything is working on your system
 6. Navagate to localhost.com in your browser
 7 . Note: nimble has a bunch of CLI commands see (http://github.com/jetviper21/nimblize/tree/master/nimble_scripts/)
 
