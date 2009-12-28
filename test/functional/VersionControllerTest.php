@@ -11,13 +11,15 @@ class VersionControllerTest extends NimbleFunctionalTestCase {
     $this->assertTemplate('show');
   }
   public function testDeleteBobsPackage() {
+		NimbleRecord::$test_mode = true;
     $_SERVER['SERVER_NAME'] = 'bob.localhost.com';
     $count = Version::count();
     $p = Package::find_by_name('bobs_other_package');
-    $v = $p->current_version();
+		$v = Version::find('first', array('package_id' => $p->id, 'version' => '0.0.1'));
     $this->delete('delete', array(), array('id' => $v->id), array('user' => User::find_by_username('bob')->id));
     $this->assertEquals($count - 1, Version::count(array('cache' => false)));
     $this->assertRedirect(url_for('PackageController', 'show', $p->id));
+		NimbleRecord::$test_mode = false;
   }
 }
 ?>
