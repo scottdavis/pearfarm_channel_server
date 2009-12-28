@@ -1,7 +1,7 @@
 <?php
 require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
 require_once (NIMBLE_ROOT . '/lib/package_extractor.php');
-class FileUploadTest extends PHPUnit_Framework_TestCase {
+class FileUploadTest extends NimbleUnitTestCase {
   public function testUploadFail() {
     $localfile = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'nimblize-0.0.1.tgz');
     $user = User::find('first');
@@ -13,16 +13,12 @@ class FileUploadTest extends PHPUnit_Framework_TestCase {
     }
   }
 
-	/**
-		*
-		* @expectedException NimbleException
-		*/
   public function testUpload() {
-    $localfile = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-0.0.1.tgz');
+    $localfile = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-1.0.4.tgz');
     $sig = PackageVerifyTest::calculatePackageSignature($localfile);
     $user = User::find_by_username('bob');
     $p = Package::from_upload(array('file' => $localfile, 'sig' => $sig, 'user' => $user), true);
-    $this->assertTrue(file_exists($p->file_path('0.0.1')));
+    $this->assertTrue(file_exists($p->file_path('1.0.4')));
   }
 }
 ?>
