@@ -1,6 +1,39 @@
-<div id='doc_block'>
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet est ipsum, nec volutpat erat. Proin ornare mollis felis, et feugiat quam varius sit amet. Praesent non purus dolor, sed pulvinar felis. Mauris ut molestie diam. Ut nec ante augue. Sed viverra sapien et mi lacinia elementum. Nunc consectetur nibh orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In purus neque, tempus ac interdum non, mollis quis eros. Suspendisse blandit risus eget justo feugiat dapibus. Nam id lectus sit amet lacus porta sodales in ac arcu. Proin tempus laoreet condimentum. Pellentesque volutpat nunc vitae nulla laoreet suscipit. Maecenas elit purus, tristique vel tempor ut, sagittis in justo. Nullam nec justo orci. Curabitur elementum nisl ac lorem egestas non placerat nibh feugiat. Nulla ac diam neque, eu congue eros.
+<div class='border_container'>
+<div id='how_to'>
+	<h2>Share</h2>
+	<p>Get pearfarm</p>
+<code>
+	pear channel-discover pearfarm.<?php echo DOMAIN ?>
+</code>
+<br /><br />		
+<code>
+	pear install pearfarm/pearfarm
+</code>
+	<p>Create your package spec</p>
+<code>
+	pearfarm init
+</code>
+	<p>Build your package</p>
+<code>
+	pearfarm build
+</code>
+<p>Upload</p>
+<code>
+	pearfarm push
+</code>
 </div>
+<div id='doc_block'>
+	<h2>Learn</h2>
+	<p><?php echo link_to('Install Pear', url_for('HelpController', 'show', 'install_pear'))?></p>
+	<p class='desc'>Php's packaging system</p>
+	<p><?php echo link_to('Browse the Docs', 'http://pear.php.net/manual/', array('target' => '_blank'))?></p>
+	<p class='desc'>The comprehensive guide on Pear packages</p>
+	<p><?php echo link_to('Pearfarm Spec', url_for('HelpController', 'show', 'spec'))?></p>
+	<p class='desc'>Your package's interface to the world</p>
+</div>
+<br style='clear:both'>
+</div>
+<p class='info'>Pearfarm is the Php community's pear hosting service. Instantly publish your pear packages and install them. Become a contributor and enhance the site with your own changes.</p>
 <div id='packages'>
 	<div id='left_col'>
 	<h2>New Packages</h2>

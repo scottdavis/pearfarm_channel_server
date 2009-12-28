@@ -227,3 +227,74 @@ table#versions {
   text-decoration:none;
   color:red;
 }
+
+code { 
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  -moz-border-radius-bottomleft:5px;
+  -moz-border-radius-bottomright:5px;
+  -moz-border-radius-topleft:5px;
+  -moz-border-radius-topright:5px;
+  border-bottom-left-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+	border-top-left-radius: 5px 5px;
+	border-top-right-radius: 5px 5px;
+  background:#000000 none repeat scroll 0 0;
+  color:#FFFFFF;
+  font-family:Monaco,Consolas,"Courier New",monospace;
+  font-size:0.9em;
+  padding:3px;
+}
+
+#how_to{
+  width:50%;
+  float:right;
+}
+
+#how_to code{
+  font-size:10px;
+}
+#how_to p {
+  margin-top:5px;
+  margin-bottom:1px;
+}
+#how_to h2 {
+  margin-bottom:1px;
+  text-align:center;
+}
+#doc_block {
+  width:45%;
+  float:left;
+  text-align:center;
+}
+
+#doc_block p {
+  margin-bottom:1px;
+}
+
+#doc_block p a{
+  color:black;
+  font-size:16px;
+  font-weight:bold;
+}
+
+#doc_block p a:hover{
+  color:#006600;
+}
+
+p.info {
+  text-align:center;
+  font-size:20px;
+}
+
+p.desc {
+  margin:0;
+}
+
+div.border_container {
+  margin-top:15px;
+  padding:0 0 15px 15px;
+  background-color:#eee;
+  border:1px solid #006600;
+}

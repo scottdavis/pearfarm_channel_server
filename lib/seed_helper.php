@@ -6,6 +6,7 @@ class SeedHelper {
     $this->down();
     StoryHelper::create_categories();
     StoryHelper::create_version_types();
+		static::create_pearfarm_user();
   }
   public function down() {
     $tables = array('User', 'Package', 'Version');
@@ -23,4 +24,12 @@ class SeedHelper {
       VersionType::create(array('name' => $version));
     }
   }
+
+
+	public function creat_pearfarm_user() {
+		$u = User::_create(array('username' => 'pearfarm', 'password' => 'mmm_pears', 'email' => 'jetviper21@gmail.com'));
+		$u->active = true;
+		$u->save();
+	}
+
 }

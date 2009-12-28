@@ -15,9 +15,6 @@
 			<ul>
 			<?php foreach($package->versions as $version) { 
 			  $url = url_for('VersionController', 'show', $package->id, $version->version);
-			  if((string) $max == $version->version) {
-			    $url = url_for('PackageController', 'show', $package->id);
-		    }
 			  ?>
 				<li><?php echo link_to($version->version, $url) ?></li>
 			<?php } ?>

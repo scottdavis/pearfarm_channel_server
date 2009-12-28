@@ -12,6 +12,11 @@ class FileUploadTest extends PHPUnit_Framework_TestCase {
       $this->assertEquals('Package channel pear.nimblize.com does not match bob.localhost.com', $e->getMessage());
     }
   }
+
+	/**
+		*
+		* @expectedException NimbleException
+		*/
   public function testUpload() {
     $localfile = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-0.0.1.tgz');
     $sig = PackageVerifyTest::calculatePackageSignature($localfile);

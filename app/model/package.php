@@ -13,7 +13,6 @@ class Package extends NimbleRecord {
      */
     $this->belongs_to('user');
     $this->has_many('versions')->order('version DESC');
-    $this->has_many('maintainers');
     $this->belongs_to('category');
   }
   
@@ -75,6 +74,10 @@ class Package extends NimbleRecord {
     } else {
       $package = Package::find('first', array('conditions' => array('name' => $name, 'user_id' => $user->id)));
     }
+		if(!$package->new_record && Version::exists(array('version' => $version, 'package_id' => $package->id))) {
+			throw new NimbleException("There is already a $version. You cannot replace existing packages. Please bump the version number and try again." .
+																" You can delete a version from the web interface if needed.");
+			}
     $package->move_uploaded_file($file, $version);
     $type = VersionType::find_by_name($stability);
     $package->versions = array(array('raw_xml' => $package_data->get_package_xml(), 
