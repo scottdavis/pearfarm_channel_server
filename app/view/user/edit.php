@@ -10,7 +10,7 @@
   </tr>
   <tr>
     <td>
-    <?php echo $form->label('password') ?></td><td><?php echo $form->text_field('password', array('value' => '')) ?></td>
+    <?php echo $form->label('password') ?></td><td><?php echo $form->password('password', array('value' => '')) ?></td>
   </tr>
   <tr>
     <td><label for='v_password'>Verify Password: </td><td><input type='password' name='v_password' id='v_password' /></td>
