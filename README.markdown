@@ -19,6 +19,8 @@
 		config/development/database.json
 		config/test/database.json
 4. Run these scripts from the app root to load the database and test data
+		script/db create
+		NIMBLE_ENV=test script/db create
 		script/db migrate
 		NIMBLE_ENV=test script/db migrate
 		script/db stories load
