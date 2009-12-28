@@ -9,8 +9,9 @@
 		NameVirtualHost 127.0.0.1:80
 
 		    <VirtualHost 127.0.0.1:80>
-		        ServerName *.localhost
-		        DocumentRoot /Users/sdavis/Work/pearfarm_channel_server
+						ServerName localhost.com
+		        ServerAlias *.localhost.com
+		        DocumentRoot /path/to/pearfarm_channel_server
 		    </VirtualHost>
 		
 3. Install nimblize in your php path or in the config directory (http://github.com/jetviper21/nimblize)
