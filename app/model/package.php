@@ -127,6 +127,7 @@ class Package extends NimbleRecord {
     FileUtils::mkdir_p(dirname($path));
     if (is_uploaded_file($file)) {
       move_uploaded_file($file, $this->file_path($version));
+			chmod($this->file_path($version), 0664);
     } else {
       copy($file, $path);
     }
