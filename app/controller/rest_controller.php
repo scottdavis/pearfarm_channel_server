@@ -67,7 +67,7 @@ class RestController extends \ApplicationController {
   public function latest_release() {
     $package = Package::find_by_name($_GET['name']);
     try {
-      $version = Version::find('first', array('conditions' => array('package_id' => $package->id), 'order' => 'version DESC'));
+      $version = $package->current_version();
       echo $version->version;
       $this->has_rendered = true;
     }
