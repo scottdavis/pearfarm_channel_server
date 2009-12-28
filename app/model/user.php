@@ -24,6 +24,7 @@ class User extends NimbleRecord {
     $this->validates_uniqueness_of('username');
     $this->validates_presence_of('password');
 		$this->validates_presence_of('email');
+		$this->validates_uniqueness_of('username');
   }
   public function pear_farm_url() {
     return implode(".", array($this->username, DOMAIN));
