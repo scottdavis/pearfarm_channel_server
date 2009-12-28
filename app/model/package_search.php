@@ -7,8 +7,8 @@ class PackageSearch {
 	
 	
 	public static function simple_search($value) {
-	  if(!isset($_GET['page'])) {$_GET['page'] = '1';}
-		return Package::paginate(array('order' => 'updated_at DESC', 'per_page' => 2, 'page' => $_GET['page'], 'conditions' =>  NimbleRecord::sanitize(array('name LIKE ?', "%$value%"))));
+	  $page = isset($_GET['page']) ? $_GET['page'] : NULL;
+		return Package::paginate(array('order' => 'updated_at DESC', 'per_page' => 2, 'page' => $page, 'conditions' =>  NimbleRecord::sanitize(array('name LIKE ?', "%$value%"))));
 	}
 	
 	
