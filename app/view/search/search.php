@@ -29,5 +29,5 @@
       <?php } ?>
     </tbody>
   </table>
-	<?php paginate($packages) ?>
+	<?php echo paginate($packages) ?>
 <?php } ?>
