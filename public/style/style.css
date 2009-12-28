@@ -11,7 +11,7 @@ body {
 }
 
 #content {
-  margin-top:75px;
+  margin-top:10px;
   background-color:#F9F7ED;
   padding:10px;
   min-width:800px;
@@ -37,11 +37,11 @@ body {
 
 #header {
   margin:0;
-  width:100%;
+  width:825px;
   min-width:800px;
   height:117px;
-  background-image:url(/public/image/header.png);
-  background-repeat:repeat-x;
+	margin-left:auto;	
+	margin-right:auto;
 }
 
 #header_content {
@@ -55,7 +55,37 @@ body {
 }
 
 #searchbox {
-  background-image:url(/public/image/search_box.png);
+	background:#E9E4D1 url(/public/image/shadow.png) repeat-x scroll 0 -2px;
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-moz-border-radius-bottomleft:8px;
+	-moz-border-radius-bottomright:8px;
+	-moz-border-radius-topleft:8px;
+	-moz-border-radius-topright:8px;
+	border-bottom-left-radius: 8px 8px;
+	border-bottom-right-radius: 8px 8px;
+	border-top-left-radius: 8px 8px;
+	border-top-right-radius: 8px 8px;
+	display:inline-block;
+	margin-top:7px;
+	padding:0 0.4em;
+}
+
+#searchbox input {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	color:#28221E;
+	font-family:"Myriad Pro","Lucida Grande",Helvetica,Tahoma,sans-serif;
+	font-size:1em;
+	font-weight:bold;
+	line-height:1.2em;
+	margin-top:6px;
+	width:300px;
+	padding:0.3em;
 }
 
 #header h1 {
@@ -64,8 +94,6 @@ body {
 #head2 {
   margin-left:auto;
   margin-right:auto;
-  min-width:800px;
-  width:800px;
 }
 
 #right_col {
@@ -96,10 +124,33 @@ body {
 
 #searchbox_holder {
   float:right;
-	margin-right:55px;
-  margin-top:42px;
-  width:173px;
   display:inline;
+}
+
+#head2 ul {
+	display:block;
+	margin-bottom:4px;
+	vertical-align:middle;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	text-align:right;
+}
+
+#head2 ul li {
+	display:inline;
+	font-size:1em;
+	font-weight:900;
+}
+
+#head2 ul li a {
+	text-decoration:none;
+	color:black;
+	margin-right:5px;
+}
+
+#head2 ul li a:hover {
+	color:#F9F7ED;
 }
 
 #searchbox_holder table {
@@ -297,4 +348,53 @@ div.border_container {
   padding:0 0 15px 15px;
   background-color:#eee;
   border:1px solid #006600;
+}
+
+#fold {
+	width:800px;
+	font-size:1.2em;
+	margin-left:auto;
+	margin-right:auto;
+	color:#eee;
+}
+
+#fold p {
+	margin:0;
+	margin-bottom:2px;
+}
+
+.fold-right {
+	text-align:right;
+}
+
+#count strong{
+	font-size:1.3em;
+	padding-top:0.2em;
+}
+
+.left {
+	float:left;
+}
+
+.right{
+	float:right;
+}
+
+.fold-right a {
+	color:#eee;
+	margin-right:5px;
+}
+
+.fold-right  a:hover {
+	color:black;
+}
+
+a{
+  color:black;
+  font-size:16px;
+  font-weight:bold;
+}
+
+a:hover{
+  color:#006600;
 }
