@@ -9,7 +9,7 @@
 		NameVirtualHost 127.0.0.1:80
 
 		    <VirtualHost 127.0.0.1:80>
-						ServerName localhost.com
+				ServerName localhost.com
 		        ServerAlias *.localhost.com
 		        DocumentRoot /path/to/pearfarm_channel_server
 		    </VirtualHost>
