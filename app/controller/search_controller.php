@@ -18,7 +18,7 @@
 				  $this->has_rendered = true;
 				break;
 				case 'html':
-				  if(!isset($_GET['search']) || empty($_GET['search'])) {
+				  if(!isset($_GET['search']) || empty($_GET['search']) || $_GET['search'] == 'Search packages…') {
 				    $this->redirect_to('/');
 				  }
 				break;

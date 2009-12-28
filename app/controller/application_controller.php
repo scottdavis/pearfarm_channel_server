@@ -3,7 +3,12 @@
  * @package controller
  */
 class ApplicationController extends \Controller {
-  public function filter() {
+  
+	public function __construct() {
+		$this->total_packages = Package::count();
+	}
+
+	public function filter() {
     $this->user = User::find_by_username($this->get_sub_domain());
     $this->header('Content-Type: text/xml');
   }
