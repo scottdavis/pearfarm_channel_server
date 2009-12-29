@@ -13,7 +13,7 @@ class PackageController extends \ApplicationController {
 		switch($this->format) {
 			case 'xml':
 			  $this->header('Content-Type: text/xml', 200);
-				echo $this->packages->to_xml();
+				echo $this->packages->to_xml(array('include' => array('versions')));
 				$this->layout = false;
 				$this->has_rendered = true;
 			break;

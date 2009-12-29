@@ -2,6 +2,7 @@
 <code>
 	pear install <?php echo $package->user->pear_farm_url() ?>/<?php echo $package->name ?>-<?php echo $version->version ?>
 </code>
+<p><?php echo link_to('Download this package', $package->file_url($version->version) . '.tgz') ?></p>
 <?php if (!empty($data)) { ?>
 	<ul>
 		<li>Channel: <?php echo h($data['channel']) ?></li>

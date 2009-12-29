@@ -3,11 +3,11 @@ require_once (NIMBLE_ROOT . '/lib/package_extractor.php');
 class StoryHelper {
   public function up() {
     $this->down();
-    static ::create_categories();
-    static ::create_version_types();
-    static ::create_users();
+    static::create_categories();
+    static::create_version_types();
+    static::create_users();
     static::create_pkis();
-    static ::create_package();
+    static::create_package();
   }
   public function down() {
     $tables = array('User', 'Package', 'Version');

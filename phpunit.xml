@@ -1,0 +1,13 @@
+<phpunit colors="true">
+<php>
+	<ini name="error_reporting" value="30719" />
+</php>
+<testsuites>
+ <testsuite name="functional">
+   <directory>test/functional/*Test.php</directory>
+ </testsuite>
+ <testsuite name="unitl">
+   <directory>test/unit/*Test.php</directory>
+ </testsuite>
+</testsuites>
+</phpunit>

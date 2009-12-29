@@ -3,3 +3,4 @@
 get/*
 config/development/database.json
 config/test/database.json
+report/*
