@@ -36,7 +36,7 @@ class HelpController extends \ApplicationController {
 	}
 	
 	public function index() {
-		ksort($this->files);
+		sort($this->files);
 	}
 
 }
