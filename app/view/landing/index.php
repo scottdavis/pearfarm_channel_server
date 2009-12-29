@@ -43,7 +43,7 @@
 				  continue;
 				}
 			?>
-				<p><?php echo link_to($package->name, url_for('PackageController', 'show', $package->id)) ?> (<?php echo $version->version ?>)</p>
+				<p><?php echo link_to($package->user->username . '/' . $package->name, url_for('PackageController', 'show', $package->id)) ?> (<?php echo $version->version ?>)</p>
 			<?php
 		} ?>
 	</div>
@@ -55,7 +55,7 @@
 				  continue;
 				}
 			?>
-				<p><?php echo link_to($package->name, url_for('PackageController', 'show', $package->id)) ?> (<?php echo $version->version ?>)</p>
+				<p><?php echo link_to($package->user->username . '/' . $package->name, url_for('PackageController', 'show', $package->id)) ?> (<?php echo $version->version ?>)</p>
 			<?php
 		} ?>
 	</div>
