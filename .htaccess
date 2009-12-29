@@ -1,11 +1,5 @@
 <IfModule mod_rewrite.c>
 
-		# Mark requests for downloads
-		#SetEnvIf Request_URI "*.tgz$" logdownload
-		# Log what remains
-		#CustomLog logs/download_log common env=logdownload
-	
-
     RewriteEngine On
     
     RewriteCond %{REQUEST_URI} ^/favicon\.ico$ 

@@ -1,16 +1,31 @@
-# First-level heading
-This is a paragraph. It has two sentences.
+# Spec Help
 
-This is another paragraph. It also has two sentences.
+##Example Spec file
 
-**strong emphasis** (e.g., boldface)
-
-*emphasis* (e.g., italics)
-
-- An item in a bulleted (unordered) list
-- Another item in a bulleted list
-#### Fourth-level heading
-1. An item in an enumerated (ordered) list
-2. Another item in an enumerated list
-
-[link text here](link.address.here "link title here")
+	<?php
+ 
+		$spec = Pearfarm_PackageSpec::create(array(
+						Pearfarm_PackageSpec::OPT_BASEDIR => dirname(__FILE__),
+						Pearfarm_PackageSpec::OPT_DEBUG => true )
+						)
+            ->setName('pearfarm')
+            ->setChannel('apinstein.dev.pearfarm.org')
+            ->setSummary('Build and distribute PEAR packages easily.')
+            ->setDescription('Pearfarm makes it easy to create PEAR packages.')
+            ->setNotes('See http://github.com/fgrehm/pearfarm for changelog, docs, etc.')
+            ->setReleaseVersion('0.1.2')
+            ->setReleaseStability('alpha')
+            ->setApiVersion('0.1.0')
+            ->setApiStability('alpha')
+            ->setLicense(Pearfarm_PackageSpec::LICENSE_MIT)
+            ->addMaintainer('lead', 'Alan Pinstein', 'apinstein', 'apinstein@mac.com')
+            ->addMaintainer('lead', 'Fabio Rehm', 'fgrehm', 'fgrehm@gmail.com')
+            ->addMaintainer('lead', 'Jonathan Leibiusky', 'xetorthio', 'ionathan@gmail.com')
+            ->addMaintainer('lead', 'Scott Davis', 'jetviper21', 'jetviper21@gmail.com ')
+            ->addFilesRegex(array('/src/', '/pearfarm$/'))
+            ->addFilesRegex('/test/', 'test')
+            ->addFilesRegex('/^README.markdown/', 'doc')
+            ->addExcludeFilesRegex(array('/\.git/'))
+            ->addExcludeFiles(array('.gitignore', 'pearfarm.spec'))
+            ->addExecutable('pearfarm')
+            ;
