@@ -4,6 +4,29 @@
  */
 class PackageController extends \ApplicationController {
   
+
+	public function index() {
+		$page = isset($_GET['page']) ? $_GET['page'] : NULL;
+		$this->packages = Package::paginate(array('order' => 'name DESC', 'per_page' => 20, 'page' => $page));
+		
+		
+		switch($this->format) {
+			case 'xml':
+			  $this->header('Content-Type: text/xml', 200);
+				echo $this->packages->to_xml();
+				$this->layout = false;
+				$this->has_rendered = true;
+			break;
+			case 'atom':
+			
+			break;
+			case 'rss':
+			
+			break;
+		}
+		
+	}
+
   public function show() {
     try{
       $this->package = Package::find($_GET['id']);
