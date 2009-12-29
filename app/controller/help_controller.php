@@ -26,6 +26,7 @@ class HelpController extends \ApplicationController {
 	public function show() {
 		require_once(FileUtils::join(NIMBLE_ROOT, 'lib', 'markdown.php'));
 		$filename = $_GET['name'] . '.markdown';
+		Nimble::set_title(ucwords($_GET['name'] . ' help'));
 		if(array_include($filename, array_map(function($f){return basename($f);}, $this->files))) {
 			$this->file = file_get_contents(FileUtils::join($this->markdown_dir, $filename));
 		}else{

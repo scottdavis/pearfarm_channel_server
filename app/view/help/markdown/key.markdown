@@ -1,4 +1,5 @@
-In order to publish packages with _*pearfarm push*_, the user needs to generate a SSH key using _*pearfarm keygen*_ command. It will output a key like (**Note: this is not your ssh key is is an openssl public key**):
+#Key Help
+In order to publish packages with _*pearfarm push*_, the user needs to generate a SSH key using _*pearfarm keygen*_ command. It will output a key like (*Note: this is not your ssh key it is an openssl public key*):
 
 	-----BEGIN PUBLIC KEY-----
     	...your key...

@@ -414,3 +414,27 @@ ul.pagination li {
 ul.pagination li a {
 
 }
+
+#markdown code{
+	background:transparent;
+}
+
+#markdown pre {
+	 -moz-background-clip:border;
+	  -moz-background-inline-policy:continuous;
+	  -moz-background-origin:padding;
+	  -moz-border-radius-bottomleft:5px;
+	  -moz-border-radius-bottomright:5px;
+	  -moz-border-radius-topleft:5px;
+	  -moz-border-radius-topright:5px;
+	  border-bottom-left-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+		border-top-left-radius: 5px 5px;
+		border-top-right-radius: 5px 5px;
+	  background-color:#000000;
+	  color:#FFFFFF;
+	  font-family:Monaco,Consolas,"Courier New",monospace;
+	  font-size:0.9em;
+	  padding:3px;
+	}
+}
