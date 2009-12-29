@@ -398,3 +398,19 @@ a{
 a:hover{
   color:#006600;
 }
+
+div#pagination {
+	text-align:center;
+}
+
+ul.pagination {
+	display:block;
+}
+ul.pagination li {
+	display:inline-block;
+	margin-right:5px;
+	padding:2px;
+}
+ul.pagination li a {
+
+}

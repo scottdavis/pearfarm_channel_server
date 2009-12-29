@@ -7,6 +7,7 @@ class UserControllerTest extends NimbleFunctionalTestCase {
   public function setUp() {
     $_SERVER['SERVER_NAME'] = 'bob.localhost';
     $this->user = User::find_by_username('bob');
+		$this->test_key = file_get_contents(getenv('HOME') . '/.ssh/id_openssl.pub');
   }
   public function testUserUpdateEmail() {
     $this->put('update', array(), array('id' => $this->user->id, 'user' => array('email' => 'my_new_email@email')), array('user' => $this->user->id));
@@ -30,7 +31,7 @@ class UserControllerTest extends NimbleFunctionalTestCase {
   }
   public function testAddKey() {
     $count = Pki::count();
-    $this->post('create_key', array(), array('pki' => array('name' => 'my_key', 'key' => md5(time()))), array('user' => $this->user->id));
+    $this->post('create_key', array(), array('pki' => array('name' => 'my_key', 'key' => $this->test_key)), array('user' => $this->user->id));
     $this->assertEquals($count + 1, Pki::count(array('cache' => false)));
     $this->assertEquals($this->response, 'facebox.close();window.location.href=window.location.href;');
   }
@@ -43,17 +44,17 @@ class UserControllerTest extends NimbleFunctionalTestCase {
   public function testUpdateKey() {
     $key = $this->user->pkis->first();
     $count = Pki::count();
-    $this->post('update_key', array(), array('id' => $key->id, 'pki' => array('name' => 'my_key', 'key' => md5(time()))), array('user' => $this->user->id));
+    $this->post('update_key', array(), array('id' => $key->id, 'pki' => array('name' => 'my_key', 'key' => $this->test_key)), array('user' => $this->user->id));
     $this->assertEquals($count, Pki::count(array('cache' => false)));
     $this->assertEquals($this->response, 'facebox.close();window.location.href=window.location.href;');
     $key2 = Pki::_find($key->id);
     $this->assertEquals($key2->name, 'my_key');
-    $this->assertNotEquals($key->key, $key2->key);
+    $this->assertEquals($key->key, $this->test_key);
   }
   public function testUpdateKeyFails() {
     $key = $this->user->pkis->first();
     $count = Pki::count();
-    $this->post('update_key', array(), array('id' => $key->id, 'pki' => array('name' => '', 'key' => md5(time()))), array('user' => $this->user->id));
+    $this->post('update_key', array(), array('id' => $key->id, 'pki' => array('name' => '', 'key' => $this->test_key)), array('user' => $this->user->id));
     $this->assertEquals($count, Pki::count(array('cache' => false)));
     $this->assertPartial('user/_key_form.php');
     $key2 = Pki::_find($key->id);

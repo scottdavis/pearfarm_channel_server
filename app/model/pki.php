@@ -21,6 +21,7 @@
 					*/
 					$this->validates_presence_of('key');
 					$this->validates_presence_of('name');
+					$this->validates_format_of('key', array('with' => '/^-{5}BEGIN\sPUBLIC\sKEY-{5}[(\n|\r\n)A-Za-z0-9\/\+\=]+-{5}END\sPUBLIC\sKEY-{5}$/'));
 			}
 			
 			
