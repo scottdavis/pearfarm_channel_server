@@ -4,11 +4,15 @@
  */
 class ChannelController extends \ApplicationController {
   public function before_filter() {
-    if ($this->format == 'xml') {
-      $this->filter();
-    } else {
-      $this->login_user();
-    }
+		switch($this->format) {
+			case 'xml':
+				$this->filter();
+			break;
+			default:
+    		$this->login_user();
+			break;
+		}
+		$this->ran_filter = true;
   }
   /**
    * index
@@ -58,17 +62,17 @@ class ChannelController extends \ApplicationController {
         }
         unset($_SESSION['upload_key']);
         try {
-          $p = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'user' => $this->user));
+          $package = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'user' => $this->user));
+					 if ($package->saved) {
+		          $this->redirect_to(url_for('ChannelController', 'index'));
+		        } else {
+		          $this->add();
+		          $this->render('channel/add.php');
+		        }
         }
         catch(Exception $e) {
           Nimble::flash('notice', $e->getMessage());
           $this->redirect_to(url_for('ChannelController', 'upload'));
-        }
-        if ($p->saved) {
-          $this->redirect_to(url_for('ChannelController', 'index'));
-        } else {
-          $this->add();
-          $this->render('channel/add.php');
         }
       break;
     }

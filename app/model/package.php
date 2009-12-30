@@ -110,7 +110,6 @@ class Package extends NimbleRecord {
         break;
         case 0:
 	      	unset($file_hash);
-	      	openssl_pkey_free($key);
           continue;
           break;
         case -1:
@@ -119,11 +118,9 @@ class Package extends NimbleRecord {
           continue;
           break;
       }
-      unset($file_hash);
-      openssl_pkey_free($key);
-      return false;
     }
-    
+    unset($file_hash);
+    return false;
   }
   
   

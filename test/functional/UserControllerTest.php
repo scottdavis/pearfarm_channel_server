@@ -49,7 +49,7 @@ class UserControllerTest extends NimbleFunctionalTestCase {
     $this->assertEquals($this->response, 'facebox.close();window.location.href=window.location.href;');
     $key2 = Pki::_find($key->id);
     $this->assertEquals($key2->name, 'my_key');
-    $this->assertEquals($key->key, $this->test_key);
+    $this->assertEquals($key->key, trim($this->test_key));
   }
   public function testUpdateKeyFails() {
     $key = $this->user->pkis->first();
