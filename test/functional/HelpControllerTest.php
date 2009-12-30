@@ -22,6 +22,15 @@ class HelpControllerTest extends NimbleFunctionalTestCase {
 		}
 	}
 
+	public function testGetAbout() {
+		$this->get('about', array(), array());
+		$this->assertTemplate('about');
+	}
+	
+	public function testGetStats() {
+		$this->get('stats', array(), array());
+		$this->assertTemplate('stats');
+	}
 	
 
 }
