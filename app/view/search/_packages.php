@@ -10,7 +10,10 @@
   </thead>
   <tbody>
     <?php foreach($packages as $package) { 
-      $version = Version::find('first', array('select' => 'description,min_php','order' => 'version DESC', 'conditions' => array('package_id' => $package->id)));
+      $version = $package->current_version();
+			if($version === false) {
+				continue;
+			}
       ?>
       <tr class="<?php echo cycle('even', 'odd') ?>">
         <td><?php echo link_to(h($package->name), url_for("PackageController", 'show', $package->id)) ?></td>

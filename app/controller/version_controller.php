@@ -21,9 +21,10 @@ class VersionController extends \ApplicationController {
     try {
       $version = Version::find('first', array('select' => 'versions.*', 
                                               'joins' => 'INNER JOIN packages ON packages.id=versions.id INNER JOIN users ON users.id=packages.user_id', 
-                                              'conditions' => array('versions.id' => $_GET['id'], 'users.id' => $this->user->id)
+                                              'conditions' => array('packages.id'=> $_GET['id'],'versions.id' => $_GET['version'], 'users.id' => $this->user->id)
                                               )
-                               );                    
+                               );  
+			
       $package = $version->package;
       $file = $package->file_path($version->version);
       @unlink($file);
