@@ -45,5 +45,8 @@ class HelpController extends \ApplicationController {
 		$this->about = file_get_contents($template);
 	}
 
+	public function stats() {
+		
+	}
 }
 ?>

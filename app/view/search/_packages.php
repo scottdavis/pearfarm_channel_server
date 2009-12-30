@@ -10,10 +10,10 @@
   </thead>
   <tbody>
     <?php foreach($packages as $package) { 
-      $version = Version::find('first', array('select' => 'description,min_php','conditions' => array('package_id' => $package->id)));
+      $version = Version::find('first', array('select' => 'description,min_php','order' => 'version DESC', 'conditions' => array('package_id' => $package->id)));
       ?>
       <tr class="<?php echo cycle('even', 'odd') ?>">
-        <td><?php echo $package->name ?></td>
+        <td><?php echo link_to(h($package->name), url_for("PackageController", 'show', $package->id)) ?></td>
         <td>
             <img width='16px' src='<?php echo $package->user->gravatar_url() ?>' alt='avatar'/>
             <?php echo $package->user->username ?>

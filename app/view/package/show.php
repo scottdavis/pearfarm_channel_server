@@ -1,4 +1,5 @@
 <h1><?php echo h($this->package->name) ?></h1>
+<p><?php echo link_to(h($this->package->user->username), url_for('LandingController', 'user_index', $this->package->user->username)) ?>
 <?php echo $this->render_partial('version/_version_info.php') ?>
 <h2>Versions</h2>
 
