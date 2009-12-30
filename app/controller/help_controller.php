@@ -40,7 +40,9 @@ class HelpController extends \ApplicationController {
 	}
 	
 	public function about() {
-		$this->template = FileUtils::join(NIMBLE_ROOT, 'app', 'view', 'help', 'about.markdown');
+		require_once(FileUtils::join(NIMBLE_ROOT, 'lib', 'markdown.php'));
+		$template = FileUtils::join(NIMBLE_ROOT, 'app', 'view', 'help', 'about.markdown');
+		$this->about = file_get_contents($template);
 	}
 
 }

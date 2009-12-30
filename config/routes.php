@@ -70,6 +70,7 @@ R('/user/key/:id')->controller('UserController')->action('delete_key')->on('DELE
 /** HELP */
 R('/help')->controller('HelpController')->action('index')->on('GET');
 R('/help/:name')->controller('HelpController')->action('show')->on('GET');
+R('/about')->controller('HelpController')->action('about')->on('GET');
 /** profile route */
 R('/:name')->controller('LandingController')->action('user_index')->on('GET');
 

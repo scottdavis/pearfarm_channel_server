@@ -5,6 +5,7 @@
 class ApplicationController extends \Controller {
   
 	public function __construct() {
+		$this->header("Content-Type: text/html; charset=utf-8");
 		$this->total_packages = Package::count();
 	}
 

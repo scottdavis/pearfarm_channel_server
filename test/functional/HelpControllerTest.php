@@ -4,14 +4,12 @@
  */
 require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
 class HelpControllerTest extends NimbleFunctionalTestCase {
+
   public function testGetIndex() {
 		$this->get('index', array(), array());
 		$this->assertTemplate('index');
   }
 
-	/**
-	* @dataProvider helpFiles
-	*/
 	public function testGetHelp() {
 		$_SERVER['SERVER_NAME'] = 'bob.localhost.com';
 		$dir = FileUtils::join(NIMBLE_ROOT, 'app', 'view', 'help', 'markdown');
@@ -24,6 +22,7 @@ class HelpControllerTest extends NimbleFunctionalTestCase {
 		}
 	}
 
+	
 
 }
 ?>
