@@ -18,22 +18,22 @@ class VersionController extends \ApplicationController {
   
   public function delete() {
     $this->login_user();
-    try {
-      $version = Version::find('first', array('select' => 'versions.*', 
-                                              'joins' => 'INNER JOIN packages ON packages.id=versions.id INNER JOIN users ON users.id=packages.user_id', 
-                                              'conditions' => array('packages.id'=> $_GET['id'],'versions.id' => $_GET['version'], 'users.id' => $this->user->id)
-                                              )
-                               );  
-			
-      $package = $version->package;
-      $file = $package->file_path($version->version);
-      @unlink($file);
-      Nimble::flash('notice', "Version: {$version->version} was deleted");
-      Version::delete($version->id);
-      $this->redirect_to(url_for('PackageController', 'show', $package->id));
-    }catch(NimbleRecordNotFound $e) {
-      $this->redirect_to('/');
-    }
+		try {
+			$package = Package::find($_GET['id']);
+      $version = Version::find($_GET['version']);  
+		}catch(NimbleRecordNotFound $e) {
+      	$this->redirect_to('/');
+		}
+
+			if($version->package_id == $package->id && $package->user_id == $this->user->id) {
+      	$file = $package->file_path($version->version);
+      	@unlink($file);
+      	Nimble::flash('notice', "Version: {$version->version} was deleted");
+      	Version::delete($version->id);
+      	$this->redirect_to(url_for('PackageController', 'show', $version->package_id));
+			}else{
+      	$this->redirect_to('/');
+    	}
   }
   
   
