@@ -58,14 +58,14 @@ class RestController extends \ApplicationController {
     $this->package_maintainers();
   }
   public function all_releases() {
-    $this->package = Package::find('first' array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
+    $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
     $this->versions = $this->package->versions;
   }
   public function all_releases2() {
     $this->all_releases();
   }
   public function latest_release() {
-    $this->package = Package::find('first' array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
+    $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
     try {
       $version = $package->current_version();
       echo $version->version;
@@ -128,7 +128,7 @@ class RestController extends \ApplicationController {
     $this->has_rendered = true;
   }
   private function load_release() {
-    $this->package = Package::find('first' array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
+    $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
     $this->version = Version::find('first', array('conditions' => array('version' => $_GET['version'], 'package_id' => $this->package->id)));
     $this->data = unserialize($this->version->meta);
   }
