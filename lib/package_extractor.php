@@ -10,12 +10,20 @@ class PackageExtractor {
   /**
    * @param string $tar - path to tar file
    */
-  public function __construct($tar) {
-    $tar = new Archive_Tar($tar);
+  public function __construct($_tar) {
+    $tar = new Archive_Tar($_tar);
     $this->package_xml = $tar->extractInString('package.xml');
     unset($tar);
     $this->parse_package();
+		$files = $this->files();
+	//	$xml = simplexml_load_string(str_replace('xmlns=', 'xmlns:default=', $this->package_xml));
+	//	$namespaces = $xml->getNamespaces(true); 
+  //	$xml->registerXPathNamespace('default', 'default'); 
   }
+
+	public function readme() {
+		return $this->readme;
+	}
   /**
    * returns the xml contents of the package.xml extracted
    */
