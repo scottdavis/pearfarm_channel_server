@@ -28,6 +28,9 @@ class PackageController extends \ApplicationController {
 	}
 
   public function show() {
+		if($this->is_logged_in()) {
+			$this->login_user();
+		}
     try{
       $this->package = Package::find($_GET['id']);
       $this->versions = $this->package->versions;

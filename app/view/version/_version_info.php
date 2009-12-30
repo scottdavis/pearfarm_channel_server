@@ -42,31 +42,6 @@
 		</li>
 		<li>License: <?php echo h($data['license']['_content']) ?></li>
 		<li>Notes: <?php echo h($data['notes']) ?></li>
-		<li>Dependecies:
-		<?php foreach(array('required', 'optional') as $d_type) { ?>
-			<?php if (isset($data[$d_type]) && is_array($data[$d_type]['package'])) {
-      foreach($data[$d_type]['package'] as $package) { ?>
-								<ul>
-									<li>Name: <?php echo h($package['name']) ?></li>
-									<li>Channel: <?php echo h($package['channel']) ?></li>
-									<li>Min: <?php echo h($package['min']) ?></li>									
-								</ul>
-							<?php
-      } ?>
-			<?php
-    } elseif (isset($data[$d_type])) {
-      $package = $data[$d_type];
-?>
-				<ul>
-					<li>Name: <?php echo h($package['name']) ?></li>
-					<li>Channel: <?php echo h($package['channel']) ?></li>
-					<li>Min: <?php echo h($package['min']) ?></li>									
-				</ul>
-			<?php
-    } ?>
-		<?php
-  } ?>
-		</li>
 	</ul>
 <?php
 } ?>

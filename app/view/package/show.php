@@ -11,6 +11,6 @@ $table->callback = function($v) use ($version) {
 };
 echo $table->build();
 ?>
-<?php if($this->is_logged_in() && $this->user_id == $package->user_id) {?>
+<?php if($this->is_logged_in() && $this->user->id == $package->user_id) {?>
 <p><?php echo delete_link('Delete Package', url_for('PackageController', 'delete', $package->id), true, 'Are you sure? \n This will delete all versions of this package') ?> </p>
 <?php } ?>

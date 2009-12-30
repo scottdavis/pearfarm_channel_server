@@ -5,6 +5,9 @@
 class VersionController extends \ApplicationController {
   
   public function show() {
+		if($this->is_logged_in()) {
+			$this->login_user();
+		}
     try {
       $this->package = Package::find($_GET['id']);
       $this->version = Version::find('first', array('conditions' => array('package_id' => $this->package->id, 'version' => $_GET['version'])));
