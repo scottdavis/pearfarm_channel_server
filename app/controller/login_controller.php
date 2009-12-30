@@ -33,7 +33,11 @@ class LoginController extends \ApplicationController {
   }
   public function logout() {
     unset($_SESSION['user']);
-    session_destroy();
+		// @codeCoverageIgnoreStart
+    if(!defined('NIMBLE_IS_TESTING')) {
+			session_destroy();
+		}
+    // @codeCoverageIgnoreEnd
     $url = "http://" . DOMAIN;
     $this->redirect_to($url);
   }
@@ -61,8 +65,6 @@ class LoginController extends \ApplicationController {
 			if($user->save()) {
 				Nimble::flash('notice', 'Account has been activated please login');
 				$this->redirect_to(url_for('LoginController', 'login'));
-			}else{
-				$this->redirect_to('/');
 			}
 		}catch(NimbleRecordNotFound $e) {
 			Nimble::flash('notice', 'Invaild activation key');

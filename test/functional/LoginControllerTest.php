@@ -29,5 +29,46 @@ class LoginControllerTest extends NimbleFunctionalTestCase {
     $this->get('verify', array(), array('key' => '098265082652jlkgkjsg'), array());
     $this->assertRedirect('/');
   }
+	public function testCheckUser() {
+		$this->post('check_user', array(), array('username' => 'poopy'));
+		$this->responseIncludes('false');
+	}
+	public function testCheckUserFails() {
+		$this->post('check_user', array(), array('username' => 'bob'));
+		$this->responseIncludes('true');
+	}
+	public function testGetIndex() {
+		$this->get('index');
+		$this->assertTemplate('form');
+	}
+	
+	public function testCreate() {
+		$c = User::count();
+		$this->post('create', array(), array('whoanow' => '', 'v_password' => 'password', 'user' => array('username' => 'poopy', 'email' => 'jetviper21@gmail.com', 'password' => 'password')));
+		$this->assertRedirect('/');
+		$this->assertEquals($c +1, User::count(array('cache' => false)));
+		$user = $this->assigns('user');
+		$this->assertTrue($user->saved);
+	}
+	
+	public function testCreateFails() {
+		$c = User::count();
+		$this->post('create', array(), array('whoanow' => '', 'v_password' => 'password', 'user' => array('username' => 'poopy', 'email' => '', 'password' => 'password')));
+		$this->assertEquals($c, User::count(array('cache' => false)));
+		$this->assertTemplate('add');
+	}
+	
+	public function testLogout() {
+		$this->get('logout', array(), array(), array('user' => User::find_by_username('bob')));
+		$this->assertFalse(isset($_SESSION['user']));
+		$this->assertRedirect('http://' . DOMAIN);
+	}
+	
+	public function testAdd() {
+		$this->get('add');
+		$this->assertTemplate('add');
+		$this->assertTrue(isset($this->controller->user));
+	}
+	
 }
 ?>

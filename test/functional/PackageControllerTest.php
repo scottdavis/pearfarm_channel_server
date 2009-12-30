@@ -25,5 +25,32 @@ class PackageControllerTest extends NimbleFunctionalTestCase {
     $this->assertEquals($v_count - $versions, Version::count(array('cache' => false)));
     $this->assertRedirect('/');
   }
+
+	public function testGetIndex() {
+		$_SERVER['REQUEST_URI'] = '/packages';
+		$this->get('index');
+		$this->assertTemplate('index');
+	}
+	
+	public function testGetXML() {
+		$_SERVER['REQUEST_URI'] = '/packages';
+		$this->get('index', array(), array(), array(), 'xml');
+		$this->assertResponse('success');
+	}
+	
+	public function testGetRSS() {
+		$_SERVER['REQUEST_URI'] = '/packages';
+		$this->get('index', array(), array(), array(), 'rss');
+		$this->assertResponse('success');
+	}
+	
+	public function testGetATOM() {
+		$_SERVER['REQUEST_URI'] = '/packages';
+		$this->get('index', array(), array(), array(), 'atom');
+		$this->assertResponse('success');
+	}
+	
+
+
 }
 ?>

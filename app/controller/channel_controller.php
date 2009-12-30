@@ -45,8 +45,6 @@ class ChannelController extends \ApplicationController {
           $package = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'sig' => $_POST['signatureBase64'], 'user' => $this->user), true);
           if($package->saved) {
             echo 'Package uploaded succesfuly!';
-          }else{
-            echo implode(', ', $package->errors);
           }
         }
         catch(Exception $e) {
@@ -65,9 +63,6 @@ class ChannelController extends \ApplicationController {
           $package = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'user' => $this->user));
 					 if ($package->saved) {
 		          $this->redirect_to(url_for('ChannelController', 'index'));
-		        } else {
-		          $this->add();
-		          $this->render('channel/add.php');
 		        }
         }
         catch(Exception $e) {
