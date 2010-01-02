@@ -27,7 +27,8 @@ class SeedHelper {
 
 
 	public function creat_pearfarm_user() {
-		$u = User::_create(array('username' => 'pearfarm', 'password' => 'mmm_pears', 'email' => 'jetviper21@gmail.com'));
+		foreach(array('pearfarm', 'dev', 'www', 'blog') as $user)
+		$u = User::_create(array('username' => $user, 'password' => 'mmm_pears', 'email' => 'jetviper21@gmail.com'));
 		$u->active = true;
 		$u->save();
 	}
