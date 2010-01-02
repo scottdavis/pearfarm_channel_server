@@ -6,8 +6,8 @@
 <?php if (!empty($data)) { ?>
 	<ul>
 		<li>Channel: <?php echo h($data['channel']) ?></li>
-		<li>Summary: <?php echo h($data['summary']) ?></li>
-		<li>Description: <?php echo h($data['description']) ?></li>
+		<li>Summary: <?php echo $data['summary'] ?></li>
+		<li>Description: <?php echo $data['description'] ?></li>
 		<li>Version: <ul>
 									<li>Release: <?php echo h($data['version']['release']) ?></li>
 									<li>Api: <?php echo h($data['version']['api']) ?></li>
@@ -31,7 +31,7 @@
     } else {
       foreach($data[$type] as $lead) {
 ?>
-					<li>Lead: <?php echo h($lead['name']) ?> - <?php echo h($lead['email']) ?></li>
+					<li>Lead: <?php echo h($lead['name']) ?></li>
 				<?php
       }
     } ?>
