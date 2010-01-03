@@ -6,6 +6,9 @@ class LandingController extends \ApplicationController {
   public function index() {
 		$this->title = 'Making it trivially easy to create PEAR packages.';
 		$this->set_default_side_bar();
+		if($this->is_logged_in()) {
+			$this->login_user();
+		}
   }
   
   

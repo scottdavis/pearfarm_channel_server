@@ -32,6 +32,7 @@
 						<ul class='menu_bar'>
 							<li><?php echo link_to('All Packages', url_for('PackageController', 'index')) ?></li>
 						<?php if($this->is_logged_in()) {?>
+							<li><?php echo link_to('Profile', url_for('LandingController', 'user_index', $this->user->username)) ?></li>
 							<li><?php echo link_to('Logout', url_for('LoginController', 'logout')) ?></li>
 						<?php }else{ ?>
 							<li><?php echo link_to('Login', url_for('LoginController', 'index')) ?></li> 

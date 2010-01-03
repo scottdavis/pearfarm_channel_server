@@ -9,6 +9,9 @@ class ApplicationController extends \Controller {
 		$this->total_packages = Package::count();
 		$this->sidebar = array();
 		$this->title = '';
+		if($this->is_logged_in()) {
+			$this->login_user();
+		}
 	}
 
 	public function filter() {
