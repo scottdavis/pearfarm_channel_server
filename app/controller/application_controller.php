@@ -36,7 +36,7 @@ class ApplicationController extends \Controller {
 
 	public function show_flash() {
 		if(isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) {
-			$notice = $_SESSION['flashes']['notice'];
+			$notice = Nimble::display_flash('notice');
 			echo "<div id='flash' class='notice'>$notice</div>";
 		}
 	}
