@@ -56,13 +56,13 @@ class ChannelController extends \ApplicationController {
       default:
         if ($_SESSION['upload_key'] !== $_POST['upload_key']) {
           Nimble::flash('notice', 'Invalid Upload Key');
-          $this->redirect_to(url_for('ChannelController', 'index'));
+          $this->redirect_to(url_for('LandingController', 'user_index', $this->user->username));
         }
         unset($_SESSION['upload_key']);
         try {
           $package = Package::from_upload(array('file' => $_FILES['file']['tmp_name'], 'user' => $this->user));
 					 if ($package->saved) {
-		          $this->redirect_to(url_for('ChannelController', 'index'));
+		          $this->redirect_to(url_for('LandingController', 'user_index', $this->user->username));
 		        }
         }
         catch(Exception $e) {

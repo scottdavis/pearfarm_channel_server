@@ -25,9 +25,6 @@ class ApplicationController extends \Controller {
   public function login_user() {
     if ($this->is_logged_in()) {
       $this->user = User::find($_SESSION['user']);
-      if ($this->get_sub_domain() !== $this->user->username) {
-        $this->redirect_to(LoginController::user_url($this->user));
-      }
     } else {
       $this->redirect_to(url_for('LoginController', 'index'));
     }

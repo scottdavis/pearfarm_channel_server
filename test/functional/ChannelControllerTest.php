@@ -53,7 +53,7 @@ class ChannelControllerTest extends NimbleFunctionalTestCase {
 		$_FILES['file']['tmp_name'] = $localfile;
 		$key = md5(time());
 		$this->post('upload', array(), array('upload_key' => $key), array('upload_key' => $key, 'user' => User::find_by_username('bob')->id), 'html');
-		$this->assertRedirect(url_for('ChannelController', 'index'));
+		$this->assertRedirect(url_for('LandingController', 'user_index', User::find_by_username('bob')->username));
 	}
 
 	public function testUploadHtmlFailsBadKey() {
@@ -64,7 +64,7 @@ class ChannelControllerTest extends NimbleFunctionalTestCase {
 		$key = md5(time());
 		$this->post('upload', array(), array('upload_key' => $key), array('upload_key' => md5(md5(time())), 'user' => User::find_by_username('bob')->id), 'html');
 		$this->assertEquals($_SESSION['flashes']['notice'], 'Invalid Upload Key');
-		$this->assertRedirect(url_for('ChannelController', 'index'));
+		$this->assertRedirect(url_for('LandingController', 'user_index', User::find_by_username('bob')->username));
 	}
 	
 	public function testUploadHtmlFailsnoFile() {
@@ -75,7 +75,7 @@ class ChannelControllerTest extends NimbleFunctionalTestCase {
 		$key = md5(time());
 		$this->post('upload', array(), array('upload_key' => $key), array('upload_key' => md5(md5(time())), 'user' => User::find_by_username('bob')->id), 'html');
 		$this->assertEquals($_SESSION['flashes']['notice'], 'Package channel  does not match bob.localhost.com');
-		$this->assertRedirect(url_for('ChannelController', 'index'));
+		$this->assertRedirect(url_for('LandingController', 'user_index', User::find_by_username('bob')->username));
 	}
 
 }

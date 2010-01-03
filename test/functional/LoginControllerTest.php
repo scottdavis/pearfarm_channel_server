@@ -10,7 +10,7 @@ class LoginControllerTest extends NimbleFunctionalTestCase {
   }
   public function testLoginUser() {
     $this->post('login', array(), array('username' => 'bob', 'password' => 'password'), array());
-    $this->assertRedirect("http://{$this->user->username}." . DOMAIN);
+    $this->assertRedirect("http://" . DOMAIN . '/' . $this->user->username);
     $this->assertEquals($_SESSION['user'], $this->user->id);
   }
   public function testLoginFails() {

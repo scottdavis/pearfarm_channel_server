@@ -85,7 +85,7 @@ class LoginController extends \ApplicationController {
 
 
   public static function user_url($user) {
-    return "http://$user->username." . DOMAIN;
+    return "http://" . DOMAIN . '/' . $user->username;
   }
 }
 ?>
