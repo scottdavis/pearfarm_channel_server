@@ -5,6 +5,7 @@
 class LoginController extends \ApplicationController {
   public function before_filter_except_logout() {
     $this->redirect_if_logged_in();
+		$this->set_default_side_bar();
   }
   public function index() {
     $this->render('login/form.php');

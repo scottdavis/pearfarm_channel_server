@@ -1,3 +1,1 @@
-##FAQ
-
 HELP IM EMPTY

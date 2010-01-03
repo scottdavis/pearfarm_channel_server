@@ -1,5 +1,3 @@
-#Usage Help
-
 ##PEAR Farm executable
 
 The executable is a cli app that helps you achieve the goals of the project, namely package creation and distribution.

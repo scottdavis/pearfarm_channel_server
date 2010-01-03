@@ -6,6 +6,7 @@ class PackageController extends \ApplicationController {
   
 
 	public function index() {
+		$this->set_default_side_bar();
 		$page = isset($_GET['page']) ? $_GET['page'] : NULL;
 		$this->packages = Package::paginate(array('order' => 'name DESC', 'per_page' => 20, 'page' => $page));
 		
@@ -32,6 +33,7 @@ class PackageController extends \ApplicationController {
 			$this->login_user();
 		}
     try{
+			$this->set_default_side_bar();
       $this->package = Package::find($_GET['id']);
       $this->versions = $this->package->versions;
       $this->version =  $this->package->current_version();

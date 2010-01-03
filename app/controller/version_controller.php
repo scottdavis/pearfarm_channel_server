@@ -4,6 +4,10 @@
  */
 class VersionController extends \ApplicationController {
   
+	public function before_filter() {
+		$this->set_default_side_bar();
+	}
+
   public function show() {
 		if($this->is_logged_in()) {
 			$this->login_user();

@@ -7,7 +7,7 @@
 	<link rel="search" type="application/opensearchdescription+xml" href="http://<?php echo DOMAIN ?>/opensearch.xml" title="Pearfarm" /> 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
-	<?php echo stylesheet_link_tag('style.css', 'facebox.css') ?>
+	<?php echo stylesheet_link_tag('stylesheet.css', 'facebox.css') ?>
 	<!--[if lt IE 7]>
 	  <?php echo javascript_include_tag('pngfix.js') ?>
   <![endif]-->
@@ -22,8 +22,12 @@
 	</script>
 	</head>
 	<body>
-		<div id="header">
-			<div id='head2'>
+		<div id="top_header">
+			<div id='header'>
+				<div id='logo'>
+					<a href='/'><img src='/public/image/assets/logo.png' alt='logo' /></a>
+				</div>
+				<div id='main_menu'>
 					<div id="searchbox_holder">
 						<ul class='menu_bar'>
 							<li><?php echo link_to('All Packages', url_for('PackageController', 'index')) ?></li>
@@ -34,43 +38,36 @@
 							<li><?php echo link_to('Sign Up', url_for('LoginController', 'add')) ?></li>
 						<?php } ?>
 						</ul>
-					  <form action='/search' method='get' />
+					  <form action='/search' method='get'>
 							<div id="searchbox">
 						  	<input id='searchbox_form' type='text' name='search' value='<?php echo (isset($_GET['search'])) ? $_GET['search'] : 'Search packages…' ?>' />
 						  </div>
 						</form>
 					</div>
-				<div id='header_content'>
-					<a href='/'><img src='/public/image/logo.png' alt='logo' /></a>
 				</div>
-				<br style='clear:both' />
+				<br style='clear:both;' />
 			</div>
 		</div>
-			<?php if (isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) { ?>
-				<div id='flash' class='notice'>
-					<?php echo Nimble::display_flash('notice'); ?>
-				</div>
-			<?php } ?>
-			<div id='fold'>
-				<div class='left'>
-					<div id='count' >
-						<strong><?php echo $this->total_packages ?> packages</strong>
-						<br />
-						Since Dec 2009
+		<div id='wrapper'>
+			<div id='content'>
+				<div class='main_col'>
+					<h1><?php echo $this->title ?></h1>
+					<div class='rounded_box'>
+						<?php echo $content ?>
+						<p><?php echo link_to_back() ?></p>
 					</div>
 				</div>
-				<div class='right fold-right'>
-				<strong><?php echo link_to('Gemcutter', 'http://www.gemcutter.org', array('target' => '_blank')) ?>for PHP.</strong>
-				<br />
-				Find code easier, publish it faster, and have fun doing it.
+				<div class='side_col'>
+					<?php foreach($sidebar as $_sidebar) { ?>
+					<h2><?php echo $_sidebar['title'] ?></h2>
+					<div class='rounded_box'>
+						<?php echo $_sidebar['content'] ?>
+					</div>
+					<?php } ?>
 				</div>
-				<br style='clear:both' />
+				<br style='clear:both;' />
 			</div>
-		<div id='content'>
-			<?php echo $content ?>
-			<p><?php echo link_to_back() ?></p>
 		</div>
-		
 		<div id='footer'>
 				<ul class='menu_bar'>
 					<li><?php echo link_to('About', url_for('HelpController', 'about')) ?></li>
@@ -82,7 +79,7 @@
 				</ul>
 		</div>
 		<?php if(NIMBLE_ENV == 'staging' || NIMBLE_ENV == 'production') { ?>
-   	 <script type="text/javascript">
+	  	 <script type="text/javascript">
 	    	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 		    </script>

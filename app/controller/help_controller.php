@@ -24,9 +24,12 @@ class HelpController extends \ApplicationController {
 
 
 	public function show() {
+		$this->sidebar[0]['title'] = "Help";
+		$this->sidebar[0]['content'] = $this->render_partial('help/_help_mini.php');
 		require_once(FileUtils::join(NIMBLE_ROOT, 'lib', 'markdown.php'));
 		$filename = $_GET['name'] . '.markdown';
-		Nimble::set_title(ucwords(Inflector::humanize($_GET['name'] . ' help')));
+		$this->title = ucwords(Inflector::humanize($_GET['name'] . ' help'));
+		Nimble::set_title($this->title);
 		if(array_include($filename, array_map(function($f){return basename($f);}, $this->files))) {
 			$this->file = file_get_contents(FileUtils::join($this->markdown_dir, $filename));
 		}else{
@@ -36,17 +39,24 @@ class HelpController extends \ApplicationController {
 	}
 	
 	public function index() {
+		$this->set_default_side_bar();
+		$this->title = 'Pearfarm Help';
+		Nimble::set_title($this->title);
 		sort($this->files);
 	}
 	
 	public function about() {
+		$this->set_default_side_bar();
 		require_once(FileUtils::join(NIMBLE_ROOT, 'lib', 'markdown.php'));
 		$template = FileUtils::join(NIMBLE_ROOT, 'app', 'view', 'help', 'about.markdown');
 		$this->about = file_get_contents($template);
+		$this->title = 'About Pearfarm';
+		Nimble::set_title($this->title);
 	}
 
 	public function stats() {
-		
+		$this->title = 'Pearfarm Stats';
+		Nimble::set_title($this->title);
 	}
 }
 ?>

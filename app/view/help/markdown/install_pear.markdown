@@ -1,5 +1,3 @@
-#Install Pear
-
 ##Mac Ports
 <code>port install php5 +pear</code>
 
