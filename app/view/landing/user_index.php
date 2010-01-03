@@ -6,7 +6,7 @@
 		$version = $package->current_version();
 		if($version === false) {continue;}
 	?>
-	<li><?php echo link_to(h($package->name), url_for('PackageController', 'show', $package->id)) ?> (<?php echo link_to(h($version->version), url_for('VersionController', 'show', $package->id, $version->version)) ?>)</li>
+	<li><?php echo link_to(h($package->name), url_for('PackageController', 'show', $user->username, $package->name)) ?> (<?php echo link_to(h($version->version), url_for('VersionController', 'show', $user->username, $package->name, $version->version)) ?>)</li>
 <?php
 } ?>
 </ul>
