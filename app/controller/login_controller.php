@@ -8,9 +8,13 @@ class LoginController extends \ApplicationController {
 		$this->set_default_side_bar();
   }
   public function index() {
+		$this->title = 'Login';
+		Nimble::set_title($this->title);
     $this->render('login/form.php');
   }
   public function login() {
+		$this->title = 'Login';
+		Nimble::set_title($this->title);
     try{
       if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && User::authenticate($_POST['username'], $_POST['password'])) {
         $user = User::find_by_username($_POST['username']);

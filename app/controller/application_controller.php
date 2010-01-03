@@ -34,6 +34,15 @@ class ApplicationController extends \Controller {
   }
 
 
+	public function show_flash() {
+		if(isset($_SESSION['flashes']['notice']) && !empty($_SESSION['flashes']['notice'])) {
+			$notice = $_SESSION['flashes']['notice'];
+			echo "<div id='flash'>$notice</div>";
+		}
+	}
+
+
+
 	public function set_default_side_bar() {
 		$this->latest = Package::find('all', array('limit' => '0,5', 'order' => 'created_at DESC'));
 		$this->sidepackage = $this->latest;

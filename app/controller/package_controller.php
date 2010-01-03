@@ -7,10 +7,10 @@ class PackageController extends \ApplicationController {
 
 	public function index() {
 		$this->set_default_side_bar();
+		$this->title = 'ALl Packages';
+		Nimble::set_title($this->title);
 		$page = isset($_GET['page']) ? $_GET['page'] : NULL;
 		$this->packages = Package::paginate(array('order' => 'name DESC', 'per_page' => 20, 'page' => $page));
-		
-		
 		switch($this->format) {
 			case 'xml':
 			  $this->header('Content-Type: text/xml', 200);

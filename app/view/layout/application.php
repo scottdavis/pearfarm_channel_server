@@ -50,6 +50,7 @@
 		</div>
 		<div id='wrapper'>
 			<div id='content'>
+				<?php $this->show_flash() ?>
 				<div class='main_col'>
 					<h1><?php echo $this->title ?></h1>
 					<div class='rounded_box'>
