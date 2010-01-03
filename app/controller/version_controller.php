@@ -13,8 +13,11 @@ class VersionController extends \ApplicationController {
 			$this->login_user();
 		}
     try {
-      $this->package = Package::find($_GET['id']);
+			$user = User::find_by_username($_GET['username']);
+      $this->package = Package::find('first', array('conditions' => array('user_id' => $user->id, 'name' => $_GET['package_name'])));
       $this->version = Version::find('first', array('conditions' => array('package_id' => $this->package->id, 'version' => $_GET['version'])));
+			$this->title = $this->package->name . ' ' . $this->version->version;
+			Nimble::set_title($this->title);
       $this->data = unserialize($this->version->meta);
     }
     catch(NimbleRecordNotFound $e) {

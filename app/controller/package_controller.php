@@ -34,7 +34,10 @@ class PackageController extends \ApplicationController {
 		}
     try{
 			$this->set_default_side_bar();
-      $this->package = Package::find($_GET['id']);
+			$user = User::find_by_username($_GET['username']);
+      $this->package = Package::find('first', array('conditions' => array('user_id' => $user->id, 'name' => $_GET['package_name'])));
+			$this->title = $this->package->name;
+			Nimble::Set_title($this->title);
       $this->versions = $this->package->versions;
       $this->version =  $this->package->current_version();
       if($this->version !== false) {

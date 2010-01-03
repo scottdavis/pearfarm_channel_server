@@ -6,8 +6,9 @@ require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
 class VersionControllerTest extends NimbleFunctionalTestCase {
   public function testGetVersion() {
     $p = Package::find_by_name('bobs_other_package');
+		$u = $p->user;
     $last = $p->versions->last();
-    $this->get('show', array(), array('id' => $p->id, 'version' => $last->version));
+    $this->get('show', array(), array('username' => $u->username, 'package_name' => $p->name, 'version' => $last->version));
     $this->assertTemplate('show');
   }
   public function testDeleteBobsPackage() {

@@ -5,13 +5,14 @@
 require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
 class PackageControllerTest extends NimbleFunctionalTestCase {
   public function testGetsBobspackage() {
-    $this->get('show', array(), array('id' => Package::find_by_name('bobs_other_package')->id));
+		$p = Package::find_by_name('bobs_other_package');
+    $this->get('show', array(), array('package_name' => $p->name, 'username' => User::find_by_username('bob')->username));
     $this->assertTemplate('show');
     $package = $this->assigns('package');
     $this->assertEquals($package->name, 'bobs_other_package');
   }
   public function testGetsPackageFails() {
-    $this->get('show', array(), array('id' => 'foo'));
+    $this->get('show', array(), array('username' => '', 'package_name' => 'foo'));
     $this->assertRedirect('/');
   }
   public function testDeleteBobsPackage() {

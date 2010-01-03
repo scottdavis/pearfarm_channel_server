@@ -47,8 +47,8 @@ R('/signup')->controller('LoginController')->action('create')->on('POST');
 R('/verify/:key')->controller('LoginController')->action('verify')->on('GET');
 R('/login/checkuser')->controller('LoginController')->action('check_user')->on('POST');
 /** Package stuff */
-R('/package/:id/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
-R('/package/:id')->controller('PackageController')->action('show')->on('GET');
+R('/:username/:package_name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
+R('/:username/:package_name')->controller('PackageController')->action('show')->on('GET');
 R('/packages')->controller('PackageController')->action('index')->on('GET');
 /** Search */
 R('/opensearch')->controller('SearchController')->action('opensearch')->on('GET');
