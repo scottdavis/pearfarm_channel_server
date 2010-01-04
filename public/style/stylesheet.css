@@ -549,3 +549,11 @@ ul.versions li {
 span.small {
   font-size:12px;
 }
+
+ul#keys {
+  margin-left:15px;
+}
+
+ul#keys li {
+    list-style-type:none;
+}

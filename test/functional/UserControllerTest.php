@@ -14,14 +14,14 @@ class UserControllerTest extends NimbleFunctionalTestCase {
     $user = User::_find($this->user->id);
     $this->assertEquals($this->user->password, $user->password);
     $this->assertEquals('my_new_email@email', $user->email);
-    $this->assertRedirect('/');
+    $this->assertRedirect('http://' . DOMAIN . '/' . $this->user->username);
   }
   public function testUserUpdatePassword() {
     $this->put('update', array(), array('id' => $this->user->id, 'v_password' => 'mypassword', 'user' => array('email' => 'my_new_email@email', 'password' => 'mypassword')), array('user' => $this->user->id));
     $user = User::_find($this->user->id);
     $this->assertNotEquals($this->user->password, $user->password);
     $this->assertEquals('my_new_email@email', $user->email);
-    $this->assertRedirect('/');
+    $this->assertRedirect('http://' . DOMAIN . '/' . $this->user->username);
   }
   public function testDeleteUser() {
     $count = User::count();

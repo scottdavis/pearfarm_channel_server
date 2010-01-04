@@ -29,7 +29,7 @@ class UserController extends \ApplicationController {
 	  $this->user = User::update($this->user->id, $_POST['user']);
 	  if($this->user->saved) {
 	    Nimble::flash('notice', 'User information as been updated');
-	    $this->redirect_to('/');
+	    $this->redirect_to(LoginController::user_url($this->user));
 	  }else{
 	    $this->edit();
 	    $this->render('user/edit.php');
