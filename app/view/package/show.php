@@ -10,7 +10,7 @@
 <div class='right'><p><?php echo link_to('Download', $package->file_url($version->version) . '.tgz', array('class' => 'download')) ?></p></div>
 <br style='clear:both;' />
 </div>
-<?php if(!is_null($package->url) && !empty($package->url)) { ?>
+<?php if(!is_null($package->url) && !empty($package->url) || $package->url != 'NULL') { ?>
 	<p>Website: <a href='<?php echo $package->url ?>' target='_blank'><?php echo $package->url ?></a></p>
 <?php } ?>
 <br />
