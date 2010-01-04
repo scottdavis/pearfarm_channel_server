@@ -1,0 +1,13 @@
+<?php
+	require_once(__DIR__ . '/config.php');
+		class db_stories_reset implements PlowTask {
+			public function run($args) {
+				print(CommandLineColor::red("Stories have been reset\n"));
+			}
+			public function name() {
+				return "db::stories::reset";
+			}
+			public function dependencies() {
+				return array("db::reset", "db::stories::load");
+			}
+		}

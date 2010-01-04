@@ -1,0 +1,13 @@
+<?php
+	require_once(__DIR__ . '/config.php');
+		class DbDrop implements PlowTask {
+			public function run($args) {
+				Migration::drop_database(NimbleRecord::$database);
+			}
+			public function name() {
+				return "db::drop";
+			}
+			public function dependencies() {
+				return array();
+			}
+		}

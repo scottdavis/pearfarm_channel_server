@@ -1,0 +1,13 @@
+<?php
+	require_once(__DIR__ . '/config.php');
+		class db_reset implements PlowTask {
+			public function run($args) {
+				print(CommandLineColor::red("Database has been reset \n"));
+			}
+			public function name() {
+				return "db::reset";
+			}
+			public function dependencies() {
+				return array('db::drop', 'db::create', 'db::migrate');
+			}
+		}

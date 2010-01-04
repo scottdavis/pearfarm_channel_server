@@ -1,0 +1,13 @@
+<?php
+	require_once(__DIR__ . '/config.php');
+		class DbCreate implements PlowTask {
+			public function run($args) {
+				Migration::create_database(NimbleRecord::$database);
+			}
+			public function name() {
+				return "db::create";
+			}
+			public function dependencies() {
+				return array();
+			}
+		}

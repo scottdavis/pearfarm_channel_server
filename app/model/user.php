@@ -53,7 +53,7 @@ class User extends NimbleRecord {
 		UserMailer::deliver_new_user($this->email, $this);
 		$path = FileUtils::join(NIMBLE_ROOT, 'get', $this->username);
 		FileUtils::mkdir_p($path);
-		chmod($path, 2755);
+		chmod($path, 0755);
 	}
 
   public static function hash_password($password, $salt) {
