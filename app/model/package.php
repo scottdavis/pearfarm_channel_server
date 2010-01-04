@@ -102,7 +102,7 @@ class Package extends NimbleRecord {
     $sig = base64_decode($sig);
     foreach($keys as $key) {
       $key = openssl_pkey_get_public($key);
-			if($key === false) {continue;}
+			if($key === false) {var_dump('invalid key: ' . $key);continue;}
       switch(openssl_verify($file_hash, $sig, $key, OPENSSL_ALGO_SHA1)) {
         case 1:
           unset($file_hash);
