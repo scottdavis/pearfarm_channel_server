@@ -2,8 +2,7 @@
   <thead>
     <tr class='odd'>
       <th>Name</th>
-      <th>User</th>
-      <th>Description</th>
+      <th>Summary</th>
       <th>Php Version</th>
       <th>Last Updated</th>
     </tr>
@@ -16,14 +15,17 @@
 			}
       ?>
       <tr class="<?php echo cycle('even', 'odd') ?>">
-        <td><?php echo link_to(h($package->name), url_for("PackageController", 'show', $package->id)) ?></td>
         <td>
-            <img width='16px' src='<?php echo $package->user->gravatar_url() ?>' alt='avatar'/>
-            <?php echo $package->user->username ?>
+						<table>
+							<tr>
+								<td><img width='16px' src='<?php echo $package->user->gravatar_url() ?>' alt='avatar'/></td>
+            		<td><?php echo link_to(h($package->user->username . '/' .$package->name), url_for("PackageController", 'show', $package->user->username, $package->name)) ?></td>
+							</tr>
+						</table>
         </td>
-        <td><?php echo $version->description ?></td>
+        <td><span class='small'><?php echo $version->summary ?></span></td>
         <td><?php echo $version->min_php ?></td>
-        <td><?php echo $package->updated_at ?></td>
+        <td><span class='small'><?php echo distance_of_time_in_words(DateHelper::from_db($package->updated_at), time(), true) ?> ago</span></td>
       </tr>
     <?php } ?>
   </tbody>

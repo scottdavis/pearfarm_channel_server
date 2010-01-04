@@ -7,7 +7,7 @@ class PackageController extends \ApplicationController {
 
 	public function index() {
 		$this->set_default_side_bar();
-		$this->title = 'ALl Packages';
+		$this->title = 'All Packages';
 		Nimble::set_title($this->title);
 		$page = isset($_GET['page']) ? $_GET['page'] : NULL;
 		$this->packages = Package::paginate(array('order' => 'name DESC', 'per_page' => 20, 'page' => $page));
@@ -38,7 +38,8 @@ class PackageController extends \ApplicationController {
       $this->package = Package::find('first', array('conditions' => array('user_id' => $user->id, 'name' => $_GET['package_name'])));
 			$this->title = $this->package->name;
 			Nimble::Set_title($this->title);
-      $this->versions = $this->package->versions;
+      $this->versions = Version::find_all(array('limit' => '0,5', 'conditions' => array('package_id' => $this->package->id), 'order' => 'version DESC'));
+			$this->total_versions = $this->package->count('versions');
       $this->version =  $this->package->current_version();
       if($this->version !== false) {
         $this->data = unserialize($this->version->meta);

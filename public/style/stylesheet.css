@@ -260,7 +260,6 @@ select.fieldWithErrors{
 
 
 table#search_table {
-  text-align:center;
   width:100%;
 }
 
@@ -299,7 +298,7 @@ code {
 #how_to{
   width:50%;
   float:right;
-  text-align:center;
+  text-align:left;
 }
 
 #how_to code{
@@ -315,9 +314,11 @@ code {
 #doc_block {
   width:45%;
   float:left;
+  text-align:left;
+}
+#doc_block h2 {
   text-align:center;
 }
-
 #doc_block p {
   margin-bottom:1px;
 }
@@ -468,11 +469,83 @@ ul.package_list {
 
 ul.package_list li {
 	list-style-type:none;
-	text-align:center;
+	text-align:left;
 	border-bottom:1px solid #cff2d1;
+	padding:10px;
+}
+
+.badge {
+  height:16px;
+  width:16px;
+  padding:0 7px 0 5px;
+  margin-right:10px;
+}
+
+.beta {
+  background-image: url(/public/image/assets/beta_badge.png);
+}
+
+.alpha {
+  background-image: url(/public/image/assets/alpha_badge.png);
+}
+
+.stable {
+  background-image: url(/public/image/assets/stable_badge.png);
 }
 
 ul.package_list li a {
   
 }
 
+ul.package_info {
+  
+}
+
+ul.package_info ul{
+  margin-left:15px;
+}
+
+ul.package_info li {
+  list-style-type:none;
+}
+
+ul.package_info .title {
+  font-weight:bold;
+}
+
+ul.maintainer_info {
+  margin-left:15px;
+}
+
+ul.maintainer_info li {
+  list-style-type:none;
+}
+
+a.download {
+  padding-left:20px;
+  padding-top:0;
+  background-image:url(/public/image/assets/download.png);
+  background-repeat: no-repeat;
+}
+
+#summary {
+  font-size:25px;
+}
+
+.version_type {
+  margin-left:10px;
+  font-weight:bold;
+  font-size:24px;
+}
+
+ul.versions {
+  margin-left:15px;
+}
+
+ul.versions li {
+  list-style-type:none;
+}
+
+span.small {
+  font-size:12px;
+}

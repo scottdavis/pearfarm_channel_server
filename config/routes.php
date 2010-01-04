@@ -50,10 +50,6 @@ R('/signup')->controller('LoginController')->action('add')->on('GET');
 R('/signup')->controller('LoginController')->action('create')->on('POST');
 R('/verify/:key')->controller('LoginController')->action('verify')->on('GET');
 R('/login/checkuser')->controller('LoginController')->action('check_user')->on('POST');
-/** Package stuff */
-R('/:username/:package_name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
-R('/:username/:package_name')->controller('PackageController')->action('show')->on('GET');
-R('/packages')->controller('PackageController')->action('index')->on('GET');
 /** Search */
 R('/opensearch')->controller('SearchController')->action('opensearch')->on('GET');
 R('/search')->controller('SearchController')->action('search')->on('GET');
@@ -72,6 +68,10 @@ R('/help')->controller('HelpController')->action('index')->on('GET');
 R('/help/:name')->controller('HelpController')->action('show')->on('GET');
 R('/about')->controller('HelpController')->action('about')->on('GET');
 R('/stats')->controller('HelpController')->action('stats')->on('GET');
+/** Package stuff */
+R('/:username/:package_name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
+R('/:username/:package_name')->controller('PackageController')->action('show')->on('GET');
+R('/packages')->controller('PackageController')->action('index')->on('GET');
 /** profile route */
 R('/:name')->controller('LandingController')->action('user_index')->on('GET');
 

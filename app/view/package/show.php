@@ -1,17 +1,68 @@
-<h1><?php echo h($this->package->name) ?></h1>
-<p><?php echo link_to(h($this->package->user->username), url_for('LandingController', 'user_index', $this->package->user->username)) ?>
-<?php echo $this->render_partial('version/_version_info.php') ?>
-<h2>Versions</h2>
-
-<?php 
-$table = new SmartTable($versions, 4, '', array('id' => 'versions', 'cellspacing' => "0"));
-
-$table->callback = function($v) use ($version, $package) {
-  $url = url_for('VersionController', 'show', $package->user->username, $package->name, $v->version);
-	return TagHelper::content_tag('td', link_to($v->version, $url));
-};
-echo $table->build();
+<div id='package_title_bar'>
+<div class='left'>
+	<table>
+		<tr>
+			<td><img src='/public/image/assets/<?php echo $version->version_type->name ?>_badge_48.png'></td>
+			<td><span class='version_type'><?php echo ucwords($version->version_type->name) ?></span> - <?php echo $package->current_version()->version ?></td>
+		</tr>
+	</table>
+</div>
+<div class='right'><p><?php echo link_to('Download', $package->file_url($version->version) . '.tgz', array('class' => 'download')) ?></p></div>
+<br style='clear:both;' />
+</div>
+<?php if(!is_null($package->url) && !empty($package->url)) { ?>
+	<p>Website: <a href='<?php echo $package->url ?>' target='_blank'><?php echo $package->url ?></a></p>
+<?php } ?>
+<br />
+<h3>Install this package</h3>
+<code>
+	pear install <?php echo $package->user->pear_farm_url() ?>/<?php echo $package->name ?>-<?php echo $version->version ?>
+</code>
+<br />
+<br />
+<div id='summary'>
+	<?php echo $data['summary'] ?>
+</div>
+<br />
+<br />
+<div id='maintainers'>
+<h3>Maintainers:</h3>
+<?php foreach(array('lead', 'developer', 'contributor', 'helper') as $type) {
+if (!isset($data[$type])) {
+  continue;
+}
 ?>
+	<ul class='maintainer_info'>
+		<?php if (is_assoc($data[$type])) { ?>
+			<li><span class='title'><?php echo ucwords($type) ?>:</span> <?php echo h($data[$type]['name']) ?> - <?php echo h($data[$type]['user']) ?></li>
+		<?php
+} else {
+  foreach($data[$type] as $lead) {
+?>
+			<li><span class='title'><?php echo ucwords($type) ?>:</span> <?php echo h($lead['name']) ?></li>
+		<?php
+  }
+} ?>
+		
+	</ul>
+<?php } ?>
+</div>
+
+<h3>Versions</h3>
+<p>Showing <?php echo $versions->length ?> of <?php echo $total_versions ?></p>
+<ul class='versions'>
+<?php foreach($versions as $_version) { 
+  $url = url_for('VersionController', 'show', $package->user->username, $package->name, $_version->version);
+?>
+<li><?php echo link_to($_version->version, $url) ?></li>
+<?php } ?>
+</ul>
+
 <?php if($this->is_logged_in() && $this->user->id == $package->user_id) {?>
-<p><?php echo delete_link('Delete Package', url_for('PackageController', 'delete', $package->id), true, 'Are you sure? \n This will delete all versions of this package') ?> </p>
+<div>
+	<div class='right'>
+		<p><?php echo delete_link('Delete Package', url_for('PackageController', 'delete', $package->id), true, 'Are you sure? \n This will delete all versions of this package') ?> </p>
+	</div>
+</div>
+<br style='clear:both;'/>
 <?php } ?>

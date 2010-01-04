@@ -2,6 +2,7 @@
 /**
  * @package controller
  */
+require_once(NIMBLE_ROOT . '/lib/time_helper.php');
 class ApplicationController extends \Controller {
   
 	public function __construct() {
