@@ -1,5 +1,22 @@
-##Example Spec file
+###Creating a new spec
+	pearfarm init
+		
+###Default Options
+`->setName('PackageName')`  
+`->setChannel('joe.pearfarm.org)`  
+`->setSummary('Your short summary')`  
+`->setDescription('More detailed information about your package')`	
+`->setNotes('Release notes')`	
+`->setReleaseVersion('1.0.0')`	
+`->setReleaseStability('alpha')`	
+`->setApiVersion('0.1.0')`	
+`->setApiStability('alpha')`	
+`->setLicense(Pearfarm_PackageSpec::LICENSE_MIT)`	
+`->addMaintainer('lead', 'Alan Pinstein', 'apinstein', 'apinstein@mac.com')`	
 
+
+
+###dd
 	<?php
  
 	$spec = Pearfarm_PackageSpec::create(array(
