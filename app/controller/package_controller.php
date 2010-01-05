@@ -63,6 +63,21 @@ class PackageController extends \ApplicationController {
      $this->redirect_to('/'); 
     }
   }
+
+	public function edit_website() {
+		$this->layout = false;
+		$this->has_rendered = true;
+		$package = Package::find('first', array('conditions' => array('id' => $_GET['package_id'], 'user_id' => $this->user->id)));
+		if($_POST['editorId'] == 'website') {
+			$p = Package::update($package->id, array('url' => $_POST['value']));
+			if($p->saved) {
+				echo $p->url;
+			}else{
+				echo $package->url;
+			}
+		}
+
+	}
   
   
 }

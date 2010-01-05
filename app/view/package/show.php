@@ -10,8 +10,16 @@
 <div class='right'><p><?php echo link_to('Download', $package->file_url($version->version) . '.tgz', array('class' => 'download')) ?></p></div>
 <br style='clear:both;' />
 </div>
-<?php if(!is_null($package->url) && !empty($package->url) || $package->url != 'NULL') { ?>
-	<p>Website: <a href='<?php echo $package->url ?>' target='_blank'><?php echo $package->url ?></a></p>
+
+<?php if($this->is_logged_in() && $this->user->id == $package->user_id) {?>
+	<p>Website: <span id='website'><?php echo $package->url ?></span></p>
+	<script type='text/javascript'>
+		new Ajax.InPlaceEditor($('website'), '/package/website/<?php echo $package->id ?>/edit');
+	</script>
+<?php }else{ ?>
+	<?php if(!is_null($package->url) && !empty($package->url) || $package->url != 'NULL') { ?>
+		<p>Website: <a href='<?php echo $package->url ?>' target='_blank'><?php echo $package->url ?></a></p>
+	<?php } ?>
 <?php } ?>
 <br />
 <h3>Install this package</h3>
