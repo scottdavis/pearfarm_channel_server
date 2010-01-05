@@ -12,7 +12,7 @@
 </div>
 
 <?php if($this->is_logged_in() && $this->user->id == $package->user_id) {?>
-	<p>Website: <span id='website'><?php echo $package->url ?></span></p>
+	<p>Website: <span id='website'><?php echo empty($package->url) ? 'click to edit' : $package->url ?></span></p>
 	<script type='text/javascript'>
 		new Ajax.InPlaceEditor($('website'), '/package/website/<?php echo $package->id ?>/edit');
 	</script>
