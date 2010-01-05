@@ -1,0 +1,47 @@
+<?php
+	require_once(__DIR__ . '/config.php');
+		class backup_files_task implements PlowTask {
+			public function run($args) {
+			  $backuplocation = getenv('HOME') . '/backups/pearfarm/';
+				$server = $args[2];
+				$passphrase = isset($args[3]) ? $args[3] : '';
+				switch($server) {
+					case 'live':
+						$server_name = 'pearfarm.org';
+						$path = '/var/www/pearfarm_channel_server/get';
+					break;
+					case 'dev':
+						$server_name = 'dev.pearfarm.org';
+						$path = '/var/www/pearfarm_dev/get';
+					break;
+				}
+				
+				$conn = ssh2_connect($server_name);
+				$home = getenv('HOME');
+				if (ssh2_auth_pubkey_file($conn, 'root',
+				                          $home . '/.ssh/id_rsa.pub',
+				                          $home . '/.ssh/id_rsa', $passphrase)) {
+				  echo "Public Key Authentication Successful\n";
+				} else {
+				  die('Public Key Authentication Failed' . "\n");
+				}
+				$date = date("Y-m-d-G:i");
+        $content_backup_file = "/tmp/content-" . $date .'.tgz';
+        $command = "cd $path/../ && tar czf {$content_backup_file} get";
+        print("Running: $command \n");
+				ssh2_exec($conn, $command);
+        FileUtils::mkdir_p($backuplocation);
+        print("Downloading file: $content_backup_file\n");
+        ssh2_scp_recv($conn , $content_backup_file , $backuplocation . "/$server-$date.tgz");
+        $command = "rm {$content_backup_file}\n";
+        print("Running: $command \n");
+				ssh2_exec($conn, $command);
+
+			}
+			public function name() {
+				return "backup::files";
+			}
+			public function dependencies() {
+				return array();
+			}
+		}

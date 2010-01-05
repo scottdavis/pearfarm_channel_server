@@ -1,0 +1,39 @@
+<?php
+	require_once(__DIR__ . '/config.php');
+		class push_task implements PlowTask {
+			public function run($args) {
+				$server = $args[2];
+				$passphrase = isset($args[3]) ? $args[3] : '';
+				switch($server) {
+					case 'live':
+						$server_name = 'pearfarm.org';
+						$path = '/var/www/pearfarm_channel_server';
+					break;
+					case 'dev':
+						$server_name = 'dev.pearfarm.org';
+						$path = '/var/www/pearfarm_dev';
+					break;
+				}
+				
+				$conn = ssh2_connect($server_name);
+				$home = getenv('HOME');
+				if (ssh2_auth_pubkey_file($conn, 'root',
+				                          $home . '/.ssh/id_rsa.pub',
+				                          $home . '/.ssh/id_rsa', $passphrase)) {
+				  echo "Public Key Authentication Successful\n";
+				} else {
+				  die('Public Key Authentication Failed' . "\n");
+				}
+				
+				$stream = ssh2_exec($conn, "cd $path && git pull");
+				stream_set_blocking($stream, true);
+				print(stream_get_contents($stream));
+
+			}
+			public function name() {
+				return "deploy::make_live";
+			}
+			public function dependencies() {
+				return array();
+			}
+		}
