@@ -18,19 +18,31 @@ class RestController extends \ApplicationController {
   public function category_packages() {
     $this->category = Category::find_by_name($_GET['name']);
     $this->packages = Package::find('all', array('conditions' => array('category_id' => $this->category->id, 'user_id' => $this->user->id)));
+		$date = DateHelper::from_db($this->packages->first()->updated_at);
+		$date = date(DATE_RFC822, $date);
+		$this->header("Last-Modified: $date");
   }
   public function packagesinfo() {
     $this->category = Category::find_by_name($_GET['name']);
     $this->packages = Package::find('all', array('conditions' => array('category_id' => $this->category->id, 'user_id' => $this->user->id)));
+		$date = DateHelper::from_db($this->packages->first()->updated_at);
+		$date = date(DATE_RFC822, $date);
+		$this->header("Last-Modified: $date");
   }
   public function allmaintainers() {
     $this->packages = $this->user->packages;
+		$date = DateHelper::from_db($this->packages->first()->updated_at);
+		$date = date(DATE_RFC822, $date);
+		$this->header("Last-Modified: $date");
   }
   public function maintainer_info() {
     $this->m = Maintainer::find_by_name($_GET['name']);
   }
   public function packages() {
     $this->packages = $this->user->packages;
+		$date = DateHelper::from_db($this->packages->first()->updated_at);
+		$date = date(DATE_RFC822, $date);
+		$this->header("Last-Modified: $date");
   }
   public function package_info() {
     $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
@@ -38,6 +50,9 @@ class RestController extends \ApplicationController {
   }
   public function package_maintainers() {
     $this->package = Package::find_by_name($_GET['name']);
+		$date = DateHelper::from_db($this->package->updated_at);
+		$date = date(DATE_RFC822, $date);
+		$this->header("Last-Modified: $date");
     $data = unserialize(Version::find('first', array('conditions' => array('package_id' => $this->package->id)))->meta);
     $this->maintainers = array();
     foreach(array('lead', 'developer', 'contributor', 'helper') as $role) {
@@ -60,14 +75,20 @@ class RestController extends \ApplicationController {
   public function all_releases() {
     $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
     $this->versions = $this->package->versions;
+		$date = DateHelper::from_db($this->package->updated_at);
+		$date = date(DATE_RFC822, $date);
+		$this->header("Last-Modified: $date");
   }
   public function all_releases2() {
     $this->all_releases();
   }
   public function latest_release() {
-    $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
     try {
-      $version = $package->current_version();
+			$this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
+      $version = $this->package->current_version();
+			$date = DateHelper::from_db($this->package->updated_at);
+			$date = date(DATE_RFC822, $date);
+			$this->header("Last-Modified: $date");
       echo $version->version;
       $this->has_rendered = true;
     }
@@ -120,6 +141,9 @@ class RestController extends \ApplicationController {
     try {
       $package = Package::find('first', array('name' => array($_GET['name'], 'user_id' => $this->user->id)));
       $version = Version::find('first', array('conditions' => array('version_type_id' => $type->id, 'package_id' => $package->id), 'order' => 'version DESC'));
+			$date = DateHelper::from_db($package->updated_at);
+			$date = date(DATE_RFC822, $date);
+			$this->header("Last-Modified: $date");
       echo $version->version;
     }
     catch(NimbleRecordNotFound $e) {
@@ -129,6 +153,9 @@ class RestController extends \ApplicationController {
   }
   private function load_release() {
     $this->package = Package::find('first', array('conditions' => array('name' => $_GET['name'], 'user_id' => $this->user->id)));
+		$date = DateHelper::from_db($this->package->updated_at);
+		$date = date(DATE_RFC822, $date);
+		$this->header("Last-Modified: $date");
     $this->version = Version::find('first', array('conditions' => array('version' => $_GET['version'], 'package_id' => $this->package->id)));
     $this->data = unserialize($this->version->meta);
   }
