@@ -1,13 +1,13 @@
 <?php
-	require_once(__DIR__ . '/config.php');
-		class backup_all implements PlowTask {
-			public function run($args) {
-				print(CommandLineColor::red("Data has been backed up!\n"));
-			}
-			public function name() {
-				return "backup::all";
-			}
-			public function dependencies() {
-				return array("backup::db", "backup::files");
-			}
-		}
+require_once (__DIR__ . '/config.php');
+class backup_all implements PlowTask {
+  public function run($args) {
+    print (CommandLineColor::red("Data has been backed up!\n"));
+  }
+  public function name() {
+    return "backup::all";
+  }
+  public function dependencies() {
+    return array("backup::db", "backup::files");
+  }
+}
