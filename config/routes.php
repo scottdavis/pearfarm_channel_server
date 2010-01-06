@@ -69,7 +69,7 @@ R('/help/:name')->controller('HelpController')->action('show')->on('GET');
 R('/about')->controller('HelpController')->action('about')->on('GET');
 R('/stats')->controller('HelpController')->action('stats')->on('GET');
 /** Package stuff */
-R('/:username/:package_name/(?P<version>[0-9]\.[0-9]\.[0-9])')->controller('VersionController')->action('show')->on('GET');
+R('/:username/:package_name/(?P<version>[0-9]+\.[0-9]+\.[0-9]+)')->controller('VersionController')->action('show')->on('GET');
 R('/:username/:package_name')->controller('PackageController')->action('show')->on('GET');
 R('/packages')->controller('PackageController')->action('index')->on('GET');
 R('/package/website/:package_id/edit')->controller('PackageController')->action('edit_website')->on('POST');
