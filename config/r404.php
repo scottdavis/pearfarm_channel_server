@@ -6,7 +6,7 @@
 class r404 {
 	
 	public static function show_error_page() {
-		return file_get_contents(__DIR__ . '/../view/layout/error.html');
+		return file_get_contents(__DIR__ . '/../app/view/layout/error.html');
 	}
 	
 	
