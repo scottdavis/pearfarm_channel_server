@@ -18,7 +18,7 @@ class Version extends NimbleRecord {
      * $this->validates_presence_of('foo')
      */
     $this->validates_presence_of('version');
-		$this->validates_format_of('version', array('with' => '/^[0-9]+\.[0-9]+\.[0-9]$/'));
+		$this->validates_format_of('version', array('with' => '/^[0-9A-za-z\.]+$/'));
   }
   public function package_data() {
     return unserialize($this->meta);
