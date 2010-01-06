@@ -32,11 +32,11 @@ R('/rest/r/:name/stable')->controller('RestController')->action('stable_release'
 R('/rest/r/:name/beta')->controller('RestController')->action('beta_release')->on('GET');
 R('/rest/r/:name/alpha')->controller('RestController')->action('alpha_release')->on('GET');
 R('/rest/r/:name/devel')->controller('RestController')->action('devel_release')->on('GET');
-R('/rest/r/:name/(?P<version>[0-9A-za-z\.]+)')->controller('RestController')->action('release_version')->on('GET');
-R('/rest/r/:name/v2\.(?P<version>[0-9A-za-z\.]+)')->controller('RestController')->action('release_version2')->on('GET');
-R('/rest/r/:name/package\.(?P<version>[0-9A-za-z\.]+)')->controller('RestController')->action('release_package_info')->on('GET');
-R('/rest/r/:name/deps\.(?P<version>[0-9A-za-z\.]+)')->controller('RestController')->action('release_dependencies')->on('GET');
-R('/rest/r/:name\.(?P<version>[0-9A-za-z\.]+)')->controller('RestController')->action('package_xml')->on('GET');
+R('/rest/r/:name/(?P<version>[0-9]+\.[0-9]+\.[0-9]+)')->controller('RestController')->action('release_version')->on('GET');
+R('/rest/r/:name/v2\.(?P<version>[0-9]+\.[0-9]+\.[0-9]+)')->controller('RestController')->action('release_version2')->on('GET');
+R('/rest/r/:name/package\.(?P<version>[0-9]+\.[0-9]+\.[0-9]+)')->controller('RestController')->action('release_package_info')->on('GET');
+R('/rest/r/:name/deps\.(?P<version>[0-9]+\.[0-9]+\.[0-9]+)')->controller('RestController')->action('release_dependencies')->on('GET');
+R('/rest/r/:name\.(?P<version>[0-9]+\.[0-9]+\.[0-9]+)')->controller('RestController')->action('package_xml')->on('GET');
 /** END REST URLS */
 /** User CRUD */
 R('/user/edit')->controller('UserController')->action('edit')->on('GET');
@@ -69,7 +69,7 @@ R('/help/:name')->controller('HelpController')->action('show')->on('GET');
 R('/about')->controller('HelpController')->action('about')->on('GET');
 R('/stats')->controller('HelpController')->action('stats')->on('GET');
 /** Package stuff */
-R('/:username/:package_name/(?P<version>[0-9A-za-z\.]+)')->controller('VersionController')->action('show')->on('GET');
+R('/:username/:package_name/(?P<version>[0-9]+\.[0-9]+\.[0-9]+)')->controller('VersionController')->action('show')->on('GET');
 R('/:username/:package_name')->controller('PackageController')->action('show')->on('GET');
 R('/packages')->controller('PackageController')->action('index')->on('GET');
 R('/package/website/:package_id/edit')->controller('PackageController')->action('edit_website')->on('POST');
