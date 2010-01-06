@@ -83,6 +83,8 @@
 					<li><?php echo link_to('Status', "http://twitter.com/pearfarm", array('target' => '_blank')) ?></li>
 					<li><?php echo link_to('Help', url_for('HelpController', 'index')) ?></li>
 				</ul>
+				<br />
+				<?php echo link_to('Pearfarm.org', 'http://pearfarm.org') ?> is not associated with the <?php echo link_to('PEAR', 'http://pear.php.net') ?> project
 		</div>
 		<?php if(NIMBLE_ENV == 'staging' || NIMBLE_ENV == 'production') { ?>
 	  	 <script type="text/javascript">
