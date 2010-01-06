@@ -11,7 +11,6 @@ class r404 {
 	
 	
   public static function GET() {
-	var_dump(static::show_error_page());
 		echo static::show_error_page();
   }
   public static function PUT() {
