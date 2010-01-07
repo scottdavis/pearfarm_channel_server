@@ -32,9 +32,9 @@ R('/rest/r/:name/stable')->controller('RestController')->action('stable_release'
 R('/rest/r/:name/beta')->controller('RestController')->action('beta_release')->on('GET');
 R('/rest/r/:name/alpha')->controller('RestController')->action('alpha_release')->on('GET');
 R('/rest/r/:name/devel')->controller('RestController')->action('devel_release')->on('GET');
+R('/rest/r/:name/package\.(?P<version>[0-9A-Za-z\.]+)')->controller('RestController')->action('release_package_info')->on('GET');
 R('/rest/r/:name/(?P<version>[0-9A-Za-z\.]+)')->controller('RestController')->action('release_version')->on('GET');
 R('/rest/r/:name/v2\.(?P<version>[0-9A-Za-z\.]+)')->controller('RestController')->action('release_version2')->on('GET');
-R('/rest/r/:name/package\.(?P<version>[0-9A-Za-z\.]+)')->controller('RestController')->action('release_package_info')->on('GET');
 R('/rest/r/:name/deps\.(?P<version>[0-9A-Za-z\.]+)')->controller('RestController')->action('release_dependencies')->on('GET');
 R('/rest/r/:name\.(?P<version>[0-9A-Za-z\.]+)')->controller('RestController')->action('package_xml')->on('GET');
 /** END REST URLS */
