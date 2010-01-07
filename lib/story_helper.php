@@ -29,7 +29,7 @@ class StoryHelper {
 		$user = User::find_by_username('bob');
 		$file = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-0.0.1.tgz');
 		$pp = Package::from_upload(array('file' => $file, 'user' => $user));
-		$p = Package::update($pp->id, array('url' => 'http://jetviper21.com'));
+		//$p = Package::update($pp->id, array('url' => 'http://jetviper21.com'));
   }
 
 

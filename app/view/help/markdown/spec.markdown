@@ -1,46 +1,79 @@
-###Creating a new spec
-	pearfarm init
-		
-###Default Options
-`->setName('PackageName')`  
-`->setChannel('joe.pearfarm.org)`  
-`->setSummary('Your short summary')`  
-`->setDescription('More detailed information about your package')`	
-`->setNotes('Release notes')`	
-`->setReleaseVersion('1.0.0')`	
-`->setReleaseStability('alpha')`	
-`->setApiVersion('0.1.0')`	
-`->setApiStability('alpha')`	
-`->setLicense(Pearfarm_PackageSpec::LICENSE_MIT)`	
-`->addMaintainer('lead', 'Alan Pinstein', 'apinstein', 'apinstein@mac.com')`	
+##About
+
+The pearfarm spce file is the interface for making a simple [package.xml](http://pear.php.net/manual/en/guide.developers.package2.php)
 
 
+See the [Php Doc](http://fgrehm.github.com/pearfarm/pearfarm/Pearfarm_PackageSpec.html) for the spec class for more advanced information
 
-###dd
-	<?php
- 
-	$spec = Pearfarm_PackageSpec::create(array(
-					Pearfarm_PackageSpec::OPT_BASEDIR => dirname(__FILE__),
-					Pearfarm_PackageSpec::OPT_DEBUG => true )
-					)
-    ->setName('pearfarm')
-    ->setChannel('apinstein.dev.pearfarm.org')
-    ->setSummary('Build and distribute PEAR packages easily.')
-    ->setDescription('Pearfarm makes it easy to create PEAR packages.')
-    ->setNotes('See http://github.com/fgrehm/pearfarm for changelog, docs, etc.')
-    ->setReleaseVersion('0.1.2')
-    ->setReleaseStability('alpha')
-    ->setApiVersion('0.1.0')
-    ->setApiStability('alpha')
-    ->setLicense(Pearfarm_PackageSpec::LICENSE_MIT)
-    ->addMaintainer('lead', 'Alan Pinstein', 'apinstein', 'apinstein@mac.com')
-    ->addMaintainer('lead', 'Fabio Rehm', 'fgrehm', 'fgrehm@gmail.com')
-    ->addMaintainer('lead', 'Jonathan Leibiusky', 'xetorthio', 'ionathan@gmail.com')
-    ->addMaintainer('lead', 'Scott Davis', 'jetviper21', 'jetviper21@gmail.com ')
-    ->addFilesRegex(array('/src/', '/pearfarm$/'))
-    ->addFilesRegex('/test/', 'test')
-    ->addFilesRegex('/^README.markdown/', 'doc')
-    ->addExcludeFilesRegex(array('/\.git/'))
-    ->addExcludeFiles(array('.gitignore', 'pearfarm.spec'))
-    ->addExecutable('pearfarm')
-    ;
+###Default Options (required)
+<br />
+
+	->setName('PackageName')
+	->setChannel('joe.pearfarm.org)
+	->setSummary('Your short summary')
+	->setDescription('More detailed information about your package')
+	->setNotes('Release notes')
+<br />	
+###Release Options (required) 
+<br />
+
+	->setReleaseVersion('1.0.0')
+	->setReleaseStability('alpha')
+	
+<br />	
+###Api Options (required)  
+<br />
+
+	->setApiVersion('0.1.0')
+	->setApiStability('alpha')
+<br />	
+###License Options (required) 
+<br /> 
+MIT is currently the only licenese defined as a constant
+if you wish to add another type of license the format is as follows:
+<br /><br />
+<pre style='font-size:12px'>array('name' => 'MIT', 'uri' => 'http://www.opensource.org/licenses/mit-license.html')</pre></span>
+<br />
+Other wise just pass the constant
+<br /><br />
+
+	->setLicense(Pearfarm_PackageSpec::LICENSE_MIT)
+	
+<br />
+###Maintainer options (required)  
+Maintainers have 4 types
+
+1. lead
+2. developer
+3. contributor
+4. helper
+
+Syntax:
+
+	->addMaintainer(<type>, <name>, <username>, <email>)
+
+<br />
+###Repository options
+Add all files from a git project
+
+	->addGitFiles() 
+Add all files from an svn project
+	
+	->addSvnFiles()
+
+###Add a bunch of files from file system
+
+Roles are:
+
+1. php
+2. data
+3. script
+4. test
+
+Simple:
+
+	->addFilesSimple($files, $role= self::ROLE_PHP, $options = array())
+	
+Regex:
+
+	->addFilesRegex($regexs, $role = self::ROLE_PHP, $options = array())

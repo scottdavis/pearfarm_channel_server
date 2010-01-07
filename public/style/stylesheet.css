@@ -443,9 +443,6 @@ ul.pagination li a {
 }
 
 #markdown pre {
-	 -moz-background-clip:border;
-	  -moz-background-inline-policy:continuous;
-	  -moz-background-origin:padding;
 	  -moz-border-radius-bottomleft:5px;
 	  -moz-border-radius-bottomright:5px;
 	  -moz-border-radius-topleft:5px;
@@ -459,9 +456,26 @@ ul.pagination li a {
 	  font-family:Monaco,Consolas,"Courier New",monospace;
 	  font-size:0.9em;
 	  padding:3px;
-	}
+	  width:635px;
+	  overflow:hidden;
 }
 
+
+#markdown ol{
+  margin-left:30px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+#markdown ul{
+  margin-left:30px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+#markdown p {
+  padding:5px;
+}
 
 ul.package_list {
 
