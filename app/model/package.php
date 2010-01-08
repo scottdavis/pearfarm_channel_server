@@ -102,7 +102,7 @@ class Package extends NimbleRecord {
     $sig = base64_decode($sig);
     foreach($keys as $key) {
       $key = openssl_pkey_get_public($key);
-			if($key === false) {continue;}
+			if(!is_resource($key)) {continue;}
       switch(openssl_verify($file_hash, $sig, $key, OPENSSL_ALGO_SHA1)) {
         case 1:
           unset($file_hash);
@@ -115,10 +115,19 @@ class Package extends NimbleRecord {
           break;
         case -1:
 					unset($file_hash);
-		      openssl_pkey_free($key);
           continue;
           break;
       }
+    }
+    if(!defined('NIMBLE_IS_TESTING')) {
+      ob_start();
+      echo "############## upload ############\n";
+      var_dump($keys);
+      while($err = openssl_error_string()) {
+        echo $err . "\n";
+      }
+      echo "############## end upload ############\n";
+      error_log(ob_get_clean());
     }
     unset($file_hash);
     return false;

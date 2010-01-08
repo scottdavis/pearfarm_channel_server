@@ -12,10 +12,10 @@ class PackageVerifyTest extends NimbleUnitTestCase {
     unlink($file);
   }
   
-  public static function calculatePackageSignature($file) {
-      $keyfile = 'file://' . getenv('HOME') . '/.ssh/id_rsa';
+  public static function calculatePackageSignature($file, $key='') {
+      $keyfile = empty($key) ? 'file://' . getenv('HOME') . '/.ssh/id_rsa' : $key;
       $key = openssl_pkey_get_private($keyfile);
-      if($key === false){ throw new Exception("Keyfile at {$keyfile} didn't work: " . openssl_error_string());}
+      if($key === false){ throw new Exception("Keyfile at didn't work: \n{$keyfile}\n\n" . openssl_error_string());}
       $signature = NULL;
       $ok = openssl_sign(sha1_file($file, true), $signature , $key, OPENSSL_ALGO_SHA1);
       $signatureBase64 = base64_encode($signature);

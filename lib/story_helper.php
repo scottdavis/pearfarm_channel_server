@@ -50,5 +50,6 @@ class StoryHelper {
     Pki::create(array('key' => $key, 'name' => 'my Key', 'user_id' => $user->id));
   }
   
+  
 }
 ?>

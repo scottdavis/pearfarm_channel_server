@@ -1,6 +1,9 @@
 <?php
 require_once ('nimblize/nimble_test/lib/phpunit_testcase.php');
 require_once (NIMBLE_ROOT . '/lib/package_extractor.php');
+require_once (NIMBLE_ROOT . '/lib/story_helper.php');
+require_once(__DIR__ . '/PackageVerifyTest.php');
+
 class FileUploadTest extends NimbleUnitTestCase {
   public function testUploadFail() {
     $localfile = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'nimblize-0.0.1.tgz');
@@ -32,6 +35,7 @@ class FileUploadTest extends NimbleUnitTestCase {
 			$this->assertEquals("Invalid package signature", $e->getMessage());
 		}
   }
+
 
 }
 ?>
