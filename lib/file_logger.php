@@ -1,4 +1,4 @@
-#!/usr/bin/env php
+#!/usr/local/bin/php
 <?php
 define("CLI_RUNNER", true);
 $_SERVER['WEB_ENVIRONMENT'] = 'production';
