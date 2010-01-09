@@ -46,7 +46,7 @@
 						</form>
 						<div style='text-align:right;margin-top:5px;margin-right:10px;'>
 						<a href='http://www.pledgie.com/campaigns/7658'>
-							<img alt='Click here to lend your support to: Hosting & Bandwidth and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/7658.png?skin_name=chrome' border='0' /></a>
+							<img alt='Click here to lend your support to: Hosting &amp; Bandwidth and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/7658.png?skin_name=chrome' border='0' /></a>
 						</div>
 					</div>
 				</div>
