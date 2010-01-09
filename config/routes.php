@@ -42,6 +42,7 @@ R('/rest/r/:name/(?P<version>[0-9A-Za-z\.]+)')->controller('RestController')->ac
 R('/user/edit')->controller('UserController')->action('edit')->on('GET');
 R('/user/update')->controller('UserController')->action('update')->on('PUT');
 R('/user/delete')->controller('UserController')->action('delete')->on('DELETE');
+R('/user/:id')->controller('UserController')->action('show')->on('GET');
 /** login routes */
 R('/login')->controller('LoginController')->action('index')->on('GET');
 R('/logout')->controller('LoginController')->action('logout')->on('GET');

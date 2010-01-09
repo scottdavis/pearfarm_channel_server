@@ -10,11 +10,19 @@ class PackageController extends \ApplicationController {
 		$this->title = 'All Packages';
 		Nimble::set_title($this->title);
 		$page = isset($_GET['page']) ? $_GET['page'] : NULL;
-		$this->packages = Package::paginate(array('order' => 'name DESC', 'per_page' => 20, 'page' => $page));
+		
 		switch($this->format) {
 			case 'xml':
+ 				$this->packages = Package::find_all();
 			  $this->header('Content-Type: text/xml', 200);
-				echo $this->packages->to_xml(array('include' => array('versions')));
+				echo $this->packages->to_xml();
+				$this->layout = false;
+				$this->has_rendered = true;
+			break;
+			case 'json':
+			 	$this->packages = Package::find_all();
+				$this->header('Content-type: application/json', 200);
+				echo $this->packages->to_json();
 				$this->layout = false;
 				$this->has_rendered = true;
 			break;
@@ -24,30 +32,55 @@ class PackageController extends \ApplicationController {
 			case 'rss':
 			
 			break;
+			default:
+					$this->packages = Package::paginate(array('order' => 'name DESC', 'per_page' => 20, 'page' => $page));
+			break;
 		}
 		
 	}
 
   public function show() {
-		if($this->is_logged_in()) {
-			$this->login_user();
-		}
-    try{
-			$this->set_default_side_bar();
-			$user = User::find_by_username($_GET['username']);
-      $this->package = Package::find('first', array('conditions' => array('user_id' => $user->id, 'name' => $_GET['package_name'])));
-			$this->title = $this->package->name;
-			Nimble::Set_title($this->title);
-      $this->versions = Version::find_all(array('limit' => '0,5', 'conditions' => array('package_id' => $this->package->id), 'order' => 'version DESC'));
-			$this->total_versions = $this->package->count('versions');
-      $this->version =  $this->package->current_version();
-      if($this->version !== false) {
-        $this->data = unserialize($this->version->meta);
-      }
-    }catch(NimbleRecordNotFound $e) {
-      Nimble::flash('notice', 'The package you were looking for does not exsist');
-      $this->redirect_to('/');
-    }
+	$user = User::find_by_username($_GET['username']);
+	switch($this->format) {
+		case 'xml':
+			$this->header('Content-Type: text/xml', 200);
+			$this->package = Package::find('first', array('conditions' => array('user_id' => $user->id, 'name' => $_GET['package_name'])));
+			echo $this->package->to_xml();
+			$this->layout = false;
+			$this->has_rendered = true;
+		break;
+		case 'json':
+			$this->header('Content-type: application/json', 200);
+			$this->package = Package::find('first', array('conditions' => array('user_id' => $user->id, 'name' => $_GET['package_name'])));
+			echo $this->package->to_json();
+			$this->layout = false;
+			$this->has_rendered = true;
+		break;
+		default:
+			if($this->is_logged_in()) {
+				$this->login_user();
+			}
+	    try{
+				$this->set_default_side_bar();
+	      $this->package = Package::find('first', array('conditions' => array('user_id' => $user->id, 'name' => $_GET['package_name'])));
+				$this->title = $this->package->name;
+				Nimble::Set_title($this->title);
+	      $this->versions = Version::find_all(array('limit' => '0,5', 'conditions' => array('package_id' => $this->package->id), 'order' => 'version DESC'));
+				$this->total_versions = $this->package->count('versions');
+	      $this->version =  $this->package->current_version();
+	      if($this->version !== false) {
+	        $this->data = unserialize($this->version->meta);
+	      }
+	    }catch(NimbleRecordNotFound $e) {
+	      Nimble::flash('notice', 'The package you were looking for does not exsist');
+	      $this->redirect_to('/');
+	    }
+		break;
+	}
+	
+	
+	
+		
   }
   
   public function delete() {

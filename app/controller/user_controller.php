@@ -5,9 +5,33 @@
 		*/
 class UserController extends \ApplicationController {
    
-  public function before_filter() {
+  public function before_filter_except_show() {
     $this->login_user();
   }
+
+	public function show() {
+		
+		$only = array('username');
+		$user = User::find($_GET['id']);
+		switch($this->format) {
+			case 'json':
+				$this->header('Content-type: application/json', 200);
+				$this->layout = false;
+				$this->has_rendered = true;
+				echo $user->to_json();
+			break;
+			case 'xml':
+			 	$this->header('Content-Type: text/xml', 200);
+				echo $user->to_xml();
+				$this->layout = false;
+				$this->has_rendered = true;
+			break;
+			default:
+				$this->redirect_to(url_for('LandingController', 'user_index', $user->username));
+			break;
+		}
+		
+	}
    
   public function edit() {
 		$this->set_default_side_bar();

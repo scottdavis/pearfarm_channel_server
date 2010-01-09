@@ -81,6 +81,7 @@
 					<li><?php echo link_to('Stats', url_for('HelpController', 'stats')) ?></li>
 					<li><?php echo link_to('Code', "http://github.com/fgrehm/pearfarm", array('target' => '_blank')) ?></li>
 					<li><?php echo link_to('Status', "http://twitter.com/pearfarm", array('target' => '_blank')) ?></li>
+					<li><?php echo link_to('Community', "http://groups.google.com/group/pear-farm", array('target' => '_blank'))?></li>
 					<li><?php echo link_to('Help', url_for('HelpController', 'index')) ?></li>
 				</ul>
 				<br />

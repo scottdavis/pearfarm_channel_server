@@ -105,16 +105,12 @@ class Package extends NimbleRecord {
 			if(!is_resource($key)) {continue;}
       switch(openssl_verify($file_hash, $sig, $key, OPENSSL_ALGO_SHA1)) {
         case 1:
-          unset($file_hash);
-          openssl_pkey_free($key);
           return true;
         break;
         case 0:
-	      	unset($file_hash);
           continue;
           break;
         case -1:
-					unset($file_hash);
           continue;
           break;
       }
