@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 define("CLI_RUNNER", true);
-
+$_SERVER['WEB_ENVIRONMENT'] = 'production';
 require_once(__DIR__ . '/../config/boot.php');
 $logFile = __DIR__ . '/test.log';
 $fp      = fopen($logFile,"a+");
