@@ -10,7 +10,7 @@
 <div class='right'><p><?php echo link_to('Download', $package->file_url($version->version) . '.tgz', array('class' => 'download')) ?></p></div>
 <br style='clear:both;' />
 </div>
-
+<p>Downloaded: <?php echo $package->num_downloads ?> times.</p> 
 <?php if($this->is_logged_in() && $this->user->id == $package->user_id) {?>
 	<p>Website: <span id='website'><?php echo empty($package->url) ? 'click to edit' : $package->url ?></span></p>
 	<script type='text/javascript'>
