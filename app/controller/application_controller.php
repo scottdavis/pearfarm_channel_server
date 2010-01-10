@@ -45,7 +45,8 @@ class ApplicationController extends \Controller {
 
 
 	public function set_default_side_bar() {
-		$this->latest = Package::find('all', array('limit' => '0,5', 'order' => 'created_at DESC'));
+		$vs = Version::find('all', array('select' => 'distinct(package_id)', 'limit' => '0,5', 'order' => 'created_at DESC'));
+		$this->latest = collect(function($v){return $v->package;}, $vs);
 		$this->sidepackage = $this->latest;
 		$this->sidebar[0]['title'] = "New Packages";
 		$this->sidebar[0]['content'] = $this->render_partial('layout/_package_list.php');
