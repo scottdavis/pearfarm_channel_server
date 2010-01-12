@@ -571,3 +571,7 @@ ul#keys {
 ul#keys li {
     list-style-type:none;
 }
+
+#rater_rater_bg {
+  background-color:#eeeeee;
+}

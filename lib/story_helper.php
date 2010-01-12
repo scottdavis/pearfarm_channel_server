@@ -28,26 +28,29 @@ class StoryHelper {
   public static function create_package() {
 		$user = User::find_by_username('bob');
 		$file = FileUtils::join(NIMBLE_ROOT, 'test', 'data', 'bobs_other_package-0.0.1.tgz');
-		$pp = Package::from_upload(array('file' => $file, 'user' => $user));
-		//$p = Package::update($pp->id, array('url' => 'http://jetviper21.com'));
+		$package = Package::from_upload(array('file' => $file, 'user' => $user));
+		foreach(User::_find('all') as $user) {
+			$raiting = '0.' . $user->id;
+			PackageRating::_create(array('user_id' => $user->id, 'package_id' => $package->id, 'rating' => (float) $raiting));
+		}
   }
 
 
   public static function create_categories() {
-    Category::create(array('name' => 'Default', 'description' => 'A Default Category'));
+    Category::_create(array('name' => 'Default', 'description' => 'A Default Category'));
   }
   
 
   public static function create_version_types() {
     foreach(array('stable', 'beta', 'alpha', 'devel') as $version) {
-      VersionType::create(array('name' => $version));
+      VersionType::_create(array('name' => $version));
     }
   }
   
   public static function create_pkis() {
     $key = file_get_contents(getenv('HOME') . '/.ssh/id_openssl.pub');
 		$user = User::find_by_username('bob');
-    Pki::create(array('key' => $key, 'name' => 'my Key', 'user_id' => $user->id));
+    Pki::_create(array('key' => $key, 'name' => 'my Key', 'user_id' => $user->id));
   }
   
   

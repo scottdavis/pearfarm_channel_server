@@ -1,3 +1,4 @@
+<?php echo javascript_include_tag('rater.js') ?>
 <div id='package_title_bar'>
 <div class='left'>
 	<table>
@@ -7,7 +8,13 @@
 		</tr>
 	</table>
 </div>
-<div class='right'><p><?php echo link_to('Download', $package->file_url($version->version) . '.tgz', array('class' => 'download')) ?></p></div>
+<div class='right'>
+	<p><?php echo link_to('Download', $package->file_url($version->version) . '.tgz', array('class' => 'download')) ?></p>
+	<p>
+		<div id='rater'></div>
+		<script type='text/javascript'>new Rater($('rater'), raterLayout.stars, {bg:'#eeeeee', ratingto:'/package/rait/%score%'});</script>
+	</p>
+</div>
 <br style='clear:both;' />
 </div>
 <p>Downloaded: <?php echo $package->num_downloads ?> times.</p> 

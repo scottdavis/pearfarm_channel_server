@@ -3,7 +3,12 @@ This site is meant to replace pear.php.net's packages hosting service. And we ar
  
 ##Why is this better than pear.php.net package hosting? 
 The acceptance process of pear packages is too slow and strict. In pearfarm we think different, we believe that the community will decide which packages are good or not. And we don't like to restrict the way you write your packages with specific coding styles, etc. Although we encourage good and understandable code so we can all be happy!
- 
+
+##Why does each person have their own channel as opposed to a global channel
+
+1. It improves performance of the pear installation as pearfarm gets tons of packages.
+2. It allows for multiple forks of the same project to be easily hosted inside of pearfarm with very little confusion. 
+
 ##How can the process for publishing a pear package get any easier? 
 Through one command: `pearfarm push somepackage-0.0.0.tar.gz`.
  

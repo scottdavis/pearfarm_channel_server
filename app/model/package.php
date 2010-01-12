@@ -12,8 +12,10 @@ class Package extends NimbleRecord {
      * $this->belongs_to('bar')
      */
     $this->belongs_to('user');
-    $this->has_many('versions')->order('version DESC');
     $this->belongs_to('category');
+
+		$this->has_many('ratings');
+    $this->has_many('versions')->order('version DESC');
   }
   
   public function validations() {
@@ -115,16 +117,7 @@ class Package extends NimbleRecord {
           break;
       }
     }
-    if(!defined('NIMBLE_IS_TESTING')) {
-      ob_start();
-      echo "############## upload ############\n";
-      var_dump($keys);
-      while($err = openssl_error_string()) {
-        echo $err . "\n";
-      }
-      echo "############## end upload ############\n";
-      error_log(ob_get_clean());
-    }
+		unset($sig);
     unset($file_hash);
     return false;
   }
