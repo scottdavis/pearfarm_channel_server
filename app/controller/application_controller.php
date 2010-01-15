@@ -48,7 +48,7 @@ class ApplicationController extends \Controller {
 	public function set_default_side_bar() {
 		//$vs = Version::find('all', array('select' => 'distinct(package_id)', 'limit' => '0,5', 'order' => 'created_at DESC'));
 		
-		$updated = Package::find('all', array('select' => '`packages`.*', 'joins' => 'INNER JOIN `versions` on `versions`.`package_id` = `packages`.`id`', 'order' => '`versions`.`created_at` DESC',
+		$updated = Package::find('all', array('select' => '`packages`.*, MAX(`versions`.`created_at`) as ca', 'joins' => 'INNER JOIN `versions` on `versions`.`package_id` = `packages`.`id`', 'order' => 'ca DESC',
 		                                      'limit' => '0,5', 'group' => '`packages`.`id`'));
 		
 		$latest = Package::find('all', array('limit' => '0,5', 'order' => 'created_at DESC'));
