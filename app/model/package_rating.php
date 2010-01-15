@@ -39,8 +39,12 @@
 			}
 			
 			public static function get_rating_for_user($user_id, $package_id) {
-				$r = self::find('first', array('conditions' => array('user_id' => $user_id, 'package_id' => $package_id)));
-				return $r->rating;
+				try{
+					$r = self::find('first', array('conditions' => array('user_id' => $user_id, 'package_id' => $package_id)));
+					return $r->rating;
+				}catch(NimbleRecordNotFound $e) {
+					return;
+				}
 			}
 			
 			public static function convert_to_human($num) {
