@@ -54,10 +54,11 @@ function distance_of_time_in_words($fromTime, $toTime = 0, $showLessThanAMinute 
         return 'over ' . round(floatval($distanceInMinutes) / 525600) . ' years';
 }
 
-function autolink($foo) {
- $foo = preg_replace('/(?<!S)([w.]+)(@)([w.]+)b/i', '<a href="mailto:$1@$3">$1@$3</a>', $foo);
- $foo = preg_replace('/(?<!S)((http(s?):\/\/)|(www.))+([w.\/&=#?-~%;]+)b/i', '<a href="http$3://$4$5" target="_blank">http$3://$4$5</a>', $foo); 
- $foo = preg_replace('/(?<!S)((ftp(7?):\/\/)|(ftp.))([w.\/&=#?-~%;]+)b/i', '<a href="ftp$3://$4$5" target="_blank">ftp$3://$4$5</a>', $foo); 
- return $foo;
+function autolink($text) {
+  $pattern = "/(((http[s]?:\/\/)|(www\.))?(([a-z][-a-z0-9]+\.)?[a-z][-a-z0-9]+\.[a-z]+(\.[a-z]{2,2})?)\/?[a-z0-9._\/~#&=;%+?-]+[a-z0-9\/#=?]{1,1})/is";
+  $text = preg_replace($pattern, '<a href="$1" title="$1" target="_blank">$1</a>', $text);
+  // fix URLs without protocols
+  $text = preg_replace("/href=\"www/", "href=\"http://www", $text);
+  return $text;
 }
 ?>

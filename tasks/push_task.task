@@ -8,10 +8,12 @@ class push_task implements PlowTask {
       case 'live':
         $server_name = 'pearfarm.org';
         $path = '/var/www/pearfarm_channel_server';
+        $env = 'production';
       break;
       case 'dev':
         $server_name = 'dev.pearfarm.org';
         $path = '/var/www/pearfarm_dev';
+        $env = 'staging';
       break;
     }
     $conn = ssh2_connect($server_name);
@@ -24,6 +26,11 @@ class push_task implements PlowTask {
     $stream = ssh2_exec($conn, "cd $path && git pull");
     stream_set_blocking($stream, true);
     print (stream_get_contents($stream));
+    $command = "cd $path && NIMBLE_ENV=$env php script/db migrate";
+    print("running: $command \n");
+    $stream2 = ssh2_exec($conn, $command);
+    stream_set_blocking($stream2, true);
+    print (stream_get_contents($stream2));
   }
   public function name() {
     return "deploy::make_live";
