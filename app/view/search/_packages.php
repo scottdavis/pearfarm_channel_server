@@ -22,7 +22,7 @@
 				<td><?php echo link_to($version->version, url_for("VersionController", 'show', $package->user->username, $package->name, $version->version)) ?></td>
         <td><div class='small summary-right'><?php echo $version->summary ?></div></td>
         <td><?php echo $version->min_php ?></td>
-        <td><?php echo distance_of_time_in_words(DateHelper::from_db($package->updated_at), time(), true) ?> ago</td>
+        <td><span class='small'><?php echo distance_of_time_in_words(DateHelper::from_db($package->updated_at), time(), true) ?> ago</span></td>
 				<td><?php echo isset($package->rating) ? PackageRating::convert_to_human($package->rating) : 0 ?>%</td>
       </tr>
     <?php } ?>
