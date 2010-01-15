@@ -23,7 +23,7 @@
         <td><div class='small summary-right'><?php echo $version->summary ?></div></td>
         <td><?php echo $version->min_php ?></td>
         <td><span class='small'><?php echo distance_of_time_in_words(DateHelper::from_db($package->updated_at), time(), true) ?> ago</span></td>
-				<td><?php echo PackageRating::convert_to_human($package->rating) ?>%</td>
+				<td><?php echo !is_null($package->rating) ? PackageRating::convert_to_human($package->rating) : 0 ?>%</td>
       </tr>
     <?php } ?>
   </tbody>
