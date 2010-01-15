@@ -43,7 +43,7 @@
 					$r = self::find('first', array('conditions' => array('user_id' => $user_id, 'package_id' => $package_id)));
 					return $r->rating;
 				}catch(NimbleRecordNotFound $e) {
-					return;
+					return '0.5';
 				}
 			}
 			
