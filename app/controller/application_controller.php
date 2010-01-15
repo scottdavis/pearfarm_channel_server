@@ -49,7 +49,7 @@ class ApplicationController extends \Controller {
 		//$vs = Version::find('all', array('select' => 'distinct(package_id)', 'limit' => '0,5', 'order' => 'created_at DESC'));
 		
 		$updated = Package::find('all', array('select' => '`packages`.*', 'joins' => 'INNER JOIN `versions` on `versions`.`package_id` = `packages`.`id`', 'order' => '`versions`.`created_at` DESC',
-		                                      'limit' => '0,5',));
+		                                      'limit' => '0,5', 'group' => '`packages`.`id`'));
 		
 		$this->latest = Package::find('all', array('limit' => '0,5', 'order' => 'created_at DESC'));
 		$this->sidepackage = $this->latest;
