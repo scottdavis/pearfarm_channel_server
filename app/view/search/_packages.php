@@ -18,7 +18,7 @@
 			}
       ?>
       <tr class="<?php echo cycle('even', 'odd') ?>">
-        <td><span class='badge <?php echo $vt ?>' style='margin-left:5px;'>&nbsp;</span><?php echo link_to(h($package->user->username . '/' .$package->name), url_for("PackageController", 'show', $package->user->username, $package->name)) ?></td>
+        <td><div class='summary-right'><span class='badge <?php echo $vt ?>' style='margin-left:5px;'>&nbsp;</span><?php echo link_to(h($package->user->username . '/' .$package->name), url_for("PackageController", 'show', $package->user->username, $package->name)) ?></div></td>
 				<td><?php echo link_to($version->version, url_for("VersionController", 'show', $package->user->username, $package->name, $version->version)) ?></td>
         <td><div class='small summary-right'><?php echo $version->summary ?></div></td>
         <td><?php echo $version->min_php ?></td>
