@@ -51,13 +51,11 @@ class ApplicationController extends \Controller {
 		$updated = Package::find('all', array('select' => '`packages`.*', 'joins' => 'INNER JOIN `versions` on `versions`.`package_id` = `packages`.`id`', 'order' => '`versions`.`created_at` DESC',
 		                                      'limit' => '0,5', 'group' => '`packages`.`id`'));
 		
-		$this->latest = Package::find('all', array('limit' => '0,5', 'order' => 'created_at DESC'));
-		$this->sidepackage = $this->latest;
+		$latest = Package::find('all', array('limit' => '0,5', 'order' => 'created_at DESC'));
 		$this->sidebar[0]['title'] = "New Packages";
-		$this->sidebar[0]['content'] = $this->render_partial('layout/_package_list.php');
-		$this->sidepackage = $updated;
+		$this->sidebar[0]['data'] = $latest;
 		$this->sidebar[1]['title'] = "Recently Updated";
-		$this->sidebar[1]['content'] = $this->render_partial('layout/_package_list.php');
+		$this->sidebar[1]['data'] = $updated;
 	}
 
 }

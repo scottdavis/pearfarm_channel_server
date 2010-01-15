@@ -6,6 +6,7 @@
 class HelpController extends \ApplicationController {
 
 	public function before_filter() {
+	  $this->set_default_side_bar();
 		$this->markdown_dir = FileUtils::join(NIMBLE_ROOT, 'app', 'view', 'help', 'markdown');
 		$this->files = static::get_markdown_files($this->markdown_dir);
 	}
@@ -24,8 +25,6 @@ class HelpController extends \ApplicationController {
 
 
 	public function show() {
-		$this->sidebar[0]['title'] = "Help";
-		$this->sidebar[0]['content'] = $this->render_partial('help/_help_mini.php');
 		require_once(FileUtils::join(NIMBLE_ROOT, 'lib', 'markdown.php'));
 		$filename = $_GET['name'] . '.markdown';
 		$this->title = ucwords(Inflector::humanize($_GET['name'] . ' help'));
