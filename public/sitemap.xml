@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>http://pearfarm.org/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/packages</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/login</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/signup</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/help/spec</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/about</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/help/FAQ</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/stats</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/help</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/pearfarm/pearfarm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/jetviper21/plow</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/funkatron/inspekt</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/alvaro/outlet</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/jetviper21/nimblize</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/help/usage</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://pearfarm.org/help/key</loc>
+  <changefreq>daily</changefreq>
+</url>
+</urlset>
