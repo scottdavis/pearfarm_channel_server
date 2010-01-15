@@ -11,7 +11,7 @@ class PackageSearch {
 		return Package::paginate(array('select' => '`packages`.*, AVG(`package_ratings`.`rating`) as rating',
 																							'order' => 'rating DESC', 'per_page' => 20, 'page' => $page,
 																							'conditions' => NimbleRecord::sanitize(array('name LIKE ?', "%$value%")),
-																							'joins' => 'LEFT JOIN `package_ratings` on `package_ratings`.`package_id` = `packages`.`id`'));
+																							'joins' => 'LEFT JOIN `package_ratings` on `package_ratings`.`package_id` = `packages`.`id`', 'group' => '`packages`.id'));
 	}
 	
 	
