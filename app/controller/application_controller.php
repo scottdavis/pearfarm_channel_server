@@ -46,13 +46,16 @@ class ApplicationController extends \Controller {
 
 
 	public function set_default_side_bar() {
-		$vs = Version::find('all', array('select' => 'distinct(package_id)', 'limit' => '0,5', 'order' => 'created_at DESC'));
+		//$vs = Version::find('all', array('select' => 'distinct(package_id)', 'limit' => '0,5', 'order' => 'created_at DESC'));
+		
+		$updated = Package::find('all', array('select' => '`packages`.*', 'joins' => 'INNER JOIN `versions` on `versions`.`package_id` = `packages`.`id`', 'order' => '`versions`.`created_at` DESC',
+		                                      'limit' => '0,5',));
+		
 		$this->latest = Package::find('all', array('limit' => '0,5', 'order' => 'created_at DESC'));
 		$this->sidepackage = $this->latest;
 		$this->sidebar[0]['title'] = "New Packages";
 		$this->sidebar[0]['content'] = $this->render_partial('layout/_package_list.php');
-		$this->updated = collect(function($v){return $v->package;}, $vs);
-		$this->sidepackage = $this->updated;
+		$this->sidepackage = $updated;
 		$this->sidebar[1]['title'] = "Recently Updated";
 		$this->sidebar[1]['content'] = $this->render_partial('layout/_package_list.php');
 	}
