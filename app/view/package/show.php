@@ -3,7 +3,7 @@
 	<table>
 		<tr>
 			<td><img src='/public/image/assets/<?php echo $version->version_type->name ?>_badge_48.png'></td>
-			<td><span class='version_type'><?php echo ucwords($version->version_type->name) ?></span> - <?php echo $package->current_version()->version ?></td>
+			<td><span class='version_type'><?php echo ucwords($version->version_type->name) ?></span> - <?php echo $version->version ?> - <?php echo date("F j, Y", DateHelper::from_db($version->created_at)) ?></td>
 		</tr>
 	</table>
 </div>
@@ -29,7 +29,7 @@
 <br />
 <br />
 <div id='summary'>
-	<?php echo $data['summary'] ?>
+	<?php echo autolink($data['summary']) ?>
 </div>
 <br />
 <br />
@@ -62,7 +62,7 @@ if (!isset($data[$type])) {
 <?php foreach($versions as $_version) { 
   $url = url_for('VersionController', 'show', $package->user->username, $package->name, $_version->version);
 ?>
-<li><?php echo link_to($_version->version, $url) ?></li>
+<li><?php echo link_to($_version->version, $url) ?> - <?php echo date("F j, Y", DateHelper::from_db($_version->created_at)) ?></li>
 <?php } ?>
 </ul>
 

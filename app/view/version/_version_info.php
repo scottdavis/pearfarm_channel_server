@@ -6,8 +6,8 @@
 <?php if (!empty($data)) { ?>
 	<ul class='package_info'>
 		<li><span class='title'>Channel:</span> <?php echo h($data['channel']) ?></li>
-		<li><span class='title'>Summary:</span> <?php echo $data['summary'] ?></li>
-		<li><span class='title'>Description:</span> <?php echo $data['description'] ?></li>
+		<li><span class='title'>Summary:</span> <?php echo autolink(h($data['summary'])) ?></li>
+		<li><span class='title'>Description:</span> <?php echo autolink(h($data['description'])) ?></li>
 		<li><span class='title'>Version:</span> <ul>
 									<li><span class='title'>Release:</span> <?php echo h($data['version']['release']) ?></li>
 									<li><span class='title'>Api:</span> <?php echo h($data['version']['api']) ?></li>
@@ -40,8 +40,8 @@
 		<?php
   } ?>
 		</li>
-		<li><span class='title'>License:</span> <?php echo h($data['license']['_content']) ?></li>
-		<li><span class='title'>Notes:</span> <?php echo h($data['notes']) ?></li>
+		<li><span class='title'>License:</span> <?php echo link_to(h($data['license']['_content']), $data['license']['attribs']['uri'], array('target' => '_blank')) ?></li>
+		<li><span class='title'>Notes:</span> <?php echo autolink(h($data['notes'])) ?></li>
 	</ul>
 <?php
 } ?>

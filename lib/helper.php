@@ -53,4 +53,11 @@ function distance_of_time_in_words($fromTime, $toTime = 0, $showLessThanAMinute 
         
         return 'over ' . round(floatval($distanceInMinutes) / 525600) . ' years';
 }
+
+function autolink($foo) {
+ $foo = preg_replace('/(?<!S)([w.]+)(@)([w.]+)b/i', '<a href="mailto:$1@$3">$1@$3</a>', $foo);
+ $foo = preg_replace('/(?<!S)((http(s?):\/\/)|(www.))+([w.\/&=#?-~%;]+)b/i', '<a href="http$3://$4$5" target="_blank">http$3://$4$5</a>', $foo); 
+ $foo = preg_replace('/(?<!S)((ftp(7?):\/\/)|(ftp.))([w.\/&=#?-~%;]+)b/i', '<a href="ftp$3://$4$5" target="_blank">ftp$3://$4$5</a>', $foo); 
+ return $foo;
+}
 ?>
