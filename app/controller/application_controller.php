@@ -6,6 +6,7 @@ require_once(NIMBLE_ROOT . '/lib/helper.php');
 class ApplicationController extends \Controller {
   
 	public function __construct() {
+		$this->full = false;
 		$this->header("Content-Type: text/html; charset=utf-8");
 		$this->total_packages = Package::count();
 		$this->sidebar = array();

@@ -35,6 +35,7 @@ class PackageController extends \ApplicationController {
 				$this->has_rendered = true;
 			break;
 			default:
+					$this->full = true;
 					$this->packages = Package::paginate(array('select' => '`packages`.*, AVG(`package_ratings`.`rating`) as rating',
 																										'order' => 'rating DESC', 'per_page' => 20, 'page' => $page, 
 																										'joins' => 'LEFT JOIN `package_ratings` on `package_ratings`.`package_id` = `packages`.`id`', 'group' => '`packages`.id'));

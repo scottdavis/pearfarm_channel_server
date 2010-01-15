@@ -24,9 +24,11 @@
 	<body>
 		<div id="top_header">
 			<div id='header'>
+				<a id='logo_link' title='pearfarm' href='http://<?php echo DOMAIN ?>/'>
 				<div id='logo'>
-					<a href='/'><img src='/public/image/assets/logo.png' alt='logo' /></a>
+						<div id='total_count'><?php echo $this->total_packages ?> Packages since Dec 09</div>
 				</div>
+				</a>
 				<div id='main_menu'>
 					<div id="searchbox_holder">
 						<ul class='menu_bar'>
@@ -56,37 +58,15 @@
 		<div id='wrapper'>
 			<div id='content'>
 				<?php $this->show_flash() ?>
-				<div class='main_col'>
-					<h1><?php echo $this->title ?></h1>
-					<div class='rounded_box'>
-						<?php echo $content ?>
-						<p><?php echo link_to_back() ?></p>
-					</div>
-				</div>
-				<div class='side_col'>
-					<?php foreach($sidebar as $_sidebar) { ?>
-					<h2><?php echo $_sidebar['title'] ?></h2>
-					<div class='rounded_box'>
-						<?php echo $_sidebar['content'] ?>
-					</div>
-					<?php } ?>
-				</div>
-				<br style='clear:both;' />
+				<?php if($this->full == false) {?>
+					<?php echo $this->render_partial('layout/_content.php') ?>
+				<?php }else{?>
+					<?php echo $this->render_partial('layout/_full.php') ?>
+				<?php } ?>
 			</div>
 		</div>
 		<div id='footer'>
-				<ul class='menu_bar'>
-					<li><?php echo link_to('About', url_for('HelpController', 'about')) ?></li>
-					<li><?php echo link_to('FAQ', url_for('HelpController', 'show', 'FAQ')) ?></li>
-					<li><?php echo link_to('Stats', url_for('HelpController', 'stats')) ?></li>
-					<li><?php echo link_to('Code', "http://github.com/fgrehm/pearfarm", array('target' => '_blank')) ?></li>
-					<li><?php echo link_to('Status', "http://twitter.com/pearfarm", array('target' => '_blank')) ?></li>
-					<li><?php echo link_to('Blog', "http://blog.pearfarm.org", array('target' => '_blank'))?></li>
-					<li><?php echo link_to('Community', "http://groups.google.com/group/pear-farm", array('target' => '_blank'))?></li>
-					<li><?php echo link_to('Help', url_for('HelpController', 'index')) ?></li>
-				</ul>
-				<br />
-				<?php echo link_to('Pearfarm.org', 'http://pearfarm.org') ?> is not associated with the <?php echo link_to('PEAR', 'http://pear.php.net') ?> project
+			<?php echo $this->render_partial('layout/_footer.php') ?>
 		</div>
 		<?php if(NIMBLE_ENV == 'staging' || NIMBLE_ENV == 'production') { ?>
 	  	 <script type="text/javascript">

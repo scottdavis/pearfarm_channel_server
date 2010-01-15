@@ -71,8 +71,18 @@ h1,h2,h3 {
   float:left;
 }
 
-#logo a img{
-	margin-left:10px;
+#logo {
+  background-repeat:no-repeat;
+  width:267px;
+	background-image:url(/public/image/assets/logo.png);
+}
+
+#logo_link {
+  text-decoration:none;
+}
+
+#logo_link:hover{
+  color:black;
 }
 
 #main_menu {
@@ -83,6 +93,11 @@ a img {
 	border:none;
 }
 
+#total_count {
+  font-weight:bold;
+  margin-left:92px;
+  margin-top:79px;
+}
 
 .main_col {
 	width:675px;
@@ -573,6 +588,10 @@ ul.versions li {
 
 .small {
   font-size:12px;
+}
+
+.small a {
+  font-size:inherit;
 }
 
 ul#keys {
