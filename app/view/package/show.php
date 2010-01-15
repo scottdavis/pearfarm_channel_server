@@ -10,10 +10,12 @@
 </div>
 <div class='right'>
 	<p><?php echo link_to('Download', $package->file_url($version->version) . '.tgz', array('class' => 'download')) ?></p>
+	<?php if($this->is_logged_in()) { ?>
 	<p>
 		<div id='rater'></div>
-		<script type='text/javascript'>new Rater($('rater'), raterLayout.stars, {bg:'#eeeeee', ratingto:'/package/rait/%score%'});</script>
+		<script type='text/javascript'>new Rater($('rater'), raterLayout.stars, {bg:'#eeeeee', ratingto:'/package/<?php echo $package->id ?>/rate/%score%'},<?php echo PackageRating::get_rating_for_user($user->id, $package->id)?>);</script>
 	</p>
+	<?php } ?>
 </div>
 <br style='clear:both;' />
 </div>
