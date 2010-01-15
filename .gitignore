@@ -6,3 +6,4 @@ config/test/database.json
 config/production/database.json
 report/*
 log/*.log
+*.log
