@@ -90,7 +90,7 @@ class PackageController extends \ApplicationController {
     $this->login_user();
     try {
       $package = Package::find('first', array('conditions' => array('id' => $_GET['id'], 'user_id' => $this->user->id)));
-      $package->clear_all_version();
+      $package->clear_all_versions();
       Nimble::flash('notice', $package->name . " was deleted");
       $package->destroy();
       $this->redirect_to('/');
@@ -113,6 +113,21 @@ class PackageController extends \ApplicationController {
 			}
 		}
 
+	}
+	
+	public function rate() {
+		$this->layout = false;
+		$this->has_rendered = true;
+		$this->login_user();
+		$score = (float) $_GET['score'];
+		try{
+			PackageRating::_create(array('rating' => $score, 'package_id' => $_GET['id'], 'user_id' => $this->user->id));
+			echo 'created';
+			}catch(NimbleRecordException $e) {
+				$p = PackageRating::find('first', array('package_id' => $_GET['id'], 'user_id' => $this->user->id));
+				PackageRating::update($p->id, array('rating' => $score));
+				echo 'updated';
+			}
 	}
   
   

@@ -5,3 +5,4 @@ config/development/database.json
 config/test/database.json
 config/production/database.json
 report/*
+log/*.log

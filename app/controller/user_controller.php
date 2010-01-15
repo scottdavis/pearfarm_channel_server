@@ -114,7 +114,7 @@ class UserController extends \ApplicationController {
    
   public function delete() {
     foreach($this->user->packages as $package) {
-      $package->clear_all_version();
+      $package->clear_all_versions();
       $package->destroy();
     }
     User::delete($this->user->id);

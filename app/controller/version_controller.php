@@ -39,8 +39,8 @@ class VersionController extends \ApplicationController {
       	$file = $package->file_path($version->version);
       	@unlink($file);
       	Nimble::flash('notice', "Version: {$version->version} was deleted");
-      	Version::delete($version->id);
-      	$this->redirect_to(url_for('PackageController', 'show', $version->package_id));
+      	$version->delete();
+      	$this->redirect_to(url_for('PackageController', 'show', $package->user->username, $package->name));
 			}else{
       	$this->redirect_to('/');
     	}

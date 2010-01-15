@@ -37,7 +37,7 @@ class Package extends NimbleRecord {
   public function clear_all_versions() {
     foreach($this->versions as $version) {
       @unlink($this->file_path($version->version));
-      $version->destroy();
+      $version->delete();
     }
   }
   

@@ -19,7 +19,7 @@ class VersionControllerTest extends NimbleFunctionalTestCase {
     $this->delete('delete', array(), array('id' => $v->package_id, 'version' => $v->id), array('user' => User::find_by_username('bob')->id));
     $this->assertEquals($count - 1, Version::count(array('cache' => false)));
 		$this->assertFalse(Version::exists('id', $v->id));
-    $this->assertRedirect(url_for('PackageController', 'show', $p->id));
+    $this->assertRedirect(url_for('PackageController', 'show', $p->user->username, $p->name));
   }
 }
 ?>

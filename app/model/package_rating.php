@@ -24,7 +24,7 @@
 			}
 			
 			
-			public function before_save() {
+			public function before_create() {
 				try {
 					self::find('first', array('conditions' => array('package_id' => $this->package_id, 'user_id' => $this->user_id)));
 					throw new NimbleRecordException("This user has already rated this package");
@@ -36,6 +36,11 @@
 			
 			public static function get_rating_for($package_id) {
 				return self::avg(array('column' => 'rating', 'conditions' => array('package_id' => $package_id)));
+			}
+			
+			public static function get_rating_for_user($user_id, $package_id) {
+				$r = self::find('first', array('conditions' => array('user_id' => $user_id, 'package_id' => $package_id)));
+				return $r->rating;
 			}
 			
 			public static function convert_to_human($num) {
