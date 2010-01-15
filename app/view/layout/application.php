@@ -6,6 +6,8 @@
 	<link rel="icon" href="/public/image/favico.ico" type="image/x-icon" />
 	<link rel="search" type="application/opensearchdescription+xml" href="http://<?php echo DOMAIN ?>/opensearch.xml" title="Pearfarm" /> 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="Pearfarm is the Php community's pear hosting service. Instantly publish your pear packages and install them. Become a contributor and enhance the site with your own changes." /> 
+	<meta name="keywords" content="php pear packages community code repository opensource" />
 	<title><?php echo h(Nimble::get_title()) ?></title>
 	<?php echo stylesheet_link_tag('stylesheet.css', 'facebox.css') ?>
 	<!--[if lt IE 7]>
