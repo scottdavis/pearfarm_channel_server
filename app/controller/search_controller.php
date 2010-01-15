@@ -8,7 +8,11 @@
 		public function search() {
 			$this->full = true;
 			$this->set_default_side_bar();
-			$this->packages = PackageSearch::simple_search($_GET['search']);
+			try {
+				$this->packages = PackageSearch::simple_search($_GET['search']);
+			}catch(NimbleRecordNotFound $e) {
+				$this->packages = array();
+			}
 			switch($this->format) {
 				case 'xml':
 					$this->render('search/search.xml');

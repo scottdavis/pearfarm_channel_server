@@ -13,6 +13,11 @@ class SearchControllerTest extends NimbleFunctionalTestCase {
     $this->assertEquals(count($packages), 1);
   }
 
+	public function testSerachReturnsNothing() {
+		$this->get('search', array(), array('search' => 'mvc'));
+		$this->assertTemplate('search');
+	}
+
   public function testSearchEmptyRedirects() {
     $this->get('search', array(), array('search' => ''));
     $this->assertRedirect('/');
