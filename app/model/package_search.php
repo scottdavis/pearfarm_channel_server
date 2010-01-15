@@ -8,7 +8,10 @@ class PackageSearch {
 	
 	public static function simple_search($value) {
 	  $page = isset($_GET['page']) ? $_GET['page'] : NULL;
-		return Package::paginate(array('order' => 'updated_at DESC', 'per_page' => 20, 'page' => $page, 'conditions' =>  NimbleRecord::sanitize(array('name LIKE ?', "%$value%"))));
+		return Package::paginate(array('select' => '`packages`.*, AVG(`package_ratings`.`rating`) as rating',
+																							'order' => 'rating DESC', 'per_page' => 20, 'page' => $page,
+																							'conditions' => NimbleRecord::sanitize(array('name LIKE ?', "%$value%")),
+																							'joins' => 'LEFT JOIN `package_ratings` on `package_ratings`.`package_id` = `packages`.`id`'));
 	}
 	
 	

@@ -263,6 +263,17 @@ table#search_table {
   width:100%;
 }
 
+table#search_table tr {
+  height:50px;
+}
+table#search_table tr td{
+ text-align:center;
+}
+
+.summary-right {
+  text-align:left !important;
+}
+
 .even {
   background-color:#ccc;
 }
@@ -560,7 +571,7 @@ ul.versions li {
   list-style-type:none;
 }
 
-span.small {
+.small {
   font-size:12px;
 }
 
