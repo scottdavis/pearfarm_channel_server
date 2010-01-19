@@ -24,6 +24,10 @@ class ChannelController extends \ApplicationController {
         $this->layout = false;
         $this->render('channel/index.xml');
         $this->header('Content-Type: text/xml', 200);
+				$this->current_version = Version::find('first', array('select' => 'versions.*', 'joins' => 'INNER JOIN packages on versions.package_id = packages.id INNER JOIN users ON users.id = packages.user_id', 'order' => 'versions.version DESC'));
+				$date = DateHelper::from_db($this->current_version->created_at);
+				$date = date(DATE_RFC822, $date);
+				$this->header("Last-Modified: $date");
       break;
       default:
         $this->packages = $this->user->packages;
