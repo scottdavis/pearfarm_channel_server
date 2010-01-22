@@ -15,7 +15,7 @@ class Package extends NimbleRecord {
     $this->belongs_to('category');
 
 		$this->has_many('ratings');
-    $this->has_many('versions')->order('version DESC');
+    $this->has_many('versions')->order('created_at DESC');
   }
   
   public function validations() {
@@ -28,7 +28,7 @@ class Package extends NimbleRecord {
   
   public function current_version() {
     try{
-      return Version::find('first', array('order' => 'version DESC', 'conditions' => array('package_id' => $this->id)));
+      return Version::find('first', array('order' => 'created_at DESC', 'conditions' => array('package_id' => $this->id)));
     }catch(NimbleRecordNotFound $e) {
       return false;
     }

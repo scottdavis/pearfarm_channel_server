@@ -6,7 +6,7 @@ class RestController extends \ApplicationController {
   public function before_filter() {
     $this->filter();
     $this->layout = false;
-		$this->current_version = Version::find('first', array('select' => 'versions.*', 'joins' => 'INNER JOIN packages on versions.package_id = packages.id INNER JOIN users ON users.id = packages.user_id', 'order' => 'versions.version DESC'));
+		$this->current_version = Version::find('first', array('select' => 'versions.*', 'joins' => 'INNER JOIN packages on versions.package_id = packages.id INNER JOIN users ON users.id = packages.user_id', 'order' => 'versions.created_at DESC'));
 		$date = DateHelper::from_db($this->current_version->created_at);
 		$date = date(DATE_RFC822, $date);
 		$this->header("Last-Modified: $date");
@@ -144,7 +144,7 @@ class RestController extends \ApplicationController {
   private function static_version_file($type) {
     try {
       $package = Package::find('first', array('name' => array($_GET['name'], 'user_id' => $this->user->id)));
-      $version = Version::find('first', array('conditions' => array('version_type_id' => $type->id, 'package_id' => $package->id), 'order' => 'version DESC'));
+      $version = Version::find('first', array('conditions' => array('version_type_id' => $type->id, 'package_id' => $package->id), 'order' => 'created_at DESC'));
       echo $version->version;
     }
     catch(NimbleRecordNotFound $e) {
