@@ -1,0 +1,1 @@
+/usr/bin/env php -d auto_prepend_file=nimblize/nimble_scripts/cli.php -a

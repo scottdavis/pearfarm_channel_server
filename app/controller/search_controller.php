@@ -4,10 +4,7 @@
 		* @package controller
 		*/
 	class SearchController extends \ApplicationController {
-		
 		public function search() {
-			$this->full = true;
-			$this->set_default_side_bar();
 			try {
 				$this->packages = PackageSearch::simple_search($_GET['search']);
 			}catch(NimbleRecordNotFound $e) {
@@ -15,7 +12,13 @@
 			}
 			switch($this->format) {
 				case 'xml':
-					$this->render('search/search.xml');
+				  echo $this->packages->to_xml(array('except' => array('user_id'), 'append' => array('channel' => function($obj) {
+				                                                                                      return $obj->user->pear_farm_url();
+				                                                                                    }, 'username' => function($obj) {
+				                                                                                      return $obj->user->username;
+				                                                                                    })));
+					$this->layout = false;
+				  $this->has_rendered = true;
 				break;
 				case 'json':
 				  $names = collect(function($p){return $p->name;}, $this->packages);
@@ -24,6 +27,8 @@
 				  $this->has_rendered = true;
 				break;
 				case 'html':
+				  $this->full = true;
+  			  $this->set_default_side_bar();
 				  if(!isset($_GET['search']) || empty($_GET['search']) || $_GET['search'] == 'Search packages…') {
 				    $this->redirect_to('/');
 				  }
