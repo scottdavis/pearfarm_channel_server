@@ -28,5 +28,9 @@ You should just include a spec file in your code, build the package and push it.
 No. Just add the pearfarm channel and pear install the packages that you like.
 
 <br />
+##I've found a bug / I want a new feature! What should I do?
+Go to http://github.com/fgrehm/pearfarm/issues or http://groups.google.com/group/pear-farm and let your voice be heard!
+
+<br />
 ##How can I help?
 Fork away on GitHub and make your changes!
