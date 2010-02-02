@@ -67,7 +67,7 @@ class User extends NimbleRecord {
 		if(!$user->active) {
 			return false;
 		}
-    $hashed_password = static ::hash_password($password, $user->salt);
+    $hashed_password = static::hash_password($password, $user->salt);
     return ($hashed_password === $user->password);
   }
 }

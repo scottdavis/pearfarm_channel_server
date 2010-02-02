@@ -1,5 +1,5 @@
 ##Is this site supposed to replace pear.php.net? 
-This site is meant to replace pear.php.net's packages hosting service. And we are still working on it.
+Thats is up to the community to decided we are just here to offer easy to use pear hosting!
 
 <br />
 ##Why is this better than pear.php.net package hosting? 
@@ -13,7 +13,7 @@ The acceptance process of pear packages is too slow and strict. In pearfarm we t
 
 <br />
 ##How can the process for publishing a pear package get any easier? 
-Through one command: `pearfarm push somepackage-0.0.0.tar.gz`.
+Through one command: `pearfarm push`.
  
 <br />
 ##Can anyone push to any package?
